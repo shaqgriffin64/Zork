@@ -7,8 +7,6 @@ namespace ZorkGame
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Zork!");
-
-            Console.WriteLine("");
         }
     }
 }
