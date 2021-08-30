@@ -2,17 +2,6 @@
 
 namespace ZorkGame
 {
-    enum Commands
-    {
-        QUIT,
-        LOOK,
-        NORTH,
-        SOUTH,
-        EAST,
-        WEST,
-        UNKNOWN
-    }
-
     class Program
     {
         static void Main(string[] args)
@@ -24,7 +13,7 @@ namespace ZorkGame
             Console.WriteLine(command);
         }
 
-        private static Commands ToCommand(string commandString)
+        static Commands ToCommand(string commandString)
             /*{
                 return Enum.Parse<Commands>(commandString, true);
             }*/
@@ -60,6 +49,7 @@ namespace ZorkGame
                     command = Commands.UNKNOWN;
                     break;
             };
+            return Commands.UNKNOWN;
         }
     }
 }
