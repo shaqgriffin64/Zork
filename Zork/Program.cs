@@ -8,7 +8,7 @@ namespace ZorkGame
         {
             Console.WriteLine("Welcome to Zork!");
 
-            string inputString = Console.ReadLine();
+            string inputString = Console.ReadLine().ToUpper();
             Commands command = ToCommand(inputString.Trim().ToUpper());
             Console.WriteLine(command);
         }
@@ -49,7 +49,7 @@ namespace ZorkGame
                     command = Commands.UNKNOWN;
                     break;
             };
-            return Commands.UNKNOWN;
+            return command;
         }
     }
 }
