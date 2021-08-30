@@ -21,58 +21,45 @@ namespace ZorkGame
 
             string inputString = Console.ReadLine();
             Commands command = ToCommand(inputString.Trim().ToUpper());
-
-            //inputString = inputString.ToUpper();
-            
-            
-            if (inputString == "QUIT")
-            {
-                Console.WriteLine("Thank you for playing.");
-            }
-            else if (inputString == "LOOK")
-            {
-                Console.WriteLine("This is an open field West of a white house, iwth a boarded front door. \n A rubber mat saying 'Welcome to Zork' lies by the door.");
-            }
-            else 
-            {
-                Console.WriteLine("Unrecognized command.");
-            }
-
-
+            Console.WriteLine(command);
         }
 
         private static Commands ToCommand(string commandString)
+            /*{
+                return Enum.Parse<Commands>(commandString, true);
+            }*/
         {
             Commands command;
+            switch (commandString)
+            {
+                case "QUIT":
+                    command = Commands.QUIT;
+                    break;
 
-            if (true)
-            {
+                case "LOOK":
+                    command = Commands.LOOK;
+                    break;
 
-            }
-            else if (commandString == "QUIT")
-            {
-                command = Commands.LOOK;
-            }
-            else if (true)
-            {
+                case "NORTH":
+                    command = Commands.NORTH;
+                    break;
 
-            }
-            else if (true)
-            {
+                case "SOUTH":
+                    command = Commands.SOUTH;
+                    break;
 
-            }
-            else if (true)
-            {
+                case "EAST":
+                    command = Commands.EAST;
+                    break;
 
-            }
-            else if (true)
-            {
+                case "WEST":
+                    command = Commands.WEST;
+                    break;
 
-            }
-            else
-            {
-                
-            }
+                default:
+                    command = Commands.UNKNOWN;
+                    break;
+            };
         }
     }
 }
