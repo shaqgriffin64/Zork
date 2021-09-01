@@ -23,5 +23,9 @@ namespace ZorkGame
                 Console.WriteLine("Unrecognized command.");
             }
         }
+<<<<<<< Updated upstream
+=======
+        private static Commands ToCommand(string commandString) => Enum.TryParse(commandString, true, out Commands result) ? result : Commands.UNKNOWN;
+>>>>>>> Stashed changes
     }
 }
