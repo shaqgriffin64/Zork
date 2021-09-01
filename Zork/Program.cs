@@ -12,6 +12,7 @@ namespace ZorkGame
             inputString = inputString.ToUpper();
             if (inputString == "QUIT")
             {
+<<<<<<< Updated upstream
                 Console.WriteLine("Thank you for playing.");
             }
             else if (inputString == "LOOK")
@@ -21,6 +22,51 @@ namespace ZorkGame
             else
             {
                 Console.WriteLine("Unrecognized command.");
+=======
+                Console.Write("> ");
+                command = ToCommand(Console.ReadLine().Trim());
+
+                string outputString;
+                switch (command)
+                {
+                    case Commands.QUIT:
+                        command = Commands.QUIT;
+                        outputString = "Thank you for playing!";
+                        break;
+
+                    case Commands.LOOK:
+                        command = Commands.LOOK;
+                        outputString = "A rubber mat saying 'Welcome to Zork!' lies by the door.";
+                        break;
+
+                    case Commands.NORTH:
+                        command = Commands.NORTH;
+                        outputString = "You moved NORTH.";
+                        break;
+
+                    case Commands.SOUTH:
+                        command = Commands.SOUTH;
+                        outputString = "You moved SOUTH.";
+                        break;
+
+                    case Commands.EAST:
+                        command = Commands.EAST;
+                        outputString = "You moved EAST.";
+                        break;
+
+                    case Commands.WEST:
+                        command = Commands.WEST;
+                        outputString = "You moved WEST.";
+                        break;
+
+                    default:
+                        command = Commands.UNKNOWN;
+                        outputString = "Unknown command.";
+                        break;
+                };
+
+                Console.WriteLine(outputString);
+>>>>>>> Stashed changes
             }
         }
 <<<<<<< Updated upstream
