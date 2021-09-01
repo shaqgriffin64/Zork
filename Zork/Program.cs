@@ -52,7 +52,6 @@ namespace ZorkGame
                         outputString = "Unknown command.";
                         break;
                 };
-
                 Console.WriteLine(outputString);
             }
         }
