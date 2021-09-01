@@ -13,43 +13,63 @@ namespace ZorkGame
             Console.WriteLine(command);
         }
 
-        static Commands ToCommand(string commandString)
-            /*{
-                return Enum.Parse<Commands>(commandString, true);
-            }*/
-        {
-            Commands command;
-            switch (commandString)
-            {
-                case "QUIT":
-                    command = Commands.QUIT;
-                    break;
+        private static Commands ToCommand(string commandString) => Enum.TryParse(commandString, true, out Commands result) ? result : Commands.UNKNOWN;
+        //{
+            //try
+            //{
+            //    return Enum.Parse<Commands>(commandString, true);
+            //}
+            //catch
+            //{
+            //    return Commands.UNKNOWN;
+            //}
 
-                case "LOOK":
-                    command = Commands.LOOK;
-                    break;
+            //if (Enum.TryParse<Commands>(commandString, true, out Commands result))
+            //{
+            //    return result;
+            //}
+            //else
+            //{
+            //    return Commands.UNKNOWN;
+            //}
 
-                case "NORTH":
-                    command = Commands.NORTH;
-                    break;
+            //return Enum.TryParse(commandString, true, out Commands result) ? result : Commands.UNKNOWN;
 
-                case "SOUTH":
-                    command = Commands.SOUTH;
-                    break;
+        //}
+        //{
+        //    Commands command;
+        //    switch (commandString)
+        //    {
+        //        case "QUIT":
+        //            command = Commands.QUIT;
+        //            break;
 
-                case "EAST":
-                    command = Commands.EAST;
-                    break;
+        //        case "LOOK":
+        //            command = Commands.LOOK;
+        //            break;
 
-                case "WEST":
-                    command = Commands.WEST;
-                    break;
+        //        case "NORTH":
+        //            command = Commands.NORTH;
+        //            break;
 
-                default:
-                    command = Commands.UNKNOWN;
-                    break;
-            };
-            return command;
-        }
+        //        case "SOUTH":
+        //            command = Commands.SOUTH;
+        //            break;
+
+        //        case "EAST":
+        //            command = Commands.EAST;
+        //            break;
+
+        //        case "WEST":
+        //            command = Commands.WEST;
+        //            break;
+
+        //        default:
+        //            command = Commands.UNKNOWN;
+        //            break;
+        //    };
+
+        //    return command;
+        //}
     }
 }
