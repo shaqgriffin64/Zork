@@ -8,6 +8,7 @@ namespace ZorkGame
         {
             Console.WriteLine("Welcome to Zork!");
 
+<<<<<<< Updated upstream
             string inputString = Console.ReadLine();
             inputString = inputString.ToUpper();
             if (inputString == "QUIT")
@@ -65,6 +66,11 @@ namespace ZorkGame
 
                 Console.WriteLine(outputString);
             }
+=======
+            string inputString = Console.ReadLine().ToUpper();
+            Commands command = ToCommand(inputString.Trim().ToUpper());
+            Console.WriteLine(command);
+>>>>>>> Stashed changes
         }
         private static Commands ToCommand(string commandString) => Enum.TryParse(commandString, true, out Commands result) ? result : Commands.UNKNOWN;
 
