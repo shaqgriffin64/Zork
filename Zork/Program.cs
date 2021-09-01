@@ -12,7 +12,6 @@ namespace ZorkGame
             inputString = inputString.ToUpper();
             if (inputString == "QUIT")
             {
-<<<<<<< Updated upstream
                 Console.WriteLine("Thank you for playing.");
             }
             else if (inputString == "LOOK")
@@ -22,7 +21,6 @@ namespace ZorkGame
             else
             {
                 Console.WriteLine("Unrecognized command.");
-=======
                 Console.Write("> ");
                 command = ToCommand(Console.ReadLine().Trim());
 
@@ -66,15 +64,9 @@ namespace ZorkGame
                 };
 
                 Console.WriteLine(outputString);
->>>>>>> Stashed changes
             }
         }
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> Stashed changes
         private static Commands ToCommand(string commandString) => Enum.TryParse(commandString, true, out Commands result) ? result : Commands.UNKNOWN;
->>>>>>> Stashed changes
+
     }
 }
