@@ -86,9 +86,10 @@ namespace ZorkGame
         private static Commands ToCommand(string commandString) => Enum.TryParse(commandString, true, out Commands result) ? result : Commands.UNKNOWN;
 
         private static string[,] Rooms = {
-            {"Rocky Trail", "South of House", "Canyon View"},
+            
+            {"Dense Woods", "North of House", "Clearing"},
             {"Forest", "West of House", "Behind House"},
-            {"Dense Woods", "North of House", "Clearing"}
+            {"Rocky Trail", "South of House", "Canyon View"}
         };
         private static int LocationColumn = 1;
         private static int LocationRow = 1;
