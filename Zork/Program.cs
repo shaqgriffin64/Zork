@@ -80,7 +80,6 @@ namespace ZorkGame
                     didMove = true;
                     break;
             }
-
             return didMove;
         }
 
