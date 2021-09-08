@@ -4,11 +4,11 @@ namespace ZorkGame
 {
     class Program
     {
-        public static (int Row, int Column) Location
+        public static string Location
         {
             get
             {
-                return Rooms[LocationColumn];
+                return Rooms[LocationRow, LocationColumn];
             }
         }
         static void Main(string[] args)
@@ -68,10 +68,12 @@ namespace ZorkGame
 
             switch (command)
             {
-                case Commands.NORTH:
+                case Commands.NORTH: when LocationRow < Rooms.GetLength(0) -1;
+                    LocationRow;
+
                 case Commands.SOUTH:
                     break;
-                case Commands.EAST when LocationColumn < Rooms.Length - 1:
+                case Commands.EAST when LocationColumn < Rooms.GetLength(1) - 1:
                     LocationColumn++;
                     didMove = true;
                     break;
