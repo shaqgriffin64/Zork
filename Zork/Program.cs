@@ -8,26 +8,9 @@ namespace ZorkGame
         {
             Console.WriteLine("Welcome to Zork!");
 
-
-            string inputString = Console.ReadLine().ToUpper();
-            Commands command = ToCommand(inputString.Trim().ToUpper());
-            Console.WriteLine(command);
-        }
-        private static Commands ToCommand(string commandString) => Enum.TryParse(commandString, true, out Commands result) ? result : Commands.UNKNOWN;
-
-            string inputString = Console.ReadLine();
-            inputString = inputString.ToUpper();
-            if (inputString == "QUIT")
+            Commands command = Commands.UNKNOWN;
+            while (command != Commands.QUIT)
             {
-                Console.WriteLine("Thank you for playing.");
-            }
-            else if (inputString == "LOOK")
-            {
-                Console.WriteLine("This is an open field west of a white house, with a boarded front door. \n A rubber may saying 'Welcome to Zork!' lies by the door.");
-            }
-            else
-            {
-                Console.WriteLine("Unrecognized command.");
                 Console.Write("> ");
                 command = ToCommand(Console.ReadLine().Trim());
 
@@ -69,17 +52,10 @@ namespace ZorkGame
                         outputString = "Unknown command.";
                         break;
                 };
-
                 Console.WriteLine(outputString);
             }
-=======
-            string inputString = Console.ReadLine().ToUpper();
-            Commands command = ToCommand(inputString.Trim().ToUpper());
-            Console.WriteLine(command);
->>>>>>> Stashed changes
         }
+
         private static Commands ToCommand(string commandString) => Enum.TryParse(commandString, true, out Commands result) ? result : Commands.UNKNOWN;
-
-
     }
 }
