@@ -11,11 +11,6 @@ namespace ZorkGame
                     return Rooms[LocationColumn];
                 }
             }
-
-        //public static string outOfBounds
-        //    {
-
-        //    }
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Zork!");
@@ -47,31 +42,17 @@ namespace ZorkGame
                             break;
 
                     case Commands.EAST:
-                        if (LocationColumn < Rooms.Length - 1)
-                        {
-                            LocationColumn++;
-                            outputString = $"You moved {command}. \n";
-                        }
-                        else
-                        {
-                            outputString = "The way is shut. /n";
-                        }
-                        break;
                     case Commands.WEST:
-                        
-                        if (LocationColumn > 0)
+                        //outputString = Move(command) ? $"You moved {command}." : "The way is shut.";
+                        if (Move(command))
                         {
-                            LocationColumn--;
                             outputString = $"You moved {command}. \n";
                         }
                         else
                         {
                             outputString = "The way is shut. \n";
                         }
-                        outputString = $"You moved {command}. \n";
                         break;
-
-
                     default:
                         command = Commands.UNKNOWN;
                         outputString = "Unknown command. \n";
@@ -79,6 +60,28 @@ namespace ZorkGame
                 };
                 Console.WriteLine(outputString);
             }
+        }
+
+        private static  bool Move(Commands command)
+        {
+            bool didMove = false;
+
+            switch (command)
+            {
+                case Commands.NORTH:
+                case Commands.SOUTH:
+                    break;
+                case Commands.EAST when LocationColumn < Rooms.Length - 1:
+                    LocationColumn++;
+                    didMove = true;
+                    break;
+                case Commands.WEST when LocationColumn > 0:
+                    LocationColumn--;
+                    didMove = true;
+                    break;
+            }
+
+            return didMove;
         }
 
         private static Commands ToCommand(string commandString) => Enum.TryParse(commandString, true, out Commands result) ? result : Commands.UNKNOWN;
