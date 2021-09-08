@@ -4,13 +4,13 @@ namespace ZorkGame
 {
     class Program
     {
-        public static string Location
+        public static (int Row, int Column) Location
+        {
+            get
             {
-                get
-                {
-                    return Rooms[LocationColumn];
-                }
+                return Rooms[LocationColumn];
             }
+        }
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Zork!");
@@ -39,7 +39,7 @@ namespace ZorkGame
                     case Commands.NORTH:
                     case Commands.SOUTH:
                         outputString = "The way is shut \n";
-                            break;
+                        break;
 
                     case Commands.EAST:
                     case Commands.WEST:
@@ -62,7 +62,7 @@ namespace ZorkGame
             }
         }
 
-        private static  bool Move(Commands command)
+        private static bool Move(Commands command)
         {
             bool didMove = false;
 
@@ -85,8 +85,13 @@ namespace ZorkGame
 
         private static Commands ToCommand(string commandString) => Enum.TryParse(commandString, true, out Commands result) ? result : Commands.UNKNOWN;
 
-        private static string[] Rooms = { "Forest", "West of House", "Behind House", "Clearing", "Canyon View" };
+        private static string[,] Rooms = {
+            {"Rocky Trail", "South of House", "Canyon View"},
+            {"Forest", "West of House", "Behind House"},
+            {"Dense Woods", "North of House", "Clearing"}
+        };
         private static int LocationColumn = 1;
+        private static int LocationRow = 1;
 
     }
 }
