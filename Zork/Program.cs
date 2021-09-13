@@ -68,11 +68,15 @@ namespace ZorkGame
 
             switch (command)
             {
-                case Commands.NORTH: when LocationRow < Rooms.GetLength(0) -1;
-                    LocationRow;
-
-                case Commands.SOUTH:
+                case Commands.NORTH when LocationRow < Rooms.GetLength(0) - 1:
+                    LocationRow++;
+                    didMove = true;
                     break;
+                case Commands.SOUTH when LocationRow > 0:
+                    LocationRow--;
+                    didMove = true;
+                    break;
+
                 case Commands.EAST when LocationColumn < Rooms.GetLength(1) - 1:
                     LocationColumn++;
                     didMove = true;
@@ -87,8 +91,8 @@ namespace ZorkGame
 
         private static Commands ToCommand(string commandString) => Enum.TryParse(commandString, true, out Commands result) ? result : Commands.UNKNOWN;
 
-        private static string[,] Rooms = {
-            
+        private static string[,] Rooms = 
+        {    
             {"Dense Woods", "North of House", "Clearing"},
             {"Forest", "West of House", "Behind House"},
             {"Rocky Trail", "South of House", "Canyon View"}
