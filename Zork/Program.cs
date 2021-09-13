@@ -38,7 +38,14 @@ namespace ZorkGame
 
                     case Commands.NORTH:
                     case Commands.SOUTH:
-                        outputString = "The way is shut \n";
+                        if (Move(command))
+                        {
+                            outputString = $"You moved {command}. \n";
+                        }
+                        else
+                        {
+                            outputString = "The way is shut. \n";
+                        }
                         break;
 
                     case Commands.EAST:
