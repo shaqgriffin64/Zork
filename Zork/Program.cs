@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ZorkGame
 {
@@ -99,10 +100,11 @@ namespace ZorkGame
         private static Commands ToCommand(string commandString) => Enum.TryParse(commandString, true, out Commands result) ? result : Commands.UNKNOWN;
 
         private static string[,] Rooms = 
-        {    
-            {"Dense Woods", "North of House", "Clearing"},
+        {
+            {"Rocky Trail", "South of House", "Canyon View"},
             {"Forest", "West of House", "Behind House"},
-            {"Rocky Trail", "South of House", "Canyon View"}
+            {"Dense Woods", "North of House", "Clearing"}
+
         };
         private static int LocationColumn = 1;
         private static int LocationRow = 1;
