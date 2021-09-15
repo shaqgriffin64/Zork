@@ -5,11 +5,11 @@ namespace ZorkGame
 {
     class Program
     {
-        public static string Location
+        public static string CurrentRoom
         {
             get
             {
-                return Rooms[LocationRow, LocationColumn];
+                return Rooms[Location.Row, Location.Column];
             }
         }
         static void Main(string[] args)
@@ -20,8 +20,8 @@ namespace ZorkGame
             while (command != Commands.QUIT)
             {
 
-
-                Console.Write($"{Location}      \n> ");
+                Console.WriteLine(CurrentRoom);
+;                Console.Write("\n> ");
                 command = ToCommand(Console.ReadLine().Trim());
 
                 string outputString;
@@ -99,6 +99,8 @@ namespace ZorkGame
 
         private static Commands ToCommand(string commandString) => Enum.TryParse(commandString, true, out Commands result) ? result : Commands.UNKNOWN;
 
+        //private static bool IsDirection(Commands command) => Directions.Contains(command);
+
         private static string[,] Rooms = 
         {
             {"Rocky Trail", "South of House", "Canyon View"},
@@ -109,6 +111,15 @@ namespace ZorkGame
         private static int LocationColumn = 1;
         private static int LocationRow = 1;
 
-    }
+        private static readonly List<Commands> Directions = new List<Commands>
+        {
+            Commands.NORTH,
+            Commands.SOUTH,
+            Commands.EAST,
+            Commands.WEST
+        };
+
+        private static (int Row, int Column) Location = (1, 1);
+    } 
 }
 
