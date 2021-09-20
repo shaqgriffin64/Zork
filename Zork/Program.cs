@@ -24,7 +24,7 @@ namespace ZorkGame
 
                 Console.WriteLine(CurrentRoom);
 ;                Console.Write("\n> ");
-                command = ToCommand(Console.ReadLine().Trim());
+                command = ToCommand(Console.ReadLine().Trim().ToCommand());
 
                 string outputString;
                 switch (command)
@@ -103,15 +103,18 @@ namespace ZorkGame
 
         //private static bool IsDirection(Commands command) => Directions.Contains(command);
 
-        private static string[,] Rooms = 
+        private static void InitializeRoomDescriptions()
         {
-            {"Rocky Trail", "South of House", "Canyon View"},
-            {"Forest", "West of House", "Behind House"},
-            {"Dense Woods", "North of House", "Clearing"}
+            Rooms[0, 0] = "You are on a rock-strewn trail";
+        }
+
+        private static readonly Room[,] Rooms = 
+        {
+            {new Room ("Rocky Trail"), new Room ("South of House"), new Room("Canyon View")},
+            {new Room ("Forest"), new Room ("West of House"), new Room("Behind House") },
+            {new Room ("Dense Woods"), new Room ("North of House"),  new Room ("Clearing")}
 
         };
-        private static int LocationColumn = 1;
-        private static int LocationRow = 1;
 
         private static readonly List<Commands> Directions = new List<Commands>
         {

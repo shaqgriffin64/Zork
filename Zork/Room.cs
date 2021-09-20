@@ -1,7 +1,4 @@
-﻿using Sytem;
-using system.Text;
-
-namespace Zork
+﻿namespace Zork
 {
     class Room
     {
