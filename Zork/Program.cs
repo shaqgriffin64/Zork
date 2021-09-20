@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
+//Personal note, finish Zork 2.3
+
 namespace ZorkGame
 {
     class Program

@@ -9,6 +9,5 @@
         EAST,
         WEST,
         UNKNOWN
-
     }
 }
