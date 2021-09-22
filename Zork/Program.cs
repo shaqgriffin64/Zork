@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-//Personal note, finish Zork 2.3
-
 namespace ZorkGame
 {
     class Program
     {
-        public static string CurrentRoom
+        public static  Room CurrentRoom
         {
             get
             {
@@ -16,14 +14,25 @@ namespace ZorkGame
         }
         static void Main(string[] args)
         {
+            InitializeRoomDescriptions();
+
             Console.WriteLine("Welcome to Zork!");
+
+            Room previousRoom = null;
 
             Commands command = Commands.UNKNOWN;
             while (command != Commands.QUIT)
             {
 
-                Console.WriteLine(CurrentRoom);
-;                Console.Write("\n> ");
+                Console.WriteLine($"{CurrentRoom}");
+
+                if (previousRoom != CurrentRoom)
+                {
+                    Console.WriteLine(CurrentRoom.Description);
+                    previousRoom = CurrentRoom;
+                }
+
+                Console.Write("\n> ");
                 command = ToCommand(Console.ReadLine().Trim());
 
                 //string outputString;
@@ -36,7 +45,7 @@ namespace ZorkGame
 
                     case Commands.LOOK:
                         command = Commands.LOOK;
-                        Console.WriteLine("A rubber mat saying 'Welcome to Zork!' lies by the door. \n");
+                        Console.WriteLine(CurrentRoom.Description);
                         break;
 
                     case Commands.NORTH:
@@ -50,7 +59,7 @@ namespace ZorkGame
                         break;
 
                     default:
-                        Console.WriteLine("Unknown command.");
+                        Console.WriteLine("Unknown command. \n");
                         break;
                 };
             }
@@ -86,16 +95,33 @@ namespace ZorkGame
 
         private static bool IsDirection(Commands command) => Directions.Contains(command);
 
+
+
         private static void InitializeRoomDescriptions()
         {
-            Rooms[0, 0] = "You are on a rock-strewn trail";
+            var roomMap = new Dictionary<string, Room>();
+            foreach (Room room in Rooms)
+            {
+                roomMap.Add(room.Name, room);
+            }
+            
+            roomMap["Rocky Trail"].Description = "You are on a rock-strewn trail. \n";
+            roomMap["South of House"].Description = "You are facing the south side of a white house. There is no door here, and all the windows are barred \n";
+            roomMap["Canyon View"].Description = "You are at the top of the Great Canyon on its South wall. \n";
+            roomMap["Forest"].Description = "This is a forest, with trees in all directions around you. \n";
+            roomMap["West of House"].Description = "This is an open field West of a white house, with a boarded front door. \n";
+            roomMap["Behind House"].Description = "You are behind the white house. In one corner of the house there is a small window which is slightly ajar. \n";
+            roomMap["Dense Woods"].Description = "This is a dimly lit forest, with large trees all around. To the East, there appears to be sunlight. \n";
+            roomMap["North of House"].Description = "You are facing the North side of a white house. There is no door here, and all the windows are barred. \n";
+            roomMap["Clearing"].Description = "You are in a clearing, with a forret surroundign you no the West and South. \n";
         }
 
         private static readonly Room[,] Rooms = 
+
         {
-            {new Room ("Rocky Trail"), new Room ("South of House"), new Room("Canyon View")},
-            {new Room ("Forest"), new Room ("West of House"), new Room("Behind House") },
-            {new Room ("Dense Woods"), new Room ("North of House"),  new Room ("Clearing")}
+            {new Room("Rocky Trail"), new Room("South of House"), new Room("Canyon View") },
+            {new Room("Forest"), new Room("West of House"), new Room("Behind House") },
+            {new Room("Dense Woods"), new Room("North of House"),  new Room("Clearing") }
 
         };
 
