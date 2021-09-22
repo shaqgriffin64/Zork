@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
+//make it just the output of the room instead of room + description when you do no change rooms
+
 namespace ZorkGame
 {
     class Program
