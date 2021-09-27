@@ -15,6 +15,16 @@ namespace ZorkGame
             }
         }
 
+        private static (int Row, int Column) Location = (1, 1);
+
+        private static readonly List<Commands> Directions = new List<Commands>
+        {
+            Commands.NORTH,
+            Commands.SOUTH,
+            Commands.EAST,
+            Commands.WEST
+        };
+
         static void Main(string[] args)
         {
             InitializeRoomDescriptions();
@@ -99,8 +109,6 @@ namespace ZorkGame
 
         private static bool IsDirection(Commands command) => Directions.Contains(command);
 
-
-
         private static void InitializeRoomDescriptions()
         {
             //private static readonly Dictionary<string, Room> RoomMap;
@@ -124,22 +132,11 @@ namespace ZorkGame
         }
 
         private static readonly Room[,] Rooms =
-
         {
             {new Room("Rocky Trail"), new Room("South of House"), new Room("Canyon View") },
             {new Room("Forest"), new Room("West of House"), new Room("Behind House") },
             {new Room("Dense Woods"), new Room("North of House"),  new Room("Clearing") }
-
         };
 
-        private static readonly List<Commands> Directions = new List<Commands>
-        {
-            Commands.NORTH,
-            Commands.SOUTH,
-            Commands.EAST,
-            Commands.WEST
-        };
-
-        private static (int Row, int Column) Location = (1, 1);
     }
 }
