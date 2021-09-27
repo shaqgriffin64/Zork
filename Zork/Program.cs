@@ -18,21 +18,21 @@ namespace ZorkGame
 
             Console.WriteLine("Welcome to Zork!");
 
-            Room previousRoom = null;
+           //Room previousRoom = null;
 
             Commands command = Commands.UNKNOWN;
             while (command != Commands.QUIT)
             {
 
-                Console.WriteLine($"{CurrentRoom}");
+                Console.WriteLine(Rooms[Location.Row, Location.Column]);
 
-                if (previousRoom != CurrentRoom)
-                {
-                    Console.WriteLine(CurrentRoom.Description);
-                    previousRoom = CurrentRoom;
-                }
+                //if (previousRoom != CurrentRoom)
+                //{
+                //    Console.WriteLine(CurrentRoom.Description);
+                //    previousRoom = CurrentRoom;
+                //}
 
-                Console.Write("\n> ");
+                Console.Write("> ");
                 command = ToCommand(Console.ReadLine().Trim());
 
                 //string outputString;
@@ -59,7 +59,7 @@ namespace ZorkGame
                         break;
 
                     default:
-                        Console.WriteLine("Unknown command. \n");
+                        Console.WriteLine("Unknown command.");
                         break;
                 };
             }
@@ -91,7 +91,8 @@ namespace ZorkGame
             return isValidMove;
         }
 
-        private static Commands ToCommand(string commandString) => Enum.TryParse(commandString, true, out Commands result) ? result : Commands.UNKNOWN;
+        private static Commands ToCommand(string commandString) => 
+            Enum.TryParse(commandString, true, out Commands result) ? result : Commands.UNKNOWN;
 
         private static bool IsDirection(Commands command) => Directions.Contains(command);
 
@@ -99,21 +100,18 @@ namespace ZorkGame
 
         private static void InitializeRoomDescriptions()
         {
-            var roomMap = new Dictionary<string, Room>();
-            foreach (Room room in Rooms)
-            {
-                roomMap.Add(room.Name, room);
-            }
             
-            roomMap["Rocky Trail"].Description = "You are on a rock-strewn trail. \n";
-            roomMap["South of House"].Description = "You are facing the south side of a white house. There is no door here, and all the windows are barred \n";
-            roomMap["Canyon View"].Description = "You are at the top of the Great Canyon on its South wall. \n";
-            roomMap["Forest"].Description = "This is a forest, with trees in all directions around you. \n";
-            roomMap["West of House"].Description = "This is an open field West of a white house, with a boarded front door. \n";
-            roomMap["Behind House"].Description = "You are behind the white house. In one corner of the house there is a small window which is slightly ajar. \n";
-            roomMap["Dense Woods"].Description = "This is a dimly lit forest, with large trees all around. To the East, there appears to be sunlight. \n";
-            roomMap["North of House"].Description = "You are facing the North side of a white house. There is no door here, and all the windows are barred. \n";
-            roomMap["Clearing"].Description = "You are in a clearing, with a forret surroundign you no the West and South. \n";
+            Rooms[0, 0].Description = "You are on a rock-strewn trail.";                                                                                 // Rocky Trail
+            Rooms[0, 1].Description = "You are facing the south side of a white house. There is no door here, and all the windows are barred ";          // South of House
+            Rooms[0, 2].Description = "You are at the top of the Great Canyon on its South wall.";                                                       // Canyon View
+            
+            Rooms[1, 0].Description = "This is a forest, with trees in all directions around you.";                                                      // Forest
+            Rooms[1, 1].Description = "This is an open field West of a white house, with a boarded front door.";                                         // West of House
+            Rooms[1, 2].Description = "You are behind the white house. In one corner of the house there is a small window which is slightly ajar.";      // Behind House
+            
+            Rooms[2, 0].Description = "This is a dimly lit forest, with large trees all around. To the East, there appears to be sunlight.";             // Dense Woods
+            Rooms[2, 1].Description = "You are facing the North side of a white house. There is no door here, and all the windows are barred.";          // North of House
+            Rooms[2, 2].Description = "You are in a clearing, with a forret surroundign you no the West and South.";                                     // Clearing
         }
 
         private static readonly Room[,] Rooms = 
