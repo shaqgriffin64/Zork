@@ -103,6 +103,9 @@ namespace ZorkGame
 
         private static void InitializeRoomDescriptions()
         {
+            //private static readonly Dictionary<string, Room> RoomMap;
+
+
             var roomMap = new Dictionary<string, Room>();
             foreach (Room room in Rooms)
             {
