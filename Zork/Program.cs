@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 
+//make it just the output of the room instead of room + description when you do no change rooms when you start the game
+
 namespace ZorkGame
 {
     class Program
     {
-        public static  Room CurrentRoom
+        public static Room CurrentRoom
         {
             get
             {
@@ -19,16 +21,25 @@ namespace ZorkGame
 
             Console.WriteLine("Welcome to Zork!");
 
+            Room previousRoom = null;
+
             Commands command = Commands.UNKNOWN;
 
             while (command != Commands.QUIT)
             {
 
-                Console.WriteLine(Rooms[Location.Row, Location.Column]);
+                Console.WriteLine($"{CurrentRoom}");
+
+                if (previousRoom != CurrentRoom)
+                {
+                    Console.WriteLine(CurrentRoom.Description);
+                    previousRoom = CurrentRoom;
+                }
 
                 Console.Write("> ");
                 command = ToCommand(Console.ReadLine().Trim());
 
+                //string outputString;
                 switch (command)
                 {
                     case Commands.QUIT:
@@ -84,8 +95,7 @@ namespace ZorkGame
             return isValidMove;
         }
 
-        private static Commands ToCommand(string commandString) => 
-            Enum.TryParse(commandString, true, out Commands result) ? result : Commands.UNKNOWN;
+        private static Commands ToCommand(string commandString) => Enum.TryParse(commandString, true, out Commands result) ? result : Commands.UNKNOWN;
 
         private static bool IsDirection(Commands command) => Directions.Contains(command);
 
@@ -93,17 +103,11 @@ namespace ZorkGame
 
         private static void InitializeRoomDescriptions()
         {
-            Rooms[0, 0].Description = "You are on a rock-strewn trail.";                                                                                 // Rocky Trail
-            Rooms[0, 1].Description = "You are facing the south side of a white house. There is no door here, and all the windows are barred ";          // South of House
-            Rooms[0, 2].Description = "You are at the top of the Great Canyon on its South wall.";                                                       // Canyon View
-            
-            Rooms[1, 0].Description = "This is a forest, with trees in all directions around you.";                                                      // Forest
-            Rooms[1, 1].Description = "This is an open field West of a white house, with a boarded front door.";                                         // West of House
-            Rooms[1, 2].Description = "You are behind the white house. In one corner of the house there is a small window which is slightly ajar.";      // Behind House
-            
-            Rooms[2, 0].Description = "This is a dimly lit forest, with large trees all around. To the East, there appears to be sunlight.";             // Dense Woods
-            Rooms[2, 1].Description = "You are facing the North side of a white house. There is no door here, and all the windows are barred.";          // North of House
-            Rooms[2, 2].Description = "You are in a clearing, with a forret surroundign you no the West and South.";                                     // Clearing
+            var roomMap = new Dictionary<string, Room>();
+            foreach (Room room in Rooms)
+            {
+                roomMap.Add(room.Name, room);
+            }
 
             roomMap["Rocky Trail"].Description = "You are on a rock-strewn trail. ";
             roomMap["South of House"].Description = "You are facing the south side of a white house. There is no door here, and all the windows are barred ";
@@ -116,7 +120,7 @@ namespace ZorkGame
             roomMap["Clearing"].Description = "You are in a clearing, with a forret surroundign you no the West and South. ";
         }
 
-        private static readonly Room[,] Rooms = 
+        private static readonly Room[,] Rooms =
 
         {
             {new Room("Rocky Trail"), new Room("South of House"), new Room("Canyon View") },
@@ -134,6 +138,5 @@ namespace ZorkGame
         };
 
         private static (int Row, int Column) Location = (1, 1);
-    } 
+    }
 }
-
