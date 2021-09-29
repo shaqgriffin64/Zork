@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using Newtonsoft.Json;
 
 namespace ZorkGame
 {
@@ -122,10 +123,19 @@ namespace ZorkGame
             foreach (Room room in Rooms)
             {
                 roomMap.Add(room.Name, room);
+                roomMap[room.Name] = room;
             }
 
-            string [] lines = File.ReadAllLines(roomDescriptionsFilename);
+            //use this when you fill out Rooms.Json
+            //string roomsJsonString = File.ReadAllText(roomDescriptionsFilename);
+            //Room[] rooms = JsonConvert.DeserializeObject<Room[]>(roomsJsonString);
+            //foreach (Room room in rooms)
+            //{
+            //    roomMap[room.Name].Description = room.Description;
+            //}
 
+
+            string[] lines = File.ReadAllLines(roomDescriptionsFilename);
             foreach (string line in lines)
             {
                 const string delimiter = "##";
