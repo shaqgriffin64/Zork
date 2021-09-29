@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
-//make it just the output of the room instead of room + description when you do no change rooms when you start the game
+using System.IO;
 
 namespace ZorkGame
 {
@@ -25,9 +24,16 @@ namespace ZorkGame
             Commands.WEST
         };
 
+        private enum Fields
+        {
+            Name = 0,
+            Description
+        }
+
         static void Main(string[] args)
         {
-            InitializeRoomDescriptions();
+            const string roomDescriptionsFilename = "Rooms.txt";
+            InitializeRoomDescriptions(roomDescriptionsFilename);
 
             Console.WriteLine("Welcome to Zork!");
 
@@ -49,7 +55,6 @@ namespace ZorkGame
                 Console.Write("> ");
                 command = ToCommand(Console.ReadLine().Trim());
 
-                //string outputString;
                 switch (command)
                 {
                     case Commands.QUIT:
@@ -109,26 +114,29 @@ namespace ZorkGame
 
         private static bool IsDirection(Commands command) => Directions.Contains(command);
 
-        private static void InitializeRoomDescriptions()
+        private static void InitializeRoomDescriptions(string roomDescriptionsFilename)
         {
-            //private static readonly Dictionary<string, Room> RoomMap;
 
 
-            var roomMap = new Dictionary<string, Room>();
+        var roomMap = new Dictionary<string, Room>();
             foreach (Room room in Rooms)
             {
                 roomMap.Add(room.Name, room);
             }
 
-            roomMap["Rocky Trail"].Description = "You are on a rock-strewn trail. ";
-            roomMap["South of House"].Description = "You are facing the south side of a white house. There is no door here, and all the windows are barred ";
-            roomMap["Canyon View"].Description = "You are at the top of the Great Canyon on its South wall. ";
-            roomMap["Forest"].Description = "This is a forest, with trees in all directions around you. ";
-            roomMap["West of House"].Description = "This is an open field West of a white house, with a boarded front door. ";
-            roomMap["Behind House"].Description = "You are behind the white house. In one corner of the house there is a small window which is slightly ajar. ";
-            roomMap["Dense Woods"].Description = "This is a dimly lit forest, with large trees all around. To the East, there appears to be sunlight. ";
-            roomMap["North of House"].Description = "You are facing the North side of a white house. There is no door here, and all the windows are barred. ";
-            roomMap["Clearing"].Description = "You are in a clearing, with a forret surroundign you no the West and South. ";
+            string [] lines = File.ReadAllLines(roomDescriptionsFilename);
+
+            foreach (string line in lines)
+            {
+                const string delimiter = "##";
+                const int expectedFieldCount = 2;
+
+                string[] fields = line.Split(delimiter);
+                Assert.IsTrue(fields.Length == expectedFieldCount, "Invalid record.");
+
+                (string name, string description) = (fields[(int)Fields.Name], fields[(int)Fields.Description]);
+                roomMap[name].Description = description;
+            }
         }
 
         private static readonly Room[,] Rooms =
