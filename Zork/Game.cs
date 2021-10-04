@@ -6,7 +6,7 @@ using System.IO;
 
 namespace ZorkGame
 {
-    class Game
+    public class Game
     {
         public World World { get; set; }
 
@@ -34,8 +34,6 @@ namespace ZorkGame
         public void Run()
         {
             Console.WriteLine(WelcomeMessage);
-
-            //Room previousRoom = null;
 
             Commands command = Commands.UNKNOWN;
 

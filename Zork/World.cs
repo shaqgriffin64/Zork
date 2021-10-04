@@ -1,6 +1,6 @@
 ﻿namespace ZorkGame
 {
-    class World
+    public class World
     {
         public Room[,] Rooms { get; set; }
     }
