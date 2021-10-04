@@ -7,15 +7,15 @@ namespace ZorkGame
 {
     class Program
     {
-        public static Room CurrentRoom
-        {
-            get
-            {
-                return Rooms[Location.Row, Location.Column];
-            }
-        }
 
-        private static (int Row, int Column) Location = (1, 1);
+        //private static readonly Room[,] Rooms =
+        //{
+        //    {new Room("Rocky Trail"), new Room("South of House"), new Room("Canyon View") },
+        //    {new Room("Forest"), new Room("West of House"), new Room("Behind House") },
+        //    {new Room("Dense Woods"), new Room("North of House"),  new Room("Clearing") }
+        //};
+
+
 
         private static readonly List<Commands> Directions = new List<Commands>
         {
@@ -25,66 +25,39 @@ namespace ZorkGame
             Commands.WEST
         };
 
+        private enum CommandLineArguements
+        {
+            GameFilename = 0
+        }
+
+
         private enum Fields
         {
             Name = 0,
             Description
         }
 
+        #region Main
         static void Main(string[] args)
         {
-            const string roomDescriptionsFilename = "Rooms.txt";
-            InitializeRoomDescriptions(roomDescriptionsFilename);
+            const string defaultGameFilename = "Zork.Json";
+            string gameFilename = (args.Length > 0 ? args[(int)CommandLineArguements.GameFilename] : defaultGameFilename);
+            Game game = JsonConvert.DeserializeObject<Game>(File.ReadAllText(gameFilename));
+            game.Player = new Player(game.World);
 
-            Console.WriteLine("Welcome to Zork!");
 
-            Room previousRoom = null;
 
-            Commands command = Commands.UNKNOWN;
 
-            while (command != Commands.QUIT)
-            {
+            //InitializeRoomDescriptions(roomDescriptionsFilename);
 
-                Console.WriteLine($"{CurrentRoom}");
 
-                if (previousRoom != CurrentRoom)
-                {
-                    Console.WriteLine(CurrentRoom.Description);
-                    previousRoom = CurrentRoom;
-                }
 
-                Console.Write("> ");
-                command = ToCommand(Console.ReadLine().Trim());
-
-                switch (command)
-                {
-                    case Commands.QUIT:
-                        command = Commands.QUIT;
-                        Console.WriteLine("Thank you for playing!");
-                        break;
-
-                    case Commands.LOOK:
-                        command = Commands.LOOK;
-                        Console.WriteLine(CurrentRoom.Description);
-                        break;
-
-                    case Commands.NORTH:
-                    case Commands.SOUTH:
-                    case Commands.EAST:
-                    case Commands.WEST:
-                        if (Move(command) == false)
-                        {
-                            Console.WriteLine("The way is shut!");
-                        }
-                        break;
-
-                    default:
-                        Console.WriteLine("Unknown command.");
-                        break;
-                };
+            
             }
         }
+        #endregion
 
+        #region Move method
         private static bool Move(Commands command)
         {
             bool isValidMove = true;
@@ -110,8 +83,8 @@ namespace ZorkGame
             }
             return isValidMove;
         }
+        #endregion
 
-        private static Commands ToCommand(string commandString) => Enum.TryParse(commandString, true, out Commands result) ? result : Commands.UNKNOWN;
 
         private static bool IsDirection(Commands command) => Directions.Contains(command);
 
@@ -119,42 +92,35 @@ namespace ZorkGame
         {
 
 
-        var roomMap = new Dictionary<string, Room>();
+            var roomMap = new Dictionary<string, Room>();
             foreach (Room room in Rooms)
             {
                 roomMap.Add(room.Name, room);
                 roomMap[room.Name] = room;
             }
 
-            //use this when you fill out Rooms.Json
-            //string roomsJsonString = File.ReadAllText(roomDescriptionsFilename);
-            //Room[] rooms = JsonConvert.DeserializeObject<Room[]>(roomsJsonString);
-            //foreach (Room room in rooms)
-            //{
-            //    roomMap[room.Name].Description = room.Description;
-            //}
-
-
-            string[] lines = File.ReadAllLines(roomDescriptionsFilename);
-            foreach (string line in lines)
+            //use this when you fill out Rooms.Json [Zork 4.2]
+            string roomsJsonString = File.ReadAllText(roomDescriptionsFilename);
+            Room[] rooms = JsonConvert.DeserializeObject<Room[]>(roomsJsonString);
+            foreach (Room room in rooms)
             {
-                const string delimiter = "##";
-                const int expectedFieldCount = 2;
-
-                string[] fields = line.Split(delimiter);
-                Assert.IsTrue(fields.Length == expectedFieldCount, "Invalid record.");
-
-                (string name, string description) = (fields[(int)Fields.Name], fields[(int)Fields.Description]);
-                roomMap[name].Description = description;
+                roomMap[room.Name].Description = room.Description;
             }
-        }
 
-        private static readonly Room[,] Rooms =
-        {
-            {new Room("Rocky Trail"), new Room("South of House"), new Room("Canyon View") },
-            {new Room("Forest"), new Room("West of House"), new Room("Behind House") },
-            {new Room("Dense Woods"), new Room("North of House"),  new Room("Clearing") }
-        };
+
+            //string[] lines = File.ReadAllLines(roomDescriptionsFilename);
+            //foreach (string line in lines)
+            //{
+            //    const string delimiter = "##";
+            //    const int expectedFieldCount = 2;
+
+            //    string[] fields = line.Split(delimiter);
+            //    Assert.IsTrue(fields.Length == expectedFieldCount, "Invalid record.");
+
+            //    (string name, string description) = (fields[(int)Fields.Name], fields[(int)Fields.Description]);
+            //    roomMap[name].Description = description;
+            //}
+        }
 
     }
 }
