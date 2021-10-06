@@ -12,18 +12,14 @@ namespace ZorkGame
 
         public string StartingLocation { get; set; }
 
-        [JsonIgnore]
-
         public Player Player { get; private set; }
 
-        [JsonIgnore]
         public string WelcomeMessage { get; set; }
 
-        [JsonIgnore]
         public string ExitMessage { get; set; }
 
 
-
+        [OnDeserialized]
         private void OnDeserialized(StreamingContext context)
         {
             Player = new Player(World, StartingLocation);
@@ -44,7 +40,7 @@ namespace ZorkGame
 
                 if (Player.PreviousRoom != Player.CurrentRoom)
                 {
-                    Console.WriteLine(Player.CurrentRoom.Description);
+                    Console.WriteLine($"{Player.CurrentRoom.Description} \n");
                     Player.PreviousRoom = Player.CurrentRoom;
                 }
 
@@ -55,12 +51,13 @@ namespace ZorkGame
                 {
                     case Commands.QUIT:
                         command = Commands.QUIT;
-                        Console.WriteLine("Thank you for playing!");
+                        Console.WriteLine(ExitMessage);
+                        //Console.WriteLine("Thank you for playing!");
                         break;
 
                     case Commands.LOOK:
                         command = Commands.LOOK;
-                        Console.WriteLine(Player.CurrentRoom.Description);
+                        Console.WriteLine($"{Player.CurrentRoom.Description} \n");
                         break;
 
                     case Commands.NORTH:

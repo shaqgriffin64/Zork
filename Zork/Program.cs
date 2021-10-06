@@ -1,7 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
+
+    //Bugs:
+
+    //- Navigation is broken
+    //- Welcome & Exit Message are not printing on run
+    //- Possibliy missing dictionary
 
 namespace ZorkGame
 {
@@ -18,10 +25,11 @@ namespace ZorkGame
         }
         static void Main(string[] args)
         {
-            const string defaultGameFilename = "Zork.Json";
+            const string defaultGameFilename = "Zork.json";
             string gameFilename = (args.Length > 0 ? args[(int)CommandLineArguements.GameFilename] : defaultGameFilename);
             Game game = JsonConvert.DeserializeObject<Game>(File.ReadAllText(gameFilename));
-            game.player = new Player(game.World);
+            game.Run();
+                //= new Player(game.World);
         }
     }
 
