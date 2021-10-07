@@ -8,13 +8,15 @@ namespace ZorkGame
 {
     class Program
     {
+        private static readonly Dictionary<string, Room> RoomMap;
+
         static Program()
         {
-        RoomMap = new Dictionary<string, Room>();
-        foreach (Room room in Rooms)
-	    {
-            RoomMap[Room.Name] = room;
-	    }
+            RoomMap = new Dictionary<string, Room>();
+            foreach (Room room in Rooms)
+	            {
+                    RoomMap[room.Name] = room;
+	            }
         }
 
 
@@ -36,6 +38,11 @@ namespace ZorkGame
             Commands.WEST
         };
 
+        private enum CommandLineArguments
+        {
+            RoomsFilename = 0
+        }
+
         enum Fields
         {
             Name = 0,
@@ -45,10 +52,10 @@ namespace ZorkGame
         static void Main(string[] args)
         {
             string roomsFilename = "Rooms.txt";
-            initializeRoomDescriptionsFunc(roomsFilename);
+            InitializeRoomDescriptions(roomsFilename);
 
-            const string roomDescriptionsFilename = "Rooms.txt";
-            string roomsFilename = (args.Length > 0 ? args[(int)CommandLineArguements.RoomFileName] : defaultRoomsFilename);
+            const string defaultRoomsFilename = "Rooms.txt";
+            string roomsFilename = args.Length > 0 ? args[(int)CommandLineArguments.RoomsFilename] : defaultRoomsFilename;
 
             Console.WriteLine("Welcome to Zork!");
 
@@ -137,10 +144,10 @@ namespace ZorkGame
                             let fields = line.Split(fielddelimiter)
                             where fields.Length == expectedFieldCount
                             select (Name: fields[(int)Fields.Name],
-                                    Description: fields[(int)fields.Description]);
+                                    Description: fields[(int)Fields.Description]);
 
 
-            foreach (var (Name, Description) in R)
+            foreach (var (Name, Description) in roomQuery)
             {
                 RoomMap[Name].Description = Description;
             }
