@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using Newtonsoft.Json;
 using System.Linq;
 
 namespace ZorkGame
@@ -18,7 +17,6 @@ namespace ZorkGame
                     RoomMap[room.Name] = room;
 	            }
         }
-
 
     public static Room CurrentRoom
         {
@@ -51,11 +49,11 @@ namespace ZorkGame
 
         static void Main(string[] args)
         {
-            string roomsFilename = "Rooms.txt";
-            InitializeRoomDescriptions(roomsFilename);
 
             const string defaultRoomsFilename = "Rooms.txt";
             string roomsFilename = args.Length > 0 ? args[(int)CommandLineArguments.RoomsFilename] : defaultRoomsFilename;
+
+            InitializeRoomDescriptions(roomsFilename);
 
             Console.WriteLine("Welcome to Zork!");
 
