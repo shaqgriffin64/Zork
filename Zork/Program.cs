@@ -2,12 +2,23 @@
 using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
+using System.Linq;
 
 namespace ZorkGame
 {
     class Program
     {
-        public static Room CurrentRoom
+        static Program()
+        {
+        RoomMap = new Dictionary<string, Room>();
+        foreach (Room room in Rooms)
+	    {
+            RoomMap[Room.Name] = room;
+	    }
+        }
+
+
+    public static Room CurrentRoom
         {
             get
             {
@@ -25,16 +36,19 @@ namespace ZorkGame
             Commands.WEST
         };
 
-        private enum Fields
+        enum Fields
         {
             Name = 0,
-            Description
+            Description,
         }
 
         static void Main(string[] args)
         {
+            string roomsFilename = "Rooms.txt";
+            initializeRoomDescriptionsFunc(roomsFilename);
+
             const string roomDescriptionsFilename = "Rooms.txt";
-            InitializeRoomDescriptions(roomDescriptionsFilename);
+            string roomsFilename = (args.Length > 0 ? args[(int)CommandLineArguements.RoomFileName] : defaultRoomsFilename);
 
             Console.WriteLine("Welcome to Zork!");
 
@@ -115,37 +129,20 @@ namespace ZorkGame
 
         private static bool IsDirection(Commands command) => Directions.Contains(command);
 
-        private static void InitializeRoomDescriptions(string roomDescriptionsFilename)
+        private static void InitializeRoomDescriptions(string roomsFilename)
         {
+            const string fielddelimiter = "##";
+            const int expectedFieldCount = 2;
+            var roomQuery = from line in File.ReadLines(roomsFilename)
+                            let fields = line.Split(fielddelimiter)
+                            where fields.Length == expectedFieldCount
+                            select (Name: fields[(int)Fields.Name],
+                                    Description: fields[(int)fields.Description]);
 
 
-        var roomMap = new Dictionary<string, Room>();
-            foreach (Room room in Rooms)
+            foreach (var (Name, Description) in R)
             {
-                roomMap.Add(room.Name, room);
-                roomMap[room.Name] = room;
-            }
-
-            //use this when you fill out Rooms.Json
-            //string roomsJsonString = File.ReadAllText(roomDescriptionsFilename);
-            //Room[] rooms = JsonConvert.DeserializeObject<Room[]>(roomsJsonString);
-            //foreach (Room room in rooms)
-            //{
-            //    roomMap[room.Name].Description = room.Description;
-            //}
-
-
-            string[] lines = File.ReadAllLines(roomDescriptionsFilename);
-            foreach (string line in lines)
-            {
-                const string delimiter = "##";
-                const int expectedFieldCount = 2;
-
-                string[] fields = line.Split(delimiter);
-                Assert.IsTrue(fields.Length == expectedFieldCount, "Invalid record.");
-
-                (string name, string description) = (fields[(int)Fields.Name], fields[(int)Fields.Description]);
-                roomMap[name].Description = description;
+                RoomMap[Name].Description = Description;
             }
         }
 
