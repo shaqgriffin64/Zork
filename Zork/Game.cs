@@ -10,61 +10,52 @@ namespace ZorkGame
     {
         public World World { get; set; }
 
-        public string StartingLocation { get; set; }
-
+        [JsonIgnore]
         public Player Player { get; private set; }
 
-        public string WelcomeMessage { get; set; }
+        [JsonIgnore]
+        private bool IsRunning { get; set; }
 
-        public string ExitMessage { get; set; }
-
-
-        [OnDeserialized]
-        private void OnDeserialized(StreamingContext context)
+        public Game (World world, Player player)
         {
-            Player = new Player(World, StartingLocation);
+            World = world;
+            Player = player;
         }
-
-        private static Commands ToCommand(string commandString) => Enum.TryParse(commandString, true, out Commands result) ? result : Commands.UNKNOWN;
 
         public void Run()
         {
-            Console.WriteLine(WelcomeMessage);
-
-            Commands command = Commands.UNKNOWN;
-
-            while (command != Commands.QUIT)
+            IsRunning = true;
+            Room previousRoom = null;
+            while (IsRunning)
             {
 
-                Console.WriteLine($"{Player.CurrentRoom}");
-
-                if (Player.PreviousRoom != Player.CurrentRoom)
+                Console.WriteLine(Player.Location);
+                if (previousRoom != Player.Location)
                 {
-                    Console.WriteLine($"{Player.CurrentRoom.Description} \n");
-                    Player.PreviousRoom = Player.CurrentRoom;
+                    Console.WriteLine(Player.Location.Description);
+                    previousRoom = Player.Location;
                 }
 
                 Console.Write("> ");
-                command = ToCommand(Console.ReadLine().Trim());
+                Commands command = ToCommand(Console.ReadLine().Trim());
 
                 switch (command)
                 {
                     case Commands.QUIT:
                         command = Commands.QUIT;
-                        Console.WriteLine(ExitMessage);
-                        //Console.WriteLine("Thank you for playing!");
+                        IsRunning = false;
                         break;
 
                     case Commands.LOOK:
-                        command = Commands.LOOK;
-                        Console.WriteLine($"{Player.CurrentRoom.Description} \n");
+                        Console.WriteLine(Player.Location.Description);
                         break;
 
                     case Commands.NORTH:
                     case Commands.SOUTH:
                     case Commands.EAST:
                     case Commands.WEST:
-                        if (Player.Move(command) == false)
+                        Directions direction = Enum.Parse<Directions>(command.ToString(), true);
+                        if (Player.Move(direction) == false)
                         {
                             Console.WriteLine("The way is shut!");
                         }
@@ -73,9 +64,18 @@ namespace ZorkGame
                     default:
                         Console.WriteLine("Unknown command.");
                         break;
-                };
+                }
             }
-
         }
+
+        public static Game Load(string fileName)
+        {
+            Game game = JsonConvert.DeserializeObject<Game>(File.ReadAllText(fileName));
+            game.Player = game.World.SpawnPlayer();
+
+            return game;
+        }
+
+        private static Commands ToCommand(string commandString) => Enum.TryParse<Commands>(commandString, true, out Commands result) ? result : Commands.UNKNOWN;
     }
 }

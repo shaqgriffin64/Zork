@@ -1,6 +1,5 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace ZorkGame
 {
@@ -9,76 +8,36 @@ namespace ZorkGame
         public World World { get; }
 
         [JsonIgnore]
-        public Room CurrentRoom
+        public Room Location { get; private set; }
+
+        [JsonIgnore]
+        public string LocationName
         {
             get
             {
-                return World.Rooms[Location.Row, Location.Column];
+                return Location?.Name;
+            }
+            set
+            {
+                Location = World?.RoomsByName.GetValueOrDefault(value);
             }
         }
-
-        [JsonIgnore]
-        public Room PreviousRoom { get; set; }
 
         public Player (World world, string startingLocation)
         {
             World = world;
-
-            //Location = arracy indices for the given name;
-
-            for (int row = 0; row < World.Rooms.GetLength(0); row++)
-            {
-                for (int column = 0; column < World.Rooms.GetLength(1); column++)
-                {
-                    //Room room = World.Rooms[row, column];
-
-                    if (World.Rooms[row, column].Name.Equals(startingLocation, System.StringComparison.OrdinalIgnoreCase))
-                    {
-                        Location = (row, column);
-                        return;
-                    }
-                }
-            }
+            LocationName = startingLocation;
         }
 
-        private static readonly List<Commands> Directions = new List<Commands>
+        public bool Move(Directions direction)
         {
-            Commands.NORTH,
-            Commands.SOUTH,
-            Commands.EAST,
-            Commands.WEST
-        };
-
-        public bool Move(Commands command)
-        {
-            Assert.IsTrue(Directions.Contains(command), "Invalid direction.");
-
-            bool isValidMove = true;
-            switch (command)
+            bool isValidMove = Location.Neighbors.TryGetValue(direction, out Room destination);
+            if (isValidMove)
             {
-                case Commands.NORTH when Location.Row < World.Rooms.GetLength(0) - 1:
-                    Location.Row++;
-                    break;
-                case Commands.SOUTH when Location.Row > 0:
-                    Location.Row--;
-                    break;
-
-                case Commands.EAST when Location.Column < World.Rooms.GetLength(1) - 1:
-                    Location.Column++;
-                    break;
-                case Commands.WEST when Location.Column > 0:
-                    Location.Column--;
-                    break;
-
-                default:
-                    isValidMove = false;
-                    break;
+                Location = destination;
             }
+
             return isValidMove;
         }
-
-
-
-        private static (int Row, int Column) Location = (1, 1);
     }
 }
