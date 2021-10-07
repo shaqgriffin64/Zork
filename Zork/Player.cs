@@ -10,7 +10,7 @@ namespace ZorkGame
         [JsonIgnore]
         public Room Location { get; private set; }
 
-        [JsonIgnore]
+        //[JsonIgnore]
         public string LocationName
         {
             get
