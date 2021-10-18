@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
+using Zork.Common;
 
 namespace ZorkGame
 {
@@ -48,6 +49,5 @@ namespace ZorkGame
                                                                  where room != null
                                                                  select (Direction: entry.Key, Room: room))
                                                                  .ToDictionary(pair => pair.Direction, pair => pair.Room);
-
     }
 }
