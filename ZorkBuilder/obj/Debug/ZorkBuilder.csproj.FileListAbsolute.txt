@@ -1,0 +1,9 @@
+C:\Users\sh011993\Documents\GitHub\Zork\ZorkBuilder\bin\Debug\ZorkBuilder.exe.config
+C:\Users\sh011993\Documents\GitHub\Zork\ZorkBuilder\bin\Debug\ZorkBuilder.exe
+C:\Users\sh011993\Documents\GitHub\Zork\ZorkBuilder\bin\Debug\ZorkBuilder.pdb
+C:\Users\sh011993\Documents\GitHub\Zork\ZorkBuilder\obj\Debug\ZorkBuilder.csprojAssemblyReference.cache
+C:\Users\sh011993\Documents\GitHub\Zork\ZorkBuilder\obj\Debug\ZorkBuilder.Properties.Resources.resources
+C:\Users\sh011993\Documents\GitHub\Zork\ZorkBuilder\obj\Debug\ZorkBuilder.csproj.GenerateResource.cache
+C:\Users\sh011993\Documents\GitHub\Zork\ZorkBuilder\obj\Debug\ZorkBuilder.csproj.CoreCompileInputs.cache
+C:\Users\sh011993\Documents\GitHub\Zork\ZorkBuilder\obj\Debug\ZorkBuilder.exe
+C:\Users\sh011993\Documents\GitHub\Zork\ZorkBuilder\obj\Debug\ZorkBuilder.pdb
