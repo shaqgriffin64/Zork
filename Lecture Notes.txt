@@ -1,0 +1,16 @@
+-
+	-
+
+
+- Do not have the form named as anythig likle "Form1" (default form name in visual studio)
+- In general, get in the practice of renaming components of the GUI (Just as you would in Unity)
+
+- Use these components:
+	- Menu Strip
+	- 
+	- 
+	- 
+	- 
+	- 
+
+-
