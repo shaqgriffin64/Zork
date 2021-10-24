@@ -1,0 +1,17 @@
+F:\Github Repositories\Zork Repo\ZorkBuilder\bin\Debug\World.json
+F:\Github Repositories\Zork Repo\ZorkBuilder\bin\Debug\ZorkBuilder.exe.config
+F:\Github Repositories\Zork Repo\ZorkBuilder\bin\Debug\ZorkBuilder.exe
+F:\Github Repositories\Zork Repo\ZorkBuilder\bin\Debug\ZorkBuilder.pdb
+F:\Github Repositories\Zork Repo\ZorkBuilder\bin\Debug\InventoryManager.Data.dll
+F:\Github Repositories\Zork Repo\ZorkBuilder\bin\Debug\Newtonsoft.Json.dll
+F:\Github Repositories\Zork Repo\ZorkBuilder\bin\Debug\InventoryManager.Data.pdb
+F:\Github Repositories\Zork Repo\ZorkBuilder\bin\Debug\Newtonsoft.Json.xml
+F:\Github Repositories\Zork Repo\ZorkBuilder\obj\Debug\InventoryManager.WinForms.csproj.AssemblyReference.cache
+F:\Github Repositories\Zork Repo\ZorkBuilder\obj\Debug\ZorkBuilder.Forms.AddPlayerForm.resources
+F:\Github Repositories\Zork Repo\ZorkBuilder\obj\Debug\ZorkBuilder.MainForm.resources
+F:\Github Repositories\Zork Repo\ZorkBuilder\obj\Debug\ZorkBuilder.Properties.Resources.resources
+F:\Github Repositories\Zork Repo\ZorkBuilder\obj\Debug\InventoryManager.WinForms.csproj.GenerateResource.cache
+F:\Github Repositories\Zork Repo\ZorkBuilder\obj\Debug\InventoryManager.WinForms.csproj.CoreCompileInputs.cache
+F:\Github Repositories\Zork Repo\ZorkBuilder\obj\Debug\InventoryManager.WinForms.csproj.CopyComplete
+F:\Github Repositories\Zork Repo\ZorkBuilder\obj\Debug\ZorkBuilder.exe
+F:\Github Repositories\Zork Repo\ZorkBuilder\obj\Debug\ZorkBuilder.pdb
