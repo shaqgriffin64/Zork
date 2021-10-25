@@ -15,7 +15,14 @@ namespace ZorkBuilder
         private WorldViewModel ViewModel
         {
             get => m_ViewModel;
-            set => m_ViewModel = value; 
+            set
+            {
+                if (m_ViewModel != value)
+                {
+                    m_ViewModel = value;
+                    worldViewModelBindingSource.DataSource = m_ViewModel;
+                }
+            }
         }
 
         public MainForm()
@@ -34,10 +41,16 @@ namespace ZorkBuilder
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 ViewModel.World = JsonConvert.DeserializeObject<World>(File.ReadAllText(openFileDialog.FileName));
-                filenameTextBox.Text = openFileDialog.FileName;
+
+                ViewModel.Filename = openFileDialog.FileName;
             }
         }
 
         private WorldViewModel m_ViewModel;
+
+        private void filenameTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

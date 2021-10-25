@@ -15,3 +15,4 @@ F:\Github Repositories\Zork Repo\ZorkBuilder\obj\Debug\InventoryManager.WinForms
 F:\Github Repositories\Zork Repo\ZorkBuilder\obj\Debug\InventoryManager.WinForms.csproj.CopyComplete
 F:\Github Repositories\Zork Repo\ZorkBuilder\obj\Debug\ZorkBuilder.exe
 F:\Github Repositories\Zork Repo\ZorkBuilder\obj\Debug\ZorkBuilder.pdb
+F:\Github Repositories\Zork Repo\ZorkBuilder\obj\Debug\InventoryManager.WinForms.csproj.Fody.CopyLocal.cache
