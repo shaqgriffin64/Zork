@@ -16,5 +16,10 @@ namespace ZorkBuilder.Forms
         {
             InitializeComponent();
         }
+
+        private void TextBox1_TextChanged(object sender, EventArgs e)
+        {
+            //use this method to enable the OK button when there is a proper value (an actual name in this case) entered into the text box
+        }
     }
 }

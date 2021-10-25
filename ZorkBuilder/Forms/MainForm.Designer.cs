@@ -39,11 +39,11 @@ namespace ZorkBuilder
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.mainTabControl = new System.Windows.Forms.TabControl();
             this.playersTabPage = new System.Windows.Forms.TabPage();
-            this.playerScoreTextBox = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.playersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.worldBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.playerScoreLabel = new System.Windows.Forms.Label();
-            this.playerHealthTextBox = new System.Windows.Forms.TextBox();
             this.playerHealthLabel = new System.Windows.Forms.Label();
             this.playerNameTextBox = new System.Windows.Forms.TextBox();
             this.playerNameLabel = new System.Windows.Forms.Label();
@@ -51,12 +51,13 @@ namespace ZorkBuilder
             this.addPlayerButton = new System.Windows.Forms.Button();
             this.playersListBox = new System.Windows.Forms.ListBox();
             this.itemsTabPage = new System.Windows.Forms.TabPage();
+            this.itemNameTextBox = new System.Windows.Forms.TextBox();
+            this.itemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.itemNameLabel = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.itemsListBox = new System.Windows.Forms.ListBox();
-            this.itemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.itemNameTextBox = new System.Windows.Forms.TextBox();
-            this.itemNameLabel = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.worldViewModelBindingSource)).BeginInit();
             this.mainTabControl.SuspendLayout();
@@ -132,15 +133,16 @@ namespace ZorkBuilder
             // 
             // playersTabPage
             // 
-            this.playersTabPage.Controls.Add(this.playerScoreTextBox);
+            this.playersTabPage.Controls.Add(this.textBox2);
+            this.playersTabPage.Controls.Add(this.textBox1);
             this.playersTabPage.Controls.Add(this.playerScoreLabel);
-            this.playersTabPage.Controls.Add(this.playerHealthTextBox);
             this.playersTabPage.Controls.Add(this.playerHealthLabel);
             this.playersTabPage.Controls.Add(this.playerNameTextBox);
             this.playersTabPage.Controls.Add(this.playerNameLabel);
             this.playersTabPage.Controls.Add(this.deletePlayerButton);
             this.playersTabPage.Controls.Add(this.addPlayerButton);
             this.playersTabPage.Controls.Add(this.playersListBox);
+            this.playersTabPage.Controls.Add(this.groupBox1);
             this.playersTabPage.Location = new System.Drawing.Point(4, 22);
             this.playersTabPage.Name = "playersTabPage";
             this.playersTabPage.Padding = new System.Windows.Forms.Padding(3);
@@ -149,13 +151,13 @@ namespace ZorkBuilder
             this.playersTabPage.Text = "Players";
             this.playersTabPage.UseVisualStyleBackColor = true;
             // 
-            // playerScoreTextBox
+            // textBox2
             // 
-            this.playerScoreTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.playersBindingSource, "Score", true));
-            this.playerScoreTextBox.Location = new System.Drawing.Point(165, 116);
-            this.playerScoreTextBox.Name = "playerScoreTextBox";
-            this.playerScoreTextBox.Size = new System.Drawing.Size(38, 20);
-            this.playerScoreTextBox.TabIndex = 16;
+            this.textBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.playersBindingSource, "Score", true));
+            this.textBox2.Location = new System.Drawing.Point(214, 67);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(35, 20);
+            this.textBox2.TabIndex = 17;
             // 
             // playersBindingSource
             // 
@@ -167,27 +169,27 @@ namespace ZorkBuilder
             this.worldBindingSource.DataMember = "World";
             this.worldBindingSource.DataSource = this.worldViewModelBindingSource;
             // 
+            // textBox1
+            // 
+            this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.playersBindingSource, "Health", true));
+            this.textBox1.Location = new System.Drawing.Point(167, 67);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(35, 20);
+            this.textBox1.TabIndex = 16;
+            // 
             // playerScoreLabel
             // 
             this.playerScoreLabel.AutoSize = true;
-            this.playerScoreLabel.Location = new System.Drawing.Point(162, 99);
+            this.playerScoreLabel.Location = new System.Drawing.Point(211, 50);
             this.playerScoreLabel.Name = "playerScoreLabel";
             this.playerScoreLabel.Size = new System.Drawing.Size(38, 13);
             this.playerScoreLabel.TabIndex = 15;
             this.playerScoreLabel.Text = "&Score:";
             // 
-            // playerHealthTextBox
-            // 
-            this.playerHealthTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.playersBindingSource, "Health", true));
-            this.playerHealthTextBox.Location = new System.Drawing.Point(165, 67);
-            this.playerHealthTextBox.Name = "playerHealthTextBox";
-            this.playerHealthTextBox.Size = new System.Drawing.Size(38, 20);
-            this.playerHealthTextBox.TabIndex = 14;
-            // 
             // playerHealthLabel
             // 
             this.playerHealthLabel.AutoSize = true;
-            this.playerHealthLabel.Location = new System.Drawing.Point(162, 50);
+            this.playerHealthLabel.Location = new System.Drawing.Point(164, 50);
             this.playerHealthLabel.Name = "playerHealthLabel";
             this.playerHealthLabel.Size = new System.Drawing.Size(41, 13);
             this.playerHealthLabel.TabIndex = 13;
@@ -196,7 +198,7 @@ namespace ZorkBuilder
             // playerNameTextBox
             // 
             this.playerNameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.playersBindingSource, "Name", true));
-            this.playerNameTextBox.Location = new System.Drawing.Point(165, 24);
+            this.playerNameTextBox.Location = new System.Drawing.Point(167, 24);
             this.playerNameTextBox.Name = "playerNameTextBox";
             this.playerNameTextBox.Size = new System.Drawing.Size(183, 20);
             this.playerNameTextBox.TabIndex = 12;
@@ -204,7 +206,7 @@ namespace ZorkBuilder
             // playerNameLabel
             // 
             this.playerNameLabel.AutoSize = true;
-            this.playerNameLabel.Location = new System.Drawing.Point(162, 7);
+            this.playerNameLabel.Location = new System.Drawing.Point(164, 7);
             this.playerNameLabel.Name = "playerNameLabel";
             this.playerNameLabel.Size = new System.Drawing.Size(38, 13);
             this.playerNameLabel.TabIndex = 11;
@@ -253,6 +255,28 @@ namespace ZorkBuilder
             this.itemsTabPage.Text = "Items";
             this.itemsTabPage.UseVisualStyleBackColor = true;
             // 
+            // itemNameTextBox
+            // 
+            this.itemNameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.itemsBindingSource, "Name", true));
+            this.itemNameTextBox.Location = new System.Drawing.Point(170, 23);
+            this.itemNameTextBox.Name = "itemNameTextBox";
+            this.itemNameTextBox.Size = new System.Drawing.Size(183, 20);
+            this.itemNameTextBox.TabIndex = 14;
+            // 
+            // itemsBindingSource
+            // 
+            this.itemsBindingSource.DataMember = "Items";
+            this.itemsBindingSource.DataSource = this.worldBindingSource;
+            // 
+            // itemNameLabel
+            // 
+            this.itemNameLabel.AutoSize = true;
+            this.itemNameLabel.Location = new System.Drawing.Point(167, 6);
+            this.itemNameLabel.Name = "itemNameLabel";
+            this.itemNameLabel.Size = new System.Drawing.Size(38, 13);
+            this.itemNameLabel.TabIndex = 13;
+            this.itemNameLabel.Text = "&Name:";
+            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(86, 315);
@@ -282,27 +306,14 @@ namespace ZorkBuilder
             this.itemsListBox.TabIndex = 0;
             this.itemsListBox.ValueMember = "Name";
             // 
-            // itemsBindingSource
+            // groupBox1
             // 
-            this.itemsBindingSource.DataMember = "Items";
-            this.itemsBindingSource.DataSource = this.worldBindingSource;
-            // 
-            // itemNameTextBox
-            // 
-            this.itemNameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.itemsBindingSource, "Name", true));
-            this.itemNameTextBox.Location = new System.Drawing.Point(170, 23);
-            this.itemNameTextBox.Name = "itemNameTextBox";
-            this.itemNameTextBox.Size = new System.Drawing.Size(183, 20);
-            this.itemNameTextBox.TabIndex = 14;
-            // 
-            // itemNameLabel
-            // 
-            this.itemNameLabel.AutoSize = true;
-            this.itemNameLabel.Location = new System.Drawing.Point(167, 6);
-            this.itemNameLabel.Name = "itemNameLabel";
-            this.itemNameLabel.Size = new System.Drawing.Size(38, 13);
-            this.itemNameLabel.TabIndex = 13;
-            this.itemNameLabel.Text = "&Name:";
+            this.groupBox1.Location = new System.Drawing.Point(162, 7);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(192, 100);
+            this.groupBox1.TabIndex = 6;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = ".";
             // 
             // MainForm
             // 
@@ -358,14 +369,15 @@ namespace ZorkBuilder
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ListBox itemsListBox;
         private System.Windows.Forms.BindingSource itemsBindingSource;
-        private System.Windows.Forms.TextBox playerScoreTextBox;
         private System.Windows.Forms.Label playerScoreLabel;
-        private System.Windows.Forms.TextBox playerHealthTextBox;
         private System.Windows.Forms.Label playerHealthLabel;
         private System.Windows.Forms.TextBox playerNameTextBox;
         private System.Windows.Forms.Label playerNameLabel;
         private System.Windows.Forms.TextBox itemNameTextBox;
         private System.Windows.Forms.Label itemNameLabel;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
 

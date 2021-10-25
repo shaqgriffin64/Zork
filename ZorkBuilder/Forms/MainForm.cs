@@ -1,12 +1,9 @@
 ﻿using System.Windows.Forms;
-using System;
 using System.IO;
-using Newtonsoft.Json;
+using System;
 using InventoryManager.Data;
-
-//Ask Varcholik if there's a quick and easy way to just change the namespace for all the scripts at once without breaking anything
-
 using ZorkBuilder.ViewModels;
+using Newtonsoft.Json;
 
 namespace ZorkBuilder
 {
@@ -33,7 +30,7 @@ namespace ZorkBuilder
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void SelectFileButton_Click(object sender, EventArgs e)
@@ -50,7 +47,7 @@ namespace ZorkBuilder
 
         private void filenameTextBox_TextChanged(object sender, EventArgs e)
         {
-
+            
         }
     }
 }
