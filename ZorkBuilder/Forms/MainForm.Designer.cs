@@ -55,6 +55,8 @@ namespace ZorkBuilder
             this.button2 = new System.Windows.Forms.Button();
             this.itemsListBox = new System.Windows.Forms.ListBox();
             this.itemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.itemNameTextBox = new System.Windows.Forms.TextBox();
+            this.itemNameLabel = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.worldViewModelBindingSource)).BeginInit();
             this.mainTabControl.SuspendLayout();
@@ -238,6 +240,8 @@ namespace ZorkBuilder
             // 
             // itemsTabPage
             // 
+            this.itemsTabPage.Controls.Add(this.itemNameTextBox);
+            this.itemsTabPage.Controls.Add(this.itemNameLabel);
             this.itemsTabPage.Controls.Add(this.button1);
             this.itemsTabPage.Controls.Add(this.button2);
             this.itemsTabPage.Controls.Add(this.itemsListBox);
@@ -283,6 +287,23 @@ namespace ZorkBuilder
             this.itemsBindingSource.DataMember = "Items";
             this.itemsBindingSource.DataSource = this.worldBindingSource;
             // 
+            // itemNameTextBox
+            // 
+            this.itemNameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.itemsBindingSource, "Name", true));
+            this.itemNameTextBox.Location = new System.Drawing.Point(170, 23);
+            this.itemNameTextBox.Name = "itemNameTextBox";
+            this.itemNameTextBox.Size = new System.Drawing.Size(183, 20);
+            this.itemNameTextBox.TabIndex = 14;
+            // 
+            // itemNameLabel
+            // 
+            this.itemNameLabel.AutoSize = true;
+            this.itemNameLabel.Location = new System.Drawing.Point(167, 6);
+            this.itemNameLabel.Name = "itemNameLabel";
+            this.itemNameLabel.Size = new System.Drawing.Size(38, 13);
+            this.itemNameLabel.TabIndex = 13;
+            this.itemNameLabel.Text = "&Name:";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -309,6 +330,7 @@ namespace ZorkBuilder
             ((System.ComponentModel.ISupportInitialize)(this.playersBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.worldBindingSource)).EndInit();
             this.itemsTabPage.ResumeLayout(false);
+            this.itemsTabPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.itemsBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -342,6 +364,8 @@ namespace ZorkBuilder
         private System.Windows.Forms.Label playerHealthLabel;
         private System.Windows.Forms.TextBox playerNameTextBox;
         private System.Windows.Forms.Label playerNameLabel;
+        private System.Windows.Forms.TextBox itemNameTextBox;
+        private System.Windows.Forms.Label itemNameLabel;
     }
 }
 
