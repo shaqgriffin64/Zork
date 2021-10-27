@@ -28,64 +28,69 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.OkButton = new System.Windows.Forms.Button();
-            this.CancelButton = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.okButton = new System.Windows.Forms.Button();
+            this.cancelButton = new System.Windows.Forms.Button();
+            this.nameTextBox = new System.Windows.Forms.TextBox();
+            this.nameLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // OkButton
+            // okButton
             // 
-            this.OkButton.Enabled = false;
-            this.OkButton.Location = new System.Drawing.Point(168, 59);
-            this.OkButton.Name = "OkButton";
-            this.OkButton.Size = new System.Drawing.Size(75, 23);
-            this.OkButton.TabIndex = 0;
-            this.OkButton.Text = "&Ok";
-            this.OkButton.UseVisualStyleBackColor = true;
+            this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.okButton.Enabled = false;
+            this.okButton.Location = new System.Drawing.Point(168, 59);
+            this.okButton.Name = "okButton";
+            this.okButton.Size = new System.Drawing.Size(75, 23);
+            this.okButton.TabIndex = 2;
+            this.okButton.Text = "&Ok";
+            this.okButton.UseVisualStyleBackColor = true;
             // 
-            // CancelButton
+            // cancelButton
             // 
-            this.CancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.CancelButton.Location = new System.Drawing.Point(249, 59);
-            this.CancelButton.Name = "CancelButton";
-            this.CancelButton.Size = new System.Drawing.Size(75, 23);
-            this.CancelButton.TabIndex = 1;
-            this.CancelButton.Text = "&Cancel";
-            this.CancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.cancelButton.Location = new System.Drawing.Point(249, 59);
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size(75, 23);
+            this.cancelButton.TabIndex = 3;
+            this.cancelButton.Text = "&Cancel";
+            this.cancelButton.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // nameTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(12, 33);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(312, 20);
-            this.textBox1.TabIndex = 2;
-            this.textBox1.TextChanged += new System.EventHandler(this.TextBox1_TextChanged);
+            this.nameTextBox.Location = new System.Drawing.Point(12, 33);
+            this.nameTextBox.Name = "nameTextBox";
+            this.nameTextBox.Size = new System.Drawing.Size(312, 20);
+            this.nameTextBox.TabIndex = 1;
+            this.nameTextBox.TextChanged += new System.EventHandler(this.NameTextBox_TextChanged);
             // 
-            // label1
+            // nameLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "&Name";
+            this.nameLabel.AutoSize = true;
+            this.nameLabel.Location = new System.Drawing.Point(12, 9);
+            this.nameLabel.Name = "nameLabel";
+            this.nameLabel.Size = new System.Drawing.Size(35, 13);
+            this.nameLabel.TabIndex = 0;
+            this.nameLabel.Text = "&Name";
             // 
             // AddPlayerForm
             // 
-            this.AcceptButton = this.OkButton;
+            this.AcceptButton = this.okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size(339, 91);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.CancelButton);
-            this.Controls.Add(this.OkButton);
+            this.Controls.Add(this.nameLabel);
+            this.Controls.Add(this.nameTextBox);
+            this.Controls.Add(this.cancelButton);
+            this.Controls.Add(this.okButton);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AddPlayerForm";
             this.ShowInTaskbar = false;
-            this.Text = "AddPlayerForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Add Player";
+            this.Load += new System.EventHandler(this.AddPlayerForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -93,9 +98,9 @@
 
         #endregion
 
-        private System.Windows.Forms.Button OkButton;
-        private System.Windows.Forms.Button CancelButton;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button okButton;
+        private System.Windows.Forms.Button cancelButton;
+        private System.Windows.Forms.TextBox nameTextBox;
+        private System.Windows.Forms.Label nameLabel;
     }
 }

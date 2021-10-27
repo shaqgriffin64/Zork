@@ -5,7 +5,8 @@ using InventoryManager.Data;
 using ZorkBuilder.ViewModels;
 using Newtonsoft.Json;
 
-namespace ZorkBuilder
+namespace ZorkBuilder.Forms
+
 {
     public partial class MainForm : Form
     {
@@ -22,32 +23,76 @@ namespace ZorkBuilder
             }
         }
 
+        private bool IsWorldLoaded 
+        {
+            get => mIsWorldLoaded;
+            set
+            {
+                mIsWorldLoaded = value;
+                mainTabControl.Enabled = mIsWorldLoaded;
+            }
+        }
+
         public MainForm()
         {
             InitializeComponent();
             ViewModel = new WorldViewModel();
+            IsWorldLoaded = false;
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-            
-        }
 
         private void SelectFileButton_Click(object sender, EventArgs e)
         {
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 ViewModel.World = JsonConvert.DeserializeObject<World>(File.ReadAllText(openFileDialog.FileName));
-
                 ViewModel.Filename = openFileDialog.FileName;
+                IsWorldLoaded = true;
             }
         }
 
+        private void AddPlayerButton_Click(object sender, EventArgs e)
+        {
+            using (AddPlayerForm addPlayerForm = new AddPlayerForm())
+            {
+                if (addPlayerForm.ShowDialog() == DialogResult.OK)
+                {
+                    Player player = new Player { Name = addPlayerForm.PlayerName };
+                    ViewModel.Players.Add(player);
+                }
+            }
+        }
+
+        private void PlayersListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            deletePlayerButton.Enabled = playersListBox.SelectedItem != null;
+        }
+
+        private void DeletePlayerButton_Click(object sender, EventArgs e)
+        {
+            //if (MessageBox.Show("Delete this player?", ))
+            //{
+
+            //}
+        }
+
+
         private WorldViewModel m_ViewModel;
+        private bool mIsWorldLoaded;
+
+
+
+
+
 
         private void filenameTextBox_TextChanged(object sender, EventArgs e)
         {
-            
+
         }
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
