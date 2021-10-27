@@ -248,7 +248,7 @@ namespace ZorkBuilder.Forms
             // 
             // deletePlayerButton
             // 
-            this.deletePlayerButton.Location = new System.Drawing.Point(84, 316);
+            this.deletePlayerButton.Location = new System.Drawing.Point(84, 342);
             this.deletePlayerButton.Name = "deletePlayerButton";
             this.deletePlayerButton.Size = new System.Drawing.Size(75, 23);
             this.deletePlayerButton.TabIndex = 2;
@@ -258,7 +258,7 @@ namespace ZorkBuilder.Forms
             // 
             // addPlayerButton
             // 
-            this.addPlayerButton.Location = new System.Drawing.Point(3, 316);
+            this.addPlayerButton.Location = new System.Drawing.Point(3, 342);
             this.addPlayerButton.Name = "addPlayerButton";
             this.addPlayerButton.Size = new System.Drawing.Size(75, 23);
             this.addPlayerButton.TabIndex = 1;
@@ -273,7 +273,7 @@ namespace ZorkBuilder.Forms
             this.playersListBox.FormattingEnabled = true;
             this.playersListBox.Location = new System.Drawing.Point(3, 8);
             this.playersListBox.Name = "playersListBox";
-            this.playersListBox.Size = new System.Drawing.Size(155, 303);
+            this.playersListBox.Size = new System.Drawing.Size(155, 329);
             this.playersListBox.TabIndex = 0;
             this.playersListBox.ValueMember = "Health";
             this.playersListBox.SelectedIndexChanged += new System.EventHandler(this.PlayersListBox_SelectedIndexChanged);
@@ -282,7 +282,7 @@ namespace ZorkBuilder.Forms
             // 
             this.groupBox1.Location = new System.Drawing.Point(162, 7);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(192, 100);
+            this.groupBox1.Size = new System.Drawing.Size(383, 358);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = ".";
@@ -327,7 +327,7 @@ namespace ZorkBuilder.Forms
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(84, 316);
+            this.button1.Location = new System.Drawing.Point(84, 342);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 4;
@@ -336,7 +336,7 @@ namespace ZorkBuilder.Forms
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(3, 316);
+            this.button2.Location = new System.Drawing.Point(3, 342);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 3;
@@ -350,7 +350,7 @@ namespace ZorkBuilder.Forms
             this.itemsListBox.FormattingEnabled = true;
             this.itemsListBox.Location = new System.Drawing.Point(3, 8);
             this.itemsListBox.Name = "itemsListBox";
-            this.itemsListBox.Size = new System.Drawing.Size(155, 303);
+            this.itemsListBox.Size = new System.Drawing.Size(155, 329);
             this.itemsListBox.TabIndex = 0;
             this.itemsListBox.ValueMember = "Name";
             // 
@@ -358,7 +358,7 @@ namespace ZorkBuilder.Forms
             // 
             this.groupBox2.Location = new System.Drawing.Point(162, 7);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(192, 100);
+            this.groupBox2.Size = new System.Drawing.Size(383, 358);
             this.groupBox2.TabIndex = 15;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = ".";
