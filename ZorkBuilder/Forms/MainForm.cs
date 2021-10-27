@@ -1,6 +1,7 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 using System.IO;
-using System;
+using System.Linq;
 using InventoryManager.Data;
 using ZorkBuilder.ViewModels;
 using Newtonsoft.Json;
@@ -70,6 +71,11 @@ namespace ZorkBuilder.Forms
 
         private void DeletePlayerButton_Click(object sender, EventArgs e)
         {
+            ViewModel.Players.Remove((Player)playersListBox.SelectedItem);
+            playersListBox.SelectedItem = ViewModel.Players.FirstOrDefault();
+
+
+            //MAKE THIS FUNCTIONAL || CANNOT SUBMIT WITHOUT THIS || (Data binding Part 2 @ 31:31)
             //if (MessageBox.Show("Delete this player?", ))
             //{
 
