@@ -5,17 +5,32 @@ namespace ZorkBuilder.Forms
 {
     public partial class AddItemForm : Form
     {
+        public string ItemName
+        {
+            get => itemNameTextBox.Text;
+            set => itemNameTextBox.Text = value;
+        }
+
         public AddItemForm()
         {
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void NameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            //use this method to enable the OK button when there is a proper value (an actual name in this case) entered into the text box
+            okButton.Enabled = !string.IsNullOrEmpty(ItemName);
+        }
+
+
+        //No data tied to these
+        #region redundancies
+        private void OkButton_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void CancelButton_Click(object sender, EventArgs e)
         {
 
         }
@@ -24,5 +39,7 @@ namespace ZorkBuilder.Forms
         {
 
         }
+        #endregion redundancies
+
     }
 }

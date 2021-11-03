@@ -7,6 +7,17 @@ using Newtonsoft.Json;
 using InventoryManager.Data;
 using ZorkBuilder.ViewModels;
 
+//-----------------------------------------------------------------------------//
+//TO DO:
+//  - Add rooms + neighbors (cardinal directions and all that)
+//  - Add binding source for the player's starting location
+//  -
+//  - Finish DataBinding videos 3 & 4
+
+
+
+//Use lightning symbol to remove accidental functions
+
 namespace ZorkBuilder.Forms
 
 {
@@ -71,18 +82,40 @@ namespace ZorkBuilder.Forms
                 playersListBox.SelectedItem = ViewModel.Players.FirstOrDefault();
             }
         }
+
         #endregion Add / Delete Player
+
+
+        //--------------------------------------------------------------------------------//
+
 
         #region Add / Delete Item
         private void AddItemButton_Click(object sender, EventArgs e)
         {
+            using (AddItemForm addItemForm = new AddItemForm())
+            {
+                if (addItemForm.ShowDialog() == DialogResult.OK)
+                {
+                    Item item = new Item {Name = addItemForm.ItemName };
+                    ViewModel.Items.Add(item);
+                }
+            }
+        }
 
+        private void ItemsListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            deleteItemButton.Enabled = itemsListBox.SelectedItem != null;
         }
 
         private void DeleteItemButton_Click(object sender, EventArgs e)
         {
-
+            if (MessageBox.Show("Delete this player?", AssemblyTitle, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                ViewModel.Items.Remove((Item)itemsListBox.SelectedItem);
+                itemsListBox.SelectedItem = ViewModel.Items.FirstOrDefault();
+            }
         }
+
         #endregion Add / Delete Item
 
         #region Main Menu
@@ -112,36 +145,12 @@ namespace ZorkBuilder.Forms
         {
             Close();
         }
+
         #endregion Main Menu
 
 
-        //private void SaveWorld()
-        //{
-        //    if (string.IsNullOrEmpty(ViewModel.Filename))
-        //    {
-        //        throw new InvalidProgramException("Filename expected.");
-        //    }
-
-        //    JsonSerializer serializer = new JsonSerializer
-        //    { 
-        //        Formatting = Formatting.Indented
-        //    };
-        //    using (StreamWriter streamWriter = new StreamWriter(ViewModel.Filename))
-        //    using (JsonWriter jsonWriter = new JsonTextWriter(streamWriter))
-        //    {
-        //        serializer.Serialize(jsonWriter, ViewModel.World)
-        //    }
-        //}
-            
         private WorldViewModel m_ViewModel;
         private bool mIsWorldLoaded;
-
-
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
 
     }
 }

@@ -30,7 +30,7 @@
         {
             this.okButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
-            this.nameTextBox = new System.Windows.Forms.TextBox();
+            this.playerNameTextBox = new System.Windows.Forms.TextBox();
             this.nameLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -55,13 +55,13 @@
             this.cancelButton.Text = "&Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
             // 
-            // nameTextBox
+            // playerNameTextBox
             // 
-            this.nameTextBox.Location = new System.Drawing.Point(12, 33);
-            this.nameTextBox.Name = "nameTextBox";
-            this.nameTextBox.Size = new System.Drawing.Size(312, 20);
-            this.nameTextBox.TabIndex = 1;
-            this.nameTextBox.TextChanged += new System.EventHandler(this.NameTextBox_TextChanged);
+            this.playerNameTextBox.Location = new System.Drawing.Point(12, 33);
+            this.playerNameTextBox.Name = "playerNameTextBox";
+            this.playerNameTextBox.Size = new System.Drawing.Size(315, 20);
+            this.playerNameTextBox.TabIndex = 1;
+            this.playerNameTextBox.TextChanged += new System.EventHandler(this.NameTextBox_TextChanged);
             // 
             // nameLabel
             // 
@@ -80,7 +80,7 @@
             this.CancelButton = this.cancelButton;
             this.ClientSize = new System.Drawing.Size(339, 91);
             this.Controls.Add(this.nameLabel);
-            this.Controls.Add(this.nameTextBox);
+            this.Controls.Add(this.playerNameTextBox);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.okButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -100,7 +100,7 @@
 
         private System.Windows.Forms.Button okButton;
         private System.Windows.Forms.Button cancelButton;
-        private System.Windows.Forms.TextBox nameTextBox;
+        private System.Windows.Forms.TextBox playerNameTextBox;
         private System.Windows.Forms.Label nameLabel;
     }
 }

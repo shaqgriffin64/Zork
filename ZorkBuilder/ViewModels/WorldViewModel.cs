@@ -44,6 +44,8 @@ namespace ZorkBuilder.ViewModels
             World = world;
         }
 
+
+        #region File Saving
         public void SaveWorld()
         {
             if (string.IsNullOrEmpty(Filename))
@@ -61,6 +63,8 @@ namespace ZorkBuilder.ViewModels
                 serializer.Serialize(jsonWriter, mWorld);   
             }
         }
+
+        #endregion File Saving
 
         private World mWorld;
     }

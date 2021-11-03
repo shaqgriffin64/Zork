@@ -17,6 +17,18 @@
       "Health": 90,
       "Score": 125,
       "Inventory": []
+    },
+    {
+      "Name": "Bababooey",
+      "Health": 0,
+      "Score": 0,
+      "Inventory": []
+    },
+    {
+      "Name": "Bababooey",
+      "Health": 0,
+      "Score": 0,
+      "Inventory": []
     }
   ],
   "Items": [
@@ -25,6 +37,12 @@
     },
     {
       "Name": "Lantern"
+    },
+    {
+      "Name": "Bababooey"
+    },
+    {
+      "Name": "Bababooey"
     }
   ]
 }

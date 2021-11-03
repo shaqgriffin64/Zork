@@ -17,3 +17,22 @@ F:\Github Repositories\Zork Repo\ZorkBuilder\obj\Debug\ZorkBuilder.exe
 F:\Github Repositories\Zork Repo\ZorkBuilder\obj\Debug\ZorkBuilder.pdb
 F:\Github Repositories\Zork Repo\ZorkBuilder\obj\Debug\InventoryManager.WinForms.csproj.AssemblyReference.cache
 F:\Github Repositories\Zork Repo\ZorkBuilder\obj\Debug\ZorkBuilder.Forms.AddItemForm.resources
+C:\Users\sh011993\Documents\GitHub\Zork\ZorkBuilder\bin\Debug\World.json
+C:\Users\sh011993\Documents\GitHub\Zork\ZorkBuilder\bin\Debug\ZorkBuilder.exe.config
+C:\Users\sh011993\Documents\GitHub\Zork\ZorkBuilder\bin\Debug\ZorkBuilder.exe
+C:\Users\sh011993\Documents\GitHub\Zork\ZorkBuilder\bin\Debug\ZorkBuilder.pdb
+C:\Users\sh011993\Documents\GitHub\Zork\ZorkBuilder\bin\Debug\InventoryManager.Data.dll
+C:\Users\sh011993\Documents\GitHub\Zork\ZorkBuilder\bin\Debug\Newtonsoft.Json.dll
+C:\Users\sh011993\Documents\GitHub\Zork\ZorkBuilder\bin\Debug\InventoryManager.Data.pdb
+C:\Users\sh011993\Documents\GitHub\Zork\ZorkBuilder\bin\Debug\Newtonsoft.Json.xml
+C:\Users\sh011993\Documents\GitHub\Zork\ZorkBuilder\obj\Debug\InventoryManager.WinForms.csprojAssemblyReference.cache
+C:\Users\sh011993\Documents\GitHub\Zork\ZorkBuilder\obj\Debug\ZorkBuilder.Forms.AddPlayerForm.resources
+C:\Users\sh011993\Documents\GitHub\Zork\ZorkBuilder\obj\Debug\ZorkBuilder.Forms.AddItemForm.resources
+C:\Users\sh011993\Documents\GitHub\Zork\ZorkBuilder\obj\Debug\ZorkBuilder.Forms.MainForm.resources
+C:\Users\sh011993\Documents\GitHub\Zork\ZorkBuilder\obj\Debug\ZorkBuilder.Properties.Resources.resources
+C:\Users\sh011993\Documents\GitHub\Zork\ZorkBuilder\obj\Debug\InventoryManager.WinForms.csproj.GenerateResource.cache
+C:\Users\sh011993\Documents\GitHub\Zork\ZorkBuilder\obj\Debug\InventoryManager.WinForms.csproj.CoreCompileInputs.cache
+C:\Users\sh011993\Documents\GitHub\Zork\ZorkBuilder\obj\Debug\InventoryManager.WinForms.csproj.Fody.CopyLocal.cache
+C:\Users\sh011993\Documents\GitHub\Zork\ZorkBuilder\obj\Debug\InventoryManager.WinForms.csproj.CopyComplete
+C:\Users\sh011993\Documents\GitHub\Zork\ZorkBuilder\obj\Debug\ZorkBuilder.exe
+C:\Users\sh011993\Documents\GitHub\Zork\ZorkBuilder\obj\Debug\ZorkBuilder.pdb

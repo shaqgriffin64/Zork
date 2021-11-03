@@ -37,12 +37,12 @@ namespace ZorkBuilder.Forms
             this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.worldViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.mainTabControl = new System.Windows.Forms.TabControl();
             this.playersTabPage = new System.Windows.Forms.TabPage();
             this.playerScoreTextBox = new System.Windows.Forms.TextBox();
             this.playersBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.worldViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.playerHealthTextBox = new System.Windows.Forms.TextBox();
             this.playerScoreLabel = new System.Windows.Forms.Label();
             this.playerHealthLabel = new System.Windows.Forms.Label();
@@ -62,10 +62,10 @@ namespace ZorkBuilder.Forms
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.mainMenuStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.worldViewModelBindingSource)).BeginInit();
             this.mainTabControl.SuspendLayout();
             this.playersTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.playersBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.worldViewModelBindingSource)).BeginInit();
             this.itemsTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.itemsBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -130,10 +130,6 @@ namespace ZorkBuilder.Forms
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
-            // worldViewModelBindingSource
-            // 
-            this.worldViewModelBindingSource.DataSource = typeof(ZorkBuilder.ViewModels.WorldViewModel);
-            // 
             // openFileDialog
             // 
             this.openFileDialog.Filter = "World Files (*json)|*json";
@@ -180,6 +176,10 @@ namespace ZorkBuilder.Forms
             // 
             this.playersBindingSource.DataMember = "Players";
             this.playersBindingSource.DataSource = this.worldViewModelBindingSource;
+            // 
+            // worldViewModelBindingSource
+            // 
+            this.worldViewModelBindingSource.DataSource = typeof(ZorkBuilder.ViewModels.WorldViewModel);
             // 
             // playerHealthTextBox
             // 
@@ -263,7 +263,6 @@ namespace ZorkBuilder.Forms
             this.groupBox1.Size = new System.Drawing.Size(383, 384);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = ".";
             // 
             // itemsTabPage
             // 
@@ -333,6 +332,7 @@ namespace ZorkBuilder.Forms
             this.itemsListBox.Size = new System.Drawing.Size(155, 342);
             this.itemsListBox.TabIndex = 0;
             this.itemsListBox.ValueMember = "Name";
+            this.itemsListBox.SelectedIndexChanged += new System.EventHandler(this.ItemsListBox_SelectedIndexChanged);
             // 
             // groupBox2
             // 
@@ -341,7 +341,6 @@ namespace ZorkBuilder.Forms
             this.groupBox2.Size = new System.Drawing.Size(383, 384);
             this.groupBox2.TabIndex = 15;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = ".";
             // 
             // saveFileDialog
             // 
@@ -361,14 +360,13 @@ namespace ZorkBuilder.Forms
             this.MinimizeBox = false;
             this.Name = "MainForm";
             this.Text = "Inventory Manager";
-            this.Load += new System.EventHandler(this.MainForm_Load);
             this.mainMenuStrip.ResumeLayout(false);
             this.mainMenuStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.worldViewModelBindingSource)).EndInit();
             this.mainTabControl.ResumeLayout(false);
             this.playersTabPage.ResumeLayout(false);
             this.playersTabPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.playersBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.worldViewModelBindingSource)).EndInit();
             this.itemsTabPage.ResumeLayout(false);
             this.itemsTabPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.itemsBindingSource)).EndInit();

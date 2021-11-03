@@ -5,10 +5,10 @@ namespace ZorkBuilder.Forms
 {
     public partial class AddPlayerForm : Form
     {
-        public string PlayerName 
+        public string PlayerName
         {
-            get => nameTextBox.Text;
-            set => nameTextBox.Text = value;
+            get => playerNameTextBox.Text;
+            set => playerNameTextBox.Text = value;
         }
 
         public AddPlayerForm()
@@ -22,9 +22,14 @@ namespace ZorkBuilder.Forms
             okButton.Enabled = !string.IsNullOrEmpty(PlayerName);
         }
 
+
+        //No data tied to these
+        #region redundancies
         private void AddPlayerForm_Load(object sender, EventArgs e)
         {
 
         }
+        #endregion redundancies
+
     }
 }
