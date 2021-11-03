@@ -61,6 +61,12 @@
     <Compile Include="Forms\AddPlayerForm.Designer.cs">
       <DependentUpon>AddPlayerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\AddItemForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddItemForm.Designer.cs">
+      <DependentUpon>AddItemForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,6 +78,9 @@
     <Compile Include="ViewModels\WorldViewModel.cs" />
     <EmbeddedResource Include="Forms\AddPlayerForm.resx">
       <DependentUpon>AddPlayerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AddItemForm.resx">
+      <DependentUpon>AddItemForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

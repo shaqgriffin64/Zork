@@ -4,3 +4,4 @@ F:\Github Repositories\Zork Repo\InventoryManager.Data\obj\Debug\InventoryManage
 F:\Github Repositories\Zork Repo\InventoryManager.Data\obj\Debug\InventoryManager.Data.csproj.CoreCompileInputs.cache
 F:\Github Repositories\Zork Repo\InventoryManager.Data\obj\Debug\InventoryManager.Data.dll
 F:\Github Repositories\Zork Repo\InventoryManager.Data\obj\Debug\InventoryManager.Data.pdb
+F:\Github Repositories\Zork Repo\InventoryManager.Data\obj\Debug\InventoryManager.Data.csproj.Fody.CopyLocal.cache

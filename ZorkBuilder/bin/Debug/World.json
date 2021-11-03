@@ -2,18 +2,21 @@
   "Players": [
     {
       "Name": "Jane Doe",
-      "Health": 100,
-      "Score": 150
+      "Health": 101,
+      "Score": 150,
+      "Inventory": []
     },
     {
       "Name": "John Smith",
       "Health": 80,
-      "Score": 25
+      "Score": 25,
+      "Inventory": []
     },
     {
       "Name": "Ima Knight",
       "Health": 90,
-      "Score": 125 
+      "Score": 125,
+      "Inventory": []
     }
   ],
   "Items": [
@@ -24,5 +27,4 @@
       "Name": "Lantern"
     }
   ]
-
 }

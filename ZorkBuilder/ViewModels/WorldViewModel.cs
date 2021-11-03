@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Linq;
 using System.ComponentModel;
 using InventoryManager.Data;
+using Newtonsoft.Json;
+using System.IO;
 
- namespace ZorkBuilder.ViewModels
+namespace ZorkBuilder.ViewModels
 {
     public class WorldViewModel : INotifyPropertyChanged
     {
@@ -39,6 +42,24 @@ using InventoryManager.Data;
         public WorldViewModel(World world = null)
         {
             World = world;
+        }
+
+        public void SaveWorld()
+        {
+            if (string.IsNullOrEmpty(Filename))
+            {
+                throw new InvalidProgramException("Filename expected.");
+            }
+
+            JsonSerializer serializer = new JsonSerializer
+            {
+                Formatting = Formatting.Indented
+            };
+            using (StreamWriter streamWriter = new StreamWriter(Filename))
+            using (JsonWriter jsonWriter = new JsonTextWriter(streamWriter))
+            {
+                serializer.Serialize(jsonWriter, mWorld);   
+            }
         }
 
         private World mWorld;

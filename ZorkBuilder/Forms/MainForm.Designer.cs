@@ -30,17 +30,14 @@ namespace ZorkBuilder.Forms
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.mainMenuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.newWorldToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openWorldToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.closeWorldToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fileLabel = new System.Windows.Forms.Label();
-            this.filenameTextBox = new System.Windows.Forms.TextBox();
+            this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.worldViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.selectFileButton = new System.Windows.Forms.Button();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.mainTabControl = new System.Windows.Forms.TabControl();
             this.playersTabPage = new System.Windows.Forms.TabPage();
@@ -59,11 +56,12 @@ namespace ZorkBuilder.Forms
             this.itemNameTextBox = new System.Windows.Forms.TextBox();
             this.itemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.itemNameLabel = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.deleteItemButton = new System.Windows.Forms.Button();
+            this.addItemButton = new System.Windows.Forms.Button();
             this.itemsListBox = new System.Windows.Forms.ListBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.menuStrip1.SuspendLayout();
+            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.mainMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.worldViewModelBindingSource)).BeginInit();
             this.mainTabControl.SuspendLayout();
             this.playersTabPage.SuspendLayout();
@@ -72,89 +70,69 @@ namespace ZorkBuilder.Forms
             ((System.ComponentModel.ISupportInitialize)(this.itemsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
-            // menuStrip1
+            // mainMenuStrip
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mainMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(561, 24);
-            this.menuStrip1.TabIndex = 1;
-            this.menuStrip1.Text = "menuStrip1";
+            this.mainMenuStrip.Location = new System.Drawing.Point(0, 0);
+            this.mainMenuStrip.Name = "mainMenuStrip";
+            this.mainMenuStrip.Size = new System.Drawing.Size(561, 24);
+            this.mainMenuStrip.TabIndex = 1;
+            this.mainMenuStrip.Text = "menuStrip1";
             // 
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.newWorldToolStripMenuItem,
             this.openWorldToolStripMenuItem,
-            this.closeWorldToolStripMenuItem,
+            this.saveToolStripMenuItem,
+            this.saveAsToolStripMenuItem,
             this.toolStripMenuItem2,
-            this.saveToolStripMenuItem});
+            this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "&File";
-            // 
-            // newWorldToolStripMenuItem
-            // 
-            this.newWorldToolStripMenuItem.Name = "newWorldToolStripMenuItem";
-            this.newWorldToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
-            this.newWorldToolStripMenuItem.Text = "&New World";
             // 
             // openWorldToolStripMenuItem
             // 
             this.openWorldToolStripMenuItem.Name = "openWorldToolStripMenuItem";
-            this.openWorldToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
-            this.openWorldToolStripMenuItem.Text = "&Open World";
-            // 
-            // closeWorldToolStripMenuItem
-            // 
-            this.closeWorldToolStripMenuItem.Name = "closeWorldToolStripMenuItem";
-            this.closeWorldToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
-            this.closeWorldToolStripMenuItem.Text = "&Close World";
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(135, 6);
+            this.openWorldToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            this.openWorldToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.openWorldToolStripMenuItem.Text = "&Open World...";
+            this.openWorldToolStripMenuItem.Click += new System.EventHandler(this.OpenWorldToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.saveToolStripMenuItem.Text = "&Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.SaveToolStripMenuItem_Click);
             // 
-            // fileLabel
+            // saveAsToolStripMenuItem
             // 
-            this.fileLabel.AutoSize = true;
-            this.fileLabel.Location = new System.Drawing.Point(12, 33);
-            this.fileLabel.Name = "fileLabel";
-            this.fileLabel.Size = new System.Drawing.Size(23, 13);
-            this.fileLabel.TabIndex = 2;
-            this.fileLabel.Text = "File";
+            this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
+            this.saveAsToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.saveAsToolStripMenuItem.Text = "Save &As...";
+            this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.SaveAsToolStripMenuItem_Click);
             // 
-            // filenameTextBox
+            // toolStripMenuItem2
             // 
-            this.filenameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.worldViewModelBindingSource, "Filename", true));
-            this.filenameTextBox.Location = new System.Drawing.Point(41, 29);
-            this.filenameTextBox.Name = "filenameTextBox";
-            this.filenameTextBox.ReadOnly = true;
-            this.filenameTextBox.Size = new System.Drawing.Size(476, 20);
-            this.filenameTextBox.TabIndex = 3;
-            this.filenameTextBox.TextChanged += new System.EventHandler(this.filenameTextBox_TextChanged);
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(187, 6);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.exitToolStripMenuItem.Text = "E&xit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
             // worldViewModelBindingSource
             // 
             this.worldViewModelBindingSource.DataSource = typeof(ZorkBuilder.ViewModels.WorldViewModel);
-            // 
-            // selectFileButton
-            // 
-            this.selectFileButton.Location = new System.Drawing.Point(523, 28);
-            this.selectFileButton.Name = "selectFileButton";
-            this.selectFileButton.Size = new System.Drawing.Size(26, 23);
-            this.selectFileButton.TabIndex = 4;
-            this.selectFileButton.Text = "...";
-            this.selectFileButton.UseVisualStyleBackColor = true;
-            this.selectFileButton.Click += new System.EventHandler(this.SelectFileButton_Click);
             // 
             // openFileDialog
             // 
@@ -164,10 +142,10 @@ namespace ZorkBuilder.Forms
             // 
             this.mainTabControl.Controls.Add(this.playersTabPage);
             this.mainTabControl.Controls.Add(this.itemsTabPage);
-            this.mainTabControl.Location = new System.Drawing.Point(0, 57);
+            this.mainTabControl.Location = new System.Drawing.Point(0, 27);
             this.mainTabControl.Name = "mainTabControl";
             this.mainTabControl.SelectedIndex = 0;
-            this.mainTabControl.Size = new System.Drawing.Size(561, 397);
+            this.mainTabControl.Size = new System.Drawing.Size(561, 425);
             this.mainTabControl.TabIndex = 5;
             // 
             // playersTabPage
@@ -185,14 +163,14 @@ namespace ZorkBuilder.Forms
             this.playersTabPage.Location = new System.Drawing.Point(4, 22);
             this.playersTabPage.Name = "playersTabPage";
             this.playersTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.playersTabPage.Size = new System.Drawing.Size(553, 371);
+            this.playersTabPage.Size = new System.Drawing.Size(553, 399);
             this.playersTabPage.TabIndex = 0;
             this.playersTabPage.Text = "Players";
             this.playersTabPage.UseVisualStyleBackColor = true;
             // 
             // playerScoreTextBox
             // 
-            this.playerScoreTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.playersBindingSource, "Score", true));
+            this.playerScoreTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.playersBindingSource, "Score", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.playerScoreTextBox.Location = new System.Drawing.Point(214, 67);
             this.playerScoreTextBox.Name = "playerScoreTextBox";
             this.playerScoreTextBox.Size = new System.Drawing.Size(35, 20);
@@ -205,7 +183,7 @@ namespace ZorkBuilder.Forms
             // 
             // playerHealthTextBox
             // 
-            this.playerHealthTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.playersBindingSource, "Health", true));
+            this.playerHealthTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.playersBindingSource, "Health", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.playerHealthTextBox.Location = new System.Drawing.Point(167, 67);
             this.playerHealthTextBox.Name = "playerHealthTextBox";
             this.playerHealthTextBox.Size = new System.Drawing.Size(35, 20);
@@ -231,7 +209,7 @@ namespace ZorkBuilder.Forms
             // 
             // playerNameTextBox
             // 
-            this.playerNameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.playersBindingSource, "Name", true));
+            this.playerNameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.playersBindingSource, "Name", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.playerNameTextBox.Location = new System.Drawing.Point(167, 24);
             this.playerNameTextBox.Name = "playerNameTextBox";
             this.playerNameTextBox.Size = new System.Drawing.Size(183, 20);
@@ -248,7 +226,7 @@ namespace ZorkBuilder.Forms
             // 
             // deletePlayerButton
             // 
-            this.deletePlayerButton.Location = new System.Drawing.Point(84, 342);
+            this.deletePlayerButton.Location = new System.Drawing.Point(83, 362);
             this.deletePlayerButton.Name = "deletePlayerButton";
             this.deletePlayerButton.Size = new System.Drawing.Size(75, 23);
             this.deletePlayerButton.TabIndex = 2;
@@ -258,7 +236,7 @@ namespace ZorkBuilder.Forms
             // 
             // addPlayerButton
             // 
-            this.addPlayerButton.Location = new System.Drawing.Point(3, 342);
+            this.addPlayerButton.Location = new System.Drawing.Point(2, 362);
             this.addPlayerButton.Name = "addPlayerButton";
             this.addPlayerButton.Size = new System.Drawing.Size(75, 23);
             this.addPlayerButton.TabIndex = 1;
@@ -273,7 +251,7 @@ namespace ZorkBuilder.Forms
             this.playersListBox.FormattingEnabled = true;
             this.playersListBox.Location = new System.Drawing.Point(3, 8);
             this.playersListBox.Name = "playersListBox";
-            this.playersListBox.Size = new System.Drawing.Size(155, 329);
+            this.playersListBox.Size = new System.Drawing.Size(155, 342);
             this.playersListBox.TabIndex = 0;
             this.playersListBox.ValueMember = "Health";
             this.playersListBox.SelectedIndexChanged += new System.EventHandler(this.PlayersListBox_SelectedIndexChanged);
@@ -282,7 +260,7 @@ namespace ZorkBuilder.Forms
             // 
             this.groupBox1.Location = new System.Drawing.Point(162, 7);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(383, 358);
+            this.groupBox1.Size = new System.Drawing.Size(383, 384);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = ".";
@@ -291,21 +269,21 @@ namespace ZorkBuilder.Forms
             // 
             this.itemsTabPage.Controls.Add(this.itemNameTextBox);
             this.itemsTabPage.Controls.Add(this.itemNameLabel);
-            this.itemsTabPage.Controls.Add(this.button1);
-            this.itemsTabPage.Controls.Add(this.button2);
+            this.itemsTabPage.Controls.Add(this.deleteItemButton);
+            this.itemsTabPage.Controls.Add(this.addItemButton);
             this.itemsTabPage.Controls.Add(this.itemsListBox);
             this.itemsTabPage.Controls.Add(this.groupBox2);
             this.itemsTabPage.Location = new System.Drawing.Point(4, 22);
             this.itemsTabPage.Name = "itemsTabPage";
             this.itemsTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.itemsTabPage.Size = new System.Drawing.Size(553, 371);
+            this.itemsTabPage.Size = new System.Drawing.Size(553, 399);
             this.itemsTabPage.TabIndex = 1;
             this.itemsTabPage.Text = "Items";
             this.itemsTabPage.UseVisualStyleBackColor = true;
             // 
             // itemNameTextBox
             // 
-            this.itemNameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.itemsBindingSource, "Name", true));
+            this.itemNameTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.itemsBindingSource, "Name", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.itemNameTextBox.Location = new System.Drawing.Point(167, 24);
             this.itemNameTextBox.Name = "itemNameTextBox";
             this.itemNameTextBox.Size = new System.Drawing.Size(183, 20);
@@ -325,23 +303,25 @@ namespace ZorkBuilder.Forms
             this.itemNameLabel.TabIndex = 13;
             this.itemNameLabel.Text = "&Name:";
             // 
-            // button1
+            // deleteItemButton
             // 
-            this.button1.Location = new System.Drawing.Point(84, 342);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "&Delete";
-            this.button1.UseVisualStyleBackColor = true;
+            this.deleteItemButton.Location = new System.Drawing.Point(83, 362);
+            this.deleteItemButton.Name = "deleteItemButton";
+            this.deleteItemButton.Size = new System.Drawing.Size(75, 23);
+            this.deleteItemButton.TabIndex = 4;
+            this.deleteItemButton.Text = "&Delete";
+            this.deleteItemButton.UseVisualStyleBackColor = true;
+            this.deleteItemButton.Click += new System.EventHandler(this.DeleteItemButton_Click);
             // 
-            // button2
+            // addItemButton
             // 
-            this.button2.Location = new System.Drawing.Point(3, 342);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "&Add...";
-            this.button2.UseVisualStyleBackColor = true;
+            this.addItemButton.Location = new System.Drawing.Point(2, 362);
+            this.addItemButton.Name = "addItemButton";
+            this.addItemButton.Size = new System.Drawing.Size(75, 23);
+            this.addItemButton.TabIndex = 3;
+            this.addItemButton.Text = "&Add...";
+            this.addItemButton.UseVisualStyleBackColor = true;
+            this.addItemButton.Click += new System.EventHandler(this.AddItemButton_Click);
             // 
             // itemsListBox
             // 
@@ -350,7 +330,7 @@ namespace ZorkBuilder.Forms
             this.itemsListBox.FormattingEnabled = true;
             this.itemsListBox.Location = new System.Drawing.Point(3, 8);
             this.itemsListBox.Name = "itemsListBox";
-            this.itemsListBox.Size = new System.Drawing.Size(155, 329);
+            this.itemsListBox.Size = new System.Drawing.Size(155, 342);
             this.itemsListBox.TabIndex = 0;
             this.itemsListBox.ValueMember = "Name";
             // 
@@ -358,10 +338,15 @@ namespace ZorkBuilder.Forms
             // 
             this.groupBox2.Location = new System.Drawing.Point(162, 7);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(383, 358);
+            this.groupBox2.Size = new System.Drawing.Size(383, 384);
             this.groupBox2.TabIndex = 15;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = ".";
+            // 
+            // saveFileDialog
+            // 
+            this.saveFileDialog.Filter = "Worldfiles(*.json)|*.json";
+            this.saveFileDialog.Title = "Save world file";
             // 
             // MainForm
             // 
@@ -369,19 +354,16 @@ namespace ZorkBuilder.Forms
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(561, 452);
             this.Controls.Add(this.mainTabControl);
-            this.Controls.Add(this.selectFileButton);
-            this.Controls.Add(this.filenameTextBox);
-            this.Controls.Add(this.fileLabel);
-            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.mainMenuStrip);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MainMenuStrip = this.menuStrip1;
+            this.MainMenuStrip = this.mainMenuStrip;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MainForm";
             this.Text = "Inventory Manager";
             this.Load += new System.EventHandler(this.MainForm_Load);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.mainMenuStrip.ResumeLayout(false);
+            this.mainMenuStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.worldViewModelBindingSource)).EndInit();
             this.mainTabControl.ResumeLayout(false);
             this.playersTabPage.ResumeLayout(false);
@@ -397,11 +379,8 @@ namespace ZorkBuilder.Forms
 
         #endregion
 
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip mainMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.Label fileLabel;
-        private System.Windows.Forms.TextBox filenameTextBox;
-        private System.Windows.Forms.Button selectFileButton;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.TabControl mainTabControl;
         private System.Windows.Forms.TabPage playersTabPage;
@@ -409,8 +388,8 @@ namespace ZorkBuilder.Forms
         private System.Windows.Forms.Button deletePlayerButton;
         private System.Windows.Forms.Button addPlayerButton;
         private System.Windows.Forms.ListBox playersListBox;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button deleteItemButton;
+        private System.Windows.Forms.Button addItemButton;
         private System.Windows.Forms.ListBox itemsListBox;
         private System.Windows.Forms.Label playerScoreLabel;
         private System.Windows.Forms.Label playerHealthLabel;
@@ -424,12 +403,13 @@ namespace ZorkBuilder.Forms
         private System.Windows.Forms.BindingSource worldViewModelBindingSource;
         private System.Windows.Forms.BindingSource playersBindingSource;
         private System.Windows.Forms.BindingSource itemsBindingSource;
-        private System.Windows.Forms.ToolStripMenuItem newWorldToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openWorldToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem closeWorldToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog;
     }
 }
 
