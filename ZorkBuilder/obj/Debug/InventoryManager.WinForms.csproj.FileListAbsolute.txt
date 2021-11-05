@@ -36,3 +36,4 @@ C:\Users\sh011993\Documents\GitHub\Zork\ZorkBuilder\obj\Debug\InventoryManager.W
 C:\Users\sh011993\Documents\GitHub\Zork\ZorkBuilder\obj\Debug\InventoryManager.WinForms.csproj.CopyComplete
 C:\Users\sh011993\Documents\GitHub\Zork\ZorkBuilder\obj\Debug\ZorkBuilder.exe
 C:\Users\sh011993\Documents\GitHub\Zork\ZorkBuilder\obj\Debug\ZorkBuilder.pdb
+F:\Github Repositories\Zork Repo\ZorkBuilder\obj\Debug\ZorkBuilder.Controls.EquippedItemControl.resources

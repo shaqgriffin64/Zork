@@ -1,20 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using InventoryManager.Data;
 
 namespace ZorkBuilder.Controls
 {
     public partial class EquippedItemControl : UserControl
     {
+        public EquipLocations EquipLocation
+        {
+            get => mEquipLocation;
+            set
+            {
+                mEquipLocation = value;
+                equipLocationTextBox.Text = mEquipLocation.ToString();
+            }
+        }
         public EquippedItemControl()
         {
             InitializeComponent();
         }
+
+        private EquipLocations mEquipLocation;
     }
 }
