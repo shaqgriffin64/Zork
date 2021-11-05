@@ -44,7 +44,6 @@ namespace ZorkBuilder.ViewModels
             World = world;
         }
 
-
         #region File Saving
         public void SaveWorld()
         {
@@ -64,6 +63,21 @@ namespace ZorkBuilder.ViewModels
             }
         }
 
+        public void NewWorld()
+        {
+            JsonSerializer serializer = new JsonSerializer
+            {
+                Formatting = Formatting.Indented
+            };
+
+            mWorld = new World();
+
+            using (StreamWriter streamWriter = new StreamWriter(Filename))
+            using (JsonWriter jsonWriter = new JsonTextWriter(streamWriter))
+            {
+                serializer.Serialize(jsonWriter, mWorld);
+            }
+        }
         #endregion File Saving
 
         private World mWorld;

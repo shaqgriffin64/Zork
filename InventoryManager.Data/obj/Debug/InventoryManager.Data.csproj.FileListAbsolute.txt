@@ -12,3 +12,6 @@ C:\Users\sh011993\Documents\GitHub\Zork\InventoryManager.Data\obj\Debug\Inventor
 C:\Users\sh011993\Documents\GitHub\Zork\InventoryManager.Data\obj\Debug\InventoryManager.Data.csproj.Fody.CopyLocal.cache
 C:\Users\sh011993\Documents\GitHub\Zork\InventoryManager.Data\obj\Debug\InventoryManager.Data.dll
 C:\Users\sh011993\Documents\GitHub\Zork\InventoryManager.Data\obj\Debug\InventoryManager.Data.pdb
+F:\Github Repositories\Zork Repo\InventoryManager.Data\bin\Debug\Newtonsoft.Json.dll
+F:\Github Repositories\Zork Repo\InventoryManager.Data\bin\Debug\Newtonsoft.Json.xml
+F:\Github Repositories\Zork Repo\InventoryManager.Data\obj\Debug\InventoryManager.Data.csproj.CopyComplete

@@ -1,0 +1,27 @@
+{
+  "Players": [
+    {
+      "Name": "asdfasd",
+      "Health": 0,
+      "Score": 0,
+      "Inventory": []
+    },
+    {
+      "Name": "dghfgdhdrth",
+      "Health": 0,
+      "Score": 0,
+      "Inventory": []
+    }
+  ],
+  "Items": [
+    {
+      "Name": "itemitemitem"
+    },
+    {
+      "Name": "itemitem"
+    },
+    {
+      "Name": "item"
+    }
+  ]
+}

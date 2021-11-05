@@ -25,10 +25,7 @@ namespace ZorkBuilder.Forms
 
         //No data tied to these
         #region redundancies
-        private void AddPlayerForm_Load(object sender, EventArgs e)
-        {
 
-        }
         #endregion redundancies
 
     }

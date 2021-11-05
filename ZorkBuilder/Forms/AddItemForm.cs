@@ -25,21 +25,7 @@ namespace ZorkBuilder.Forms
 
         //No data tied to these
         #region redundancies
-        private void OkButton_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void CancelButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void AddItemForm_Load(object sender, EventArgs e)
-        {
-
-        }
         #endregion redundancies
-
     }
 }

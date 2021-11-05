@@ -4,7 +4,10 @@
       "Name": "Jane Doe",
       "Health": 101,
       "Score": 150,
-      "Inventory": []
+      "Inventory": [
+        "Book",
+        "Lantern"
+      ]
     },
     {
       "Name": "John Smith",
@@ -19,13 +22,7 @@
       "Inventory": []
     },
     {
-      "Name": "Bababooey",
-      "Health": 0,
-      "Score": 0,
-      "Inventory": []
-    },
-    {
-      "Name": "Bababooey",
+      "Name": "asdfadsfasdf",
       "Health": 0,
       "Score": 0,
       "Inventory": []
@@ -33,16 +30,12 @@
   ],
   "Items": [
     {
-      "Name": "Book"
+      "Name": "Book",
+      "Description": "I am book."
     },
     {
-      "Name": "Lantern"
-    },
-    {
-      "Name": "Bababooey"
-    },
-    {
-      "Name": "Bababooey"
+      "Name": "Lantern",
+      "Description": null
     }
   ]
 }

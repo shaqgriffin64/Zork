@@ -45,6 +45,9 @@ namespace ZorkBuilder.Forms
             {
                 mIsWorldLoaded = value;
                 mainTabControl.Enabled = mIsWorldLoaded;
+                saveToolStripMenuItem.Enabled = mIsWorldLoaded;
+                saveAsToolStripMenuItem.Enabled = mIsWorldLoaded;
+                closeWorldToolStripMenuItem.Enabled = mIsWorldLoaded;
             }
         }
 
@@ -109,7 +112,7 @@ namespace ZorkBuilder.Forms
 
         private void DeleteItemButton_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Delete this player?", AssemblyTitle, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("Delete this item?", AssemblyTitle, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 ViewModel.Items.Remove((Item)itemsListBox.SelectedItem);
                 itemsListBox.SelectedItem = ViewModel.Items.FirstOrDefault();
@@ -127,6 +130,23 @@ namespace ZorkBuilder.Forms
                 ViewModel.Filename = openFileDialog.FileName;
                 IsWorldLoaded = true;
             }
+        }
+        private void NewWorldToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                ViewModel.Filename = saveFileDialog.FileName;
+                ViewModel.NewWorld();
+                IsWorldLoaded = true;
+                ViewModel.World = JsonConvert.DeserializeObject<World>(File.ReadAllText(saveFileDialog.FileName));
+            }
+        }
+
+        private void CloseWorldToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ViewModel.World = null;
+
+            IsWorldLoaded = false;
         }
 
         //Expression Bodied Member
@@ -151,6 +171,7 @@ namespace ZorkBuilder.Forms
 
         private WorldViewModel m_ViewModel;
         private bool mIsWorldLoaded;
+
 
     }
 }

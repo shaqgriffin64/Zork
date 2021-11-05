@@ -45,7 +45,6 @@ namespace ZorkBuilder.Forms
             this.okButton.TabIndex = 0;
             this.okButton.Text = "&Ok";
             this.okButton.UseVisualStyleBackColor = true;
-            this.okButton.Click += new System.EventHandler(this.OkButton_Click);
             // 
             // cancelButton
             // 
@@ -56,7 +55,6 @@ namespace ZorkBuilder.Forms
             this.cancelButton.TabIndex = 1;
             this.cancelButton.Text = "&Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
-            this.cancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // itemNameTextBox
             // 
@@ -90,7 +88,6 @@ namespace ZorkBuilder.Forms
             this.Name = "AddItemForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Add Item";
-            this.Load += new System.EventHandler(this.AddItemForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

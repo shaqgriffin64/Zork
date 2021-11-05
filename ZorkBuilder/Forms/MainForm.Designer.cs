@@ -32,7 +32,9 @@ namespace ZorkBuilder.Forms
             this.components = new System.ComponentModel.Container();
             this.mainMenuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newWorldToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openWorldToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.closeWorldToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
@@ -52,22 +54,34 @@ namespace ZorkBuilder.Forms
             this.addPlayerButton = new System.Windows.Forms.Button();
             this.playersListBox = new System.Windows.Forms.ListBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.playerInventoryGroupBox = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.playerInventoryListBox = new System.Windows.Forms.ListBox();
+            this.inventoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.button2 = new System.Windows.Forms.Button();
             this.itemsTabPage = new System.Windows.Forms.TabPage();
-            this.itemNameTextBox = new System.Windows.Forms.TextBox();
+            this.itemsListBox = new System.Windows.Forms.ListBox();
             this.itemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.itemNameTextBox = new System.Windows.Forms.TextBox();
             this.itemNameLabel = new System.Windows.Forms.Label();
             this.deleteItemButton = new System.Windows.Forms.Button();
             this.addItemButton = new System.Windows.Forms.Button();
-            this.itemsListBox = new System.Windows.Forms.ListBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.itemDescriptionGroupBox = new System.Windows.Forms.GroupBox();
+            this.desriptionRichTextBox = new System.Windows.Forms.RichTextBox();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.mainMenuStrip.SuspendLayout();
             this.mainTabControl.SuspendLayout();
             this.playersTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.playersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.worldViewModelBindingSource)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            this.playerInventoryGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.inventoryBindingSource)).BeginInit();
             this.itemsTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.itemsBindingSource)).BeginInit();
+            this.groupBox2.SuspendLayout();
+            this.itemDescriptionGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainMenuStrip
@@ -83,7 +97,9 @@ namespace ZorkBuilder.Forms
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newWorldToolStripMenuItem,
             this.openWorldToolStripMenuItem,
+            this.closeWorldToolStripMenuItem,
             this.saveToolStripMenuItem,
             this.saveAsToolStripMenuItem,
             this.toolStripMenuItem2,
@@ -93,6 +109,14 @@ namespace ZorkBuilder.Forms
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "&File";
             // 
+            // newWorldToolStripMenuItem
+            // 
+            this.newWorldToolStripMenuItem.Name = "newWorldToolStripMenuItem";
+            this.newWorldToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
+            this.newWorldToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.newWorldToolStripMenuItem.Text = "&New World...";
+            this.newWorldToolStripMenuItem.Click += new System.EventHandler(this.NewWorldToolStripMenuItem_Click);
+            // 
             // openWorldToolStripMenuItem
             // 
             this.openWorldToolStripMenuItem.Name = "openWorldToolStripMenuItem";
@@ -100,6 +124,13 @@ namespace ZorkBuilder.Forms
             this.openWorldToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.openWorldToolStripMenuItem.Text = "&Open World...";
             this.openWorldToolStripMenuItem.Click += new System.EventHandler(this.OpenWorldToolStripMenuItem_Click);
+            // 
+            // closeWorldToolStripMenuItem
+            // 
+            this.closeWorldToolStripMenuItem.Name = "closeWorldToolStripMenuItem";
+            this.closeWorldToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.closeWorldToolStripMenuItem.Text = "&Close World";
+            this.closeWorldToolStripMenuItem.Click += new System.EventHandler(this.CloseWorldToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
@@ -141,7 +172,7 @@ namespace ZorkBuilder.Forms
             this.mainTabControl.Location = new System.Drawing.Point(0, 27);
             this.mainTabControl.Name = "mainTabControl";
             this.mainTabControl.SelectedIndex = 0;
-            this.mainTabControl.Size = new System.Drawing.Size(561, 425);
+            this.mainTabControl.Size = new System.Drawing.Size(561, 481);
             this.mainTabControl.TabIndex = 5;
             // 
             // playersTabPage
@@ -159,7 +190,7 @@ namespace ZorkBuilder.Forms
             this.playersTabPage.Location = new System.Drawing.Point(4, 22);
             this.playersTabPage.Name = "playersTabPage";
             this.playersTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.playersTabPage.Size = new System.Drawing.Size(553, 399);
+            this.playersTabPage.Size = new System.Drawing.Size(553, 455);
             this.playersTabPage.TabIndex = 0;
             this.playersTabPage.Text = "Players";
             this.playersTabPage.UseVisualStyleBackColor = true;
@@ -226,7 +257,7 @@ namespace ZorkBuilder.Forms
             // 
             // deletePlayerButton
             // 
-            this.deletePlayerButton.Location = new System.Drawing.Point(83, 362);
+            this.deletePlayerButton.Location = new System.Drawing.Point(83, 424);
             this.deletePlayerButton.Name = "deletePlayerButton";
             this.deletePlayerButton.Size = new System.Drawing.Size(75, 23);
             this.deletePlayerButton.TabIndex = 2;
@@ -236,7 +267,7 @@ namespace ZorkBuilder.Forms
             // 
             // addPlayerButton
             // 
-            this.addPlayerButton.Location = new System.Drawing.Point(2, 362);
+            this.addPlayerButton.Location = new System.Drawing.Point(2, 424);
             this.addPlayerButton.Name = "addPlayerButton";
             this.addPlayerButton.Size = new System.Drawing.Size(75, 23);
             this.addPlayerButton.TabIndex = 1;
@@ -251,34 +282,97 @@ namespace ZorkBuilder.Forms
             this.playersListBox.FormattingEnabled = true;
             this.playersListBox.Location = new System.Drawing.Point(3, 8);
             this.playersListBox.Name = "playersListBox";
-            this.playersListBox.Size = new System.Drawing.Size(155, 342);
+            this.playersListBox.Size = new System.Drawing.Size(155, 407);
             this.playersListBox.TabIndex = 0;
             this.playersListBox.ValueMember = "Health";
             this.playersListBox.SelectedIndexChanged += new System.EventHandler(this.PlayersListBox_SelectedIndexChanged);
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.playerInventoryGroupBox);
             this.groupBox1.Location = new System.Drawing.Point(162, 7);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(383, 384);
+            this.groupBox1.Size = new System.Drawing.Size(383, 408);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             // 
+            // playerInventoryGroupBox
+            // 
+            this.playerInventoryGroupBox.Controls.Add(this.button1);
+            this.playerInventoryGroupBox.Controls.Add(this.playerInventoryListBox);
+            this.playerInventoryGroupBox.Controls.Add(this.button2);
+            this.playerInventoryGroupBox.Location = new System.Drawing.Point(5, 79);
+            this.playerInventoryGroupBox.Name = "playerInventoryGroupBox";
+            this.playerInventoryGroupBox.Size = new System.Drawing.Size(183, 323);
+            this.playerInventoryGroupBox.TabIndex = 0;
+            this.playerInventoryGroupBox.TabStop = false;
+            this.playerInventoryGroupBox.Text = "In&ventory";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(88, 294);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 19;
+            this.button1.Text = "&Delete";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // playerInventoryListBox
+            // 
+            this.playerInventoryListBox.DataSource = this.inventoryBindingSource;
+            this.playerInventoryListBox.DisplayMember = "Name";
+            this.playerInventoryListBox.FormattingEnabled = true;
+            this.playerInventoryListBox.Location = new System.Drawing.Point(2, 20);
+            this.playerInventoryListBox.Name = "playerInventoryListBox";
+            this.playerInventoryListBox.Size = new System.Drawing.Size(175, 264);
+            this.playerInventoryListBox.TabIndex = 0;
+            this.playerInventoryListBox.ValueMember = "Name";
+            // 
+            // inventoryBindingSource
+            // 
+            this.inventoryBindingSource.DataMember = "Inventory";
+            this.inventoryBindingSource.DataSource = this.playersBindingSource;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(7, 294);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 18;
+            this.button2.Text = "&Add...";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
             // itemsTabPage
             // 
+            this.itemsTabPage.Controls.Add(this.itemsListBox);
             this.itemsTabPage.Controls.Add(this.itemNameTextBox);
             this.itemsTabPage.Controls.Add(this.itemNameLabel);
             this.itemsTabPage.Controls.Add(this.deleteItemButton);
             this.itemsTabPage.Controls.Add(this.addItemButton);
-            this.itemsTabPage.Controls.Add(this.itemsListBox);
             this.itemsTabPage.Controls.Add(this.groupBox2);
             this.itemsTabPage.Location = new System.Drawing.Point(4, 22);
             this.itemsTabPage.Name = "itemsTabPage";
             this.itemsTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.itemsTabPage.Size = new System.Drawing.Size(553, 399);
+            this.itemsTabPage.Size = new System.Drawing.Size(553, 455);
             this.itemsTabPage.TabIndex = 1;
             this.itemsTabPage.Text = "Items";
             this.itemsTabPage.UseVisualStyleBackColor = true;
+            // 
+            // itemsListBox
+            // 
+            this.itemsListBox.DataSource = this.itemsBindingSource;
+            this.itemsListBox.DisplayMember = "Name";
+            this.itemsListBox.FormattingEnabled = true;
+            this.itemsListBox.Location = new System.Drawing.Point(3, 8);
+            this.itemsListBox.Name = "itemsListBox";
+            this.itemsListBox.Size = new System.Drawing.Size(155, 407);
+            this.itemsListBox.TabIndex = 16;
+            this.itemsListBox.ValueMember = "Description";
+            // 
+            // itemsBindingSource
+            // 
+            this.itemsBindingSource.DataMember = "Items";
+            this.itemsBindingSource.DataSource = this.worldViewModelBindingSource;
             // 
             // itemNameTextBox
             // 
@@ -287,11 +381,6 @@ namespace ZorkBuilder.Forms
             this.itemNameTextBox.Name = "itemNameTextBox";
             this.itemNameTextBox.Size = new System.Drawing.Size(183, 20);
             this.itemNameTextBox.TabIndex = 14;
-            // 
-            // itemsBindingSource
-            // 
-            this.itemsBindingSource.DataMember = "Items";
-            this.itemsBindingSource.DataSource = this.worldViewModelBindingSource;
             // 
             // itemNameLabel
             // 
@@ -304,7 +393,7 @@ namespace ZorkBuilder.Forms
             // 
             // deleteItemButton
             // 
-            this.deleteItemButton.Location = new System.Drawing.Point(83, 362);
+            this.deleteItemButton.Location = new System.Drawing.Point(83, 424);
             this.deleteItemButton.Name = "deleteItemButton";
             this.deleteItemButton.Size = new System.Drawing.Size(75, 23);
             this.deleteItemButton.TabIndex = 4;
@@ -314,7 +403,7 @@ namespace ZorkBuilder.Forms
             // 
             // addItemButton
             // 
-            this.addItemButton.Location = new System.Drawing.Point(2, 362);
+            this.addItemButton.Location = new System.Drawing.Point(2, 424);
             this.addItemButton.Name = "addItemButton";
             this.addItemButton.Size = new System.Drawing.Size(75, 23);
             this.addItemButton.TabIndex = 3;
@@ -322,25 +411,33 @@ namespace ZorkBuilder.Forms
             this.addItemButton.UseVisualStyleBackColor = true;
             this.addItemButton.Click += new System.EventHandler(this.AddItemButton_Click);
             // 
-            // itemsListBox
-            // 
-            this.itemsListBox.DataSource = this.itemsBindingSource;
-            this.itemsListBox.DisplayMember = "Name";
-            this.itemsListBox.FormattingEnabled = true;
-            this.itemsListBox.Location = new System.Drawing.Point(3, 8);
-            this.itemsListBox.Name = "itemsListBox";
-            this.itemsListBox.Size = new System.Drawing.Size(155, 342);
-            this.itemsListBox.TabIndex = 0;
-            this.itemsListBox.ValueMember = "Name";
-            this.itemsListBox.SelectedIndexChanged += new System.EventHandler(this.ItemsListBox_SelectedIndexChanged);
-            // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.itemDescriptionGroupBox);
             this.groupBox2.Location = new System.Drawing.Point(162, 7);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(383, 384);
+            this.groupBox2.Size = new System.Drawing.Size(383, 408);
             this.groupBox2.TabIndex = 15;
             this.groupBox2.TabStop = false;
+            // 
+            // itemDescriptionGroupBox
+            // 
+            this.itemDescriptionGroupBox.Controls.Add(this.desriptionRichTextBox);
+            this.itemDescriptionGroupBox.Location = new System.Drawing.Point(6, 43);
+            this.itemDescriptionGroupBox.Name = "itemDescriptionGroupBox";
+            this.itemDescriptionGroupBox.Size = new System.Drawing.Size(371, 141);
+            this.itemDescriptionGroupBox.TabIndex = 16;
+            this.itemDescriptionGroupBox.TabStop = false;
+            this.itemDescriptionGroupBox.Text = "Description";
+            // 
+            // desriptionRichTextBox
+            // 
+            this.desriptionRichTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.itemsBindingSource, "Description", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.desriptionRichTextBox.Location = new System.Drawing.Point(7, 20);
+            this.desriptionRichTextBox.Name = "desriptionRichTextBox";
+            this.desriptionRichTextBox.Size = new System.Drawing.Size(358, 115);
+            this.desriptionRichTextBox.TabIndex = 0;
+            this.desriptionRichTextBox.Text = "Write your description here!";
             // 
             // saveFileDialog
             // 
@@ -351,7 +448,7 @@ namespace ZorkBuilder.Forms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(561, 452);
+            this.ClientSize = new System.Drawing.Size(561, 508);
             this.Controls.Add(this.mainTabControl);
             this.Controls.Add(this.mainMenuStrip);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -359,6 +456,7 @@ namespace ZorkBuilder.Forms
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Inventory Manager";
             this.mainMenuStrip.ResumeLayout(false);
             this.mainMenuStrip.PerformLayout();
@@ -367,9 +465,14 @@ namespace ZorkBuilder.Forms
             this.playersTabPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.playersBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.worldViewModelBindingSource)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.playerInventoryGroupBox.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.inventoryBindingSource)).EndInit();
             this.itemsTabPage.ResumeLayout(false);
             this.itemsTabPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.itemsBindingSource)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.itemDescriptionGroupBox.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -388,7 +491,6 @@ namespace ZorkBuilder.Forms
         private System.Windows.Forms.ListBox playersListBox;
         private System.Windows.Forms.Button deleteItemButton;
         private System.Windows.Forms.Button addItemButton;
-        private System.Windows.Forms.ListBox itemsListBox;
         private System.Windows.Forms.Label playerScoreLabel;
         private System.Windows.Forms.Label playerHealthLabel;
         private System.Windows.Forms.TextBox playerNameTextBox;
@@ -400,7 +502,6 @@ namespace ZorkBuilder.Forms
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.BindingSource worldViewModelBindingSource;
         private System.Windows.Forms.BindingSource playersBindingSource;
-        private System.Windows.Forms.BindingSource itemsBindingSource;
         private System.Windows.Forms.ToolStripMenuItem openWorldToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
@@ -408,6 +509,17 @@ namespace ZorkBuilder.Forms
         private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
+        private System.Windows.Forms.GroupBox playerInventoryGroupBox;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ListBox playerInventoryListBox;
+        private System.Windows.Forms.BindingSource inventoryBindingSource;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ToolStripMenuItem closeWorldToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem newWorldToolStripMenuItem;
+        private System.Windows.Forms.GroupBox itemDescriptionGroupBox;
+        private System.Windows.Forms.RichTextBox desriptionRichTextBox;
+        private System.Windows.Forms.ListBox itemsListBox;
+        private System.Windows.Forms.BindingSource itemsBindingSource;
     }
 }
 
