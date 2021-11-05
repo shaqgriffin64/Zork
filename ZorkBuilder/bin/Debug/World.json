@@ -6,20 +6,37 @@
       "Score": 150,
       "Inventory": [
         "Book",
-        "Lantern"
-      ]
+        "Lantern",
+        "Sword",
+        "Shield"
+      ],
+      "EquippedItems": {
+        "LeftHand": "Shield",
+        "RightHand":  "Sword"
+      }
     },
     {
       "Name": "John Smith",
       "Health": 80,
       "Score": 25,
-      "Inventory": []
+      "Inventory": [
+        "Book",
+        "Helmet"
+      ],
+      "EquippedItems": {
+        "Head": "Helmet"
+      }
     },
     {
       "Name": "Ima Knight",
       "Health": 90,
       "Score": 125,
-      "Inventory": []
+      "Inventory": [
+        "Lantern"
+      ],
+      "EquippedItems": {
+        "LeftHand": "Lantern"
+      }
     },
     {
       "Name": "asdfadsfasdf",
@@ -36,6 +53,18 @@
     {
       "Name": "Lantern",
       "Description": null
+    },
+    {
+      "Name": "Shield",
+      "Description": "I am Shield"
+    },
+    {
+      "Name": "Sword",
+      "Description": "I am sword."
+    },
+    {
+      "Name": "Helmet",
+      "Description": "I am helmet."
     }
   ]
 }

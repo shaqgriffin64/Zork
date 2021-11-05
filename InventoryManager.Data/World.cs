@@ -26,6 +26,7 @@ namespace InventoryManager.Data
             foreach (Player player in Players)
             {
                 player.BuildInventoryFromNames(Items);
+                player.BuildEquippedItemsFromNames(Items);
             }
         }
     }

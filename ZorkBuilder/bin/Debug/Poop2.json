@@ -13,5 +13,18 @@
       "Inventory": []
     }
   ],
-  "Items": []
+  "Items": [
+    {
+      "Name": "God poop",
+      "Description": "I am god poop.\n"
+    },
+    {
+      "Name": "qwerty",
+      "Description": "I am qwerty"
+    },
+    {
+      "Name": "A B",
+      "Description": "Famed actor shoots someone"
+    }
+  ]
 }

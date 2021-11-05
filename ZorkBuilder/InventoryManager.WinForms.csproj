@@ -55,6 +55,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\EquippedItemControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\EquippedItemControl.Designer.cs">
+      <DependentUpon>EquippedItemControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\AddPlayerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,6 +82,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\WorldViewModel.cs" />
+    <EmbeddedResource Include="Controls\EquippedItemControl.resx">
+      <DependentUpon>EquippedItemControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\AddPlayerForm.resx">
       <DependentUpon>AddPlayerForm.cs</DependentUpon>
     </EmbeddedResource>

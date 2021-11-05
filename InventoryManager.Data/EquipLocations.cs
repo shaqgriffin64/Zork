@@ -1,4 +1,4 @@
-﻿namespace Zork.Common
+﻿namespace InventoryManager.Data
 {
     public enum EquipLocations
     {
