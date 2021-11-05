@@ -10,7 +10,5 @@ namespace InventoryManager.Data
 
         public string Description { get; set; }
 
-
-
     }
 }

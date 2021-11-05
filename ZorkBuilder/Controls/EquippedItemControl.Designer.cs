@@ -30,7 +30,7 @@ namespace ZorkBuilder.Controls
         private void InitializeComponent()
         {
             this.equipLocationTextBox = new System.Windows.Forms.TextBox();
-            this.equipLocationComboBox = new System.Windows.Forms.ComboBox();
+            this.equippedItemComboBox = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // equipLocationTextBox
@@ -44,21 +44,24 @@ namespace ZorkBuilder.Controls
             this.equipLocationTextBox.TabIndex = 0;
             this.equipLocationTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // equipLocationComboBox
+            // equippedItemComboBox
             // 
-            this.equipLocationComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.equippedItemComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.equipLocationComboBox.FormattingEnabled = true;
-            this.equipLocationComboBox.Location = new System.Drawing.Point(0, 27);
-            this.equipLocationComboBox.Name = "equipLocationComboBox";
-            this.equipLocationComboBox.Size = new System.Drawing.Size(121, 21);
-            this.equipLocationComboBox.TabIndex = 1;
+            this.equippedItemComboBox.DisplayMember = "Name";
+            this.equippedItemComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.equippedItemComboBox.FormattingEnabled = true;
+            this.equippedItemComboBox.Location = new System.Drawing.Point(0, 27);
+            this.equippedItemComboBox.Name = "equippedItemComboBox";
+            this.equippedItemComboBox.Size = new System.Drawing.Size(121, 21);
+            this.equippedItemComboBox.TabIndex = 1;
+            this.equippedItemComboBox.SelectedIndexChanged += new System.EventHandler(this.EquippedItemComboBox_SelectedIndexChanged);
             // 
             // EquippedItemControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.equipLocationComboBox);
+            this.Controls.Add(this.equippedItemComboBox);
             this.Controls.Add(this.equipLocationTextBox);
             this.Name = "EquippedItemControl";
             this.Size = new System.Drawing.Size(122, 49);
@@ -70,6 +73,6 @@ namespace ZorkBuilder.Controls
         #endregion
 
         private System.Windows.Forms.TextBox equipLocationTextBox;
-        private System.Windows.Forms.ComboBox equipLocationComboBox;
+        private System.Windows.Forms.ComboBox equippedItemComboBox;
     }
 }

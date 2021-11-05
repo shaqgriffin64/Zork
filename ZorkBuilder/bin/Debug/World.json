@@ -1,58 +1,35 @@
 {
   "Players": [
     {
-      "Name": "Jane Doe",
+      "Name": "las;djf;asdlkfj;",
       "Health": 101,
       "Score": 150,
-      "Inventory": [
-        "Book",
-        "Lantern",
-        "Sword",
-        "Shield"
-      ],
-      "EquippedItems": {
-        "LeftHand": "Shield",
-        "RightHand":  "Sword"
-      }
+      "Inventory": [],
+      "EquippedItems": {}
     },
     {
       "Name": "John Smith",
       "Health": 80,
       "Score": 25,
-      "Inventory": [
-        "Book",
-        "Helmet"
-      ],
-      "EquippedItems": {
-        "Head": "Helmet"
-      }
+      "Inventory": [],
+      "EquippedItems": {}
     },
     {
       "Name": "Ima Knight",
       "Health": 90,
       "Score": 125,
-      "Inventory": [
-        "Lantern"
-      ],
-      "EquippedItems": {
-        "LeftHand": "Lantern"
-      }
-    },
-    {
-      "Name": "asdfadsfasdf",
-      "Health": 0,
-      "Score": 0,
-      "Inventory": []
+      "Inventory": [],
+      "EquippedItems": {}
     }
   ],
   "Items": [
     {
       "Name": "Book",
-      "Description": "I am book."
+      "Description": "I am Book."
     },
     {
       "Name": "Lantern",
-      "Description": null
+      "Description": "I am Lantern"
     },
     {
       "Name": "Shield",
@@ -60,11 +37,11 @@
     },
     {
       "Name": "Sword",
-      "Description": "I am sword."
+      "Description": "I am Sword."
     },
     {
       "Name": "Helmet",
-      "Description": "I am helmet."
+      "Description": "I am Helmet."
     }
   ]
 }

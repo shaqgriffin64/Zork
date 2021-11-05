@@ -15,20 +15,14 @@ namespace InventoryManager.Data
         public int Health { get; set; }
         public int Score { get; set; }
 
-
-        //Despite being private, this list will become a json property
         [JsonProperty(PropertyName = "Inventory")]
         private List<string> InventoryNames { get; set; }
 
-        //Don't deserialize / can't deserialize strings in this context
         [JsonIgnore]
-        //The ACTUAL inventory property
         public List<Item> Inventory { get; set; }
 
-
-        //"Equipped Items"
         [JsonProperty(PropertyName = "EquippedItems")]
-        private Dictionary<EquipLocations, string> EquippedItemNames{get; set;}
+        private Dictionary<EquipLocations, string> EquippedItemNames { get; set;}
 
         [JsonIgnore]
         public Dictionary<EquipLocations, Item> EquippedItems { get; set; }
@@ -62,6 +56,8 @@ namespace InventoryManager.Data
         }
         public void BuildEquippedItemsFromNames(List<Item> items)
         {
+            //items = items;
+
             EquippedItems = (from entry in EquippedItemNames
                              let item = items.Find(i => i.Name.Equals(entry.Value, System.StringComparison.InvariantCultureIgnoreCase))
                              where item != null
@@ -93,6 +89,7 @@ namespace InventoryManager.Data
             {
                 equippedItemNames = equippedItemNamesToken.ToObject<Dictionary<EquipLocations, string>>();
             }
+            else
             {
                 equippedItemNames = new Dictionary<EquipLocations, string>();
             }
@@ -112,7 +109,6 @@ namespace InventoryManager.Data
                 { nameof(Player.Score), player.Score },
                 { nameof(Player.Inventory), JToken.FromObject(player.Inventory.Select(item => item.Name), serializer)},
                 { nameof(Player.EquippedItems), equippedItemsNameToken },
-
             };
         }
     }

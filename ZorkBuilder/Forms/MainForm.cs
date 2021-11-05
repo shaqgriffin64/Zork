@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using System.IO;
 using System.Linq;
@@ -6,6 +7,7 @@ using System.Reflection;
 using Newtonsoft.Json;
 using InventoryManager.Data;
 using ZorkBuilder.ViewModels;
+using ZorkBuilder.Controls;
 
 //-----------------------------------------------------------------------------//
 //TO DO:
@@ -56,6 +58,14 @@ namespace ZorkBuilder.Forms
             InitializeComponent();
             ViewModel = new WorldViewModel();
             IsWorldLoaded = false;
+
+            mEquippedItemControlMap = new Dictionary<EquipLocations, EquippedItemControl>
+            {
+                { EquipLocations.LeftHand, leftHandEquippedItemControl },
+                { EquipLocations.RightHand, rightHandEquippedItemControl },
+                { EquipLocations.Head, headEquippedItemControl },
+                { EquipLocations.Feet, feetEquippedItemControl }
+            };
         }
 
         #region Add / Delete Player
@@ -74,6 +84,12 @@ namespace ZorkBuilder.Forms
         private void PlayersListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             deletePlayerButton.Enabled = playersListBox.SelectedItem != null;
+
+            Player selectedPlayer = playersListBox.SelectedItem as Player;
+            foreach (var control in mEquippedItemControlMap.Values)
+            {
+                control.Player = selectedPlayer;
+            }
         }
 
         private void DeletePlayerButton_Click(object sender, EventArgs e)
@@ -128,6 +144,13 @@ namespace ZorkBuilder.Forms
             {
                 ViewModel.World = JsonConvert.DeserializeObject<World>(File.ReadAllText(openFileDialog.FileName));
                 ViewModel.Filename = openFileDialog.FileName;
+
+                Player selectedPlayer = playersListBox.SelectedItem as Player;
+                foreach (var control in mEquippedItemControlMap.Values)
+                {
+                    control.Player = selectedPlayer;
+                }
+
                 IsWorldLoaded = true;
             }
         }
@@ -171,7 +194,6 @@ namespace ZorkBuilder.Forms
 
         private WorldViewModel m_ViewModel;
         private bool mIsWorldLoaded;
-
-
+        private readonly Dictionary<EquipLocations, EquippedItemControl> mEquippedItemControlMap;
     }
 }

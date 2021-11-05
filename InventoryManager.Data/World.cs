@@ -10,7 +10,6 @@ namespace InventoryManager.Data
 
         public List<Player> Players { get; set; }
 
-
         public List<Item> Items { get; set; }
 
         public World()
@@ -25,8 +24,8 @@ namespace InventoryManager.Data
         {
             foreach (Player player in Players)
             {
-                player.BuildInventoryFromNames(Items);
                 player.BuildEquippedItemsFromNames(Items);
+                player.BuildInventoryFromNames(Items);
             }
         }
     }
