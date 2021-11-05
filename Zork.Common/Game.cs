@@ -8,8 +8,7 @@ namespace ZorkGame
     {
         public World World { get; set; }
 
-        [JsonIgnore]
-        public Player Player { get; private set; }
+        public Player Player { get; set; }
 
         [JsonIgnore]
         private bool IsRunning { get; set; }

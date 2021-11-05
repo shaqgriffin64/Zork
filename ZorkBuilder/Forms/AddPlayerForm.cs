@@ -21,12 +21,5 @@ namespace ZorkBuilder.Forms
             //use this method to enable the OK button when there is a proper value (an actual name in this case) entered into the text box
             okButton.Enabled = !string.IsNullOrEmpty(PlayerName);
         }
-
-
-        //No data tied to these
-        #region redundancies
-
-        #endregion redundancies
-
     }
 }

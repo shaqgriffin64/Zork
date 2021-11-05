@@ -37,3 +37,6 @@ C:\Users\sh011993\Documents\GitHub\Zork\ZorkBuilder\obj\Debug\InventoryManager.W
 C:\Users\sh011993\Documents\GitHub\Zork\ZorkBuilder\obj\Debug\ZorkBuilder.exe
 C:\Users\sh011993\Documents\GitHub\Zork\ZorkBuilder\obj\Debug\ZorkBuilder.pdb
 F:\Github Repositories\Zork Repo\ZorkBuilder\obj\Debug\ZorkBuilder.Controls.EquippedItemControl.resources
+F:\Github Repositories\Zork Repo\ZorkBuilder\bin\Debug\Zork.Common.dll
+F:\Github Repositories\Zork Repo\ZorkBuilder\bin\Debug\Zork.Common.pdb
+F:\Github Repositories\Zork Repo\ZorkBuilder\obj\Debug\ZorkBuilder.Forms.AddRoomForm.resources

@@ -4,6 +4,7 @@ using System.ComponentModel;
 using InventoryManager.Data;
 using Newtonsoft.Json;
 using System.IO;
+using ZorkGame;
 
 namespace ZorkBuilder.ViewModels
 {
@@ -13,13 +14,9 @@ namespace ZorkBuilder.ViewModels
 
         public string Filename { get; set; }
 
-        public BindingList<Player> Players { get; set; }
+        public BindingList<Room> Rooms { get; set; }
 
-
-
-        public BindingList<Item> Items { get; set; }
-
-        public World World 
+        public Game Game 
         {
             set
             {
@@ -29,21 +26,19 @@ namespace ZorkBuilder.ViewModels
 
                     if (mWorld != null)
                     {
-                        Players = new BindingList<Player>(mWorld.Players);
-                        Items = new BindingList<Item>(mWorld.Items);
+                        Rooms = new BindingList<Room>(mWorld.Room);
                     }
                     else
                     {
-                        Players = new BindingList<Player>(Array.Empty<Player>());
-                        Items = new BindingList<Item>(Array.Empty<Item>());
+                        Rooms = new BindingList<Room>(Array.Empty<Room>());
                     }
                 }
             }
         }
 
-        public WorldViewModel(World world = null)
+        public WorldViewModel(Game world = null)
         {
-            World = world;
+            Game = world;
         }
 
         #region File Saving
@@ -72,7 +67,7 @@ namespace ZorkBuilder.ViewModels
                 Formatting = Formatting.Indented
             };
 
-            mWorld = new World();
+            mWorld = new Game(mWorld, );
 
             using (StreamWriter streamWriter = new StreamWriter(Filename))
             using (JsonWriter jsonWriter = new JsonTextWriter(streamWriter))
@@ -82,6 +77,6 @@ namespace ZorkBuilder.ViewModels
         }
         #endregion File Saving
 
-        private World mWorld;
+        private Game mWorld;
     }
 }

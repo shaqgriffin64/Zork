@@ -73,6 +73,12 @@
     <Compile Include="Forms\AddItemForm.Designer.cs">
       <DependentUpon>AddItemForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\AddRoomForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddRoomForm.Designer.cs">
+      <DependentUpon>AddRoomForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,6 +96,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\AddItemForm.resx">
       <DependentUpon>AddItemForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AddRoomForm.resx">
+      <DependentUpon>AddRoomForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -126,6 +135,10 @@
     <ProjectReference Include="..\InventoryManager.Data\InventoryManager.Data.csproj">
       <Project>{505f7445-3c09-4bc9-a7d7-03a89c5d7c9f}</Project>
       <Name>InventoryManager.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Zork.Common\Zork.Common.csproj">
+      <Project>{95DE37CE-8BE6-4A4D-84D4-7B8649DC9B78}</Project>
+      <Name>Zork.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

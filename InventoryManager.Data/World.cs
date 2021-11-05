@@ -6,6 +6,8 @@ namespace InventoryManager.Data
 {
     public class World : INotifyPropertyChanged
     {
+        public readonly IList<Room> Rooms;
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public List<Player> Players { get; set; }
