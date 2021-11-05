@@ -15,6 +15,8 @@ namespace ZorkBuilder.ViewModels
 
         public BindingList<Player> Players { get; set; }
 
+
+
         public BindingList<Item> Items { get; set; }
 
         public World World 
