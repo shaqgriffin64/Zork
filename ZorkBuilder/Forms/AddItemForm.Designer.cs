@@ -42,7 +42,7 @@ namespace ZorkBuilder.Forms
             this.okButton.Location = new System.Drawing.Point(168, 59);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
-            this.okButton.TabIndex = 0;
+            this.okButton.TabIndex = 2;
             this.okButton.Text = "&Ok";
             this.okButton.UseVisualStyleBackColor = true;
             // 
@@ -52,7 +52,7 @@ namespace ZorkBuilder.Forms
             this.cancelButton.Location = new System.Drawing.Point(249, 59);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
-            this.cancelButton.TabIndex = 1;
+            this.cancelButton.TabIndex = 3;
             this.cancelButton.Text = "&Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
             // 
@@ -61,7 +61,7 @@ namespace ZorkBuilder.Forms
             this.itemNameTextBox.Location = new System.Drawing.Point(12, 33);
             this.itemNameTextBox.Name = "itemNameTextBox";
             this.itemNameTextBox.Size = new System.Drawing.Size(315, 20);
-            this.itemNameTextBox.TabIndex = 2;
+            this.itemNameTextBox.TabIndex = 1;
             this.itemNameTextBox.TextChanged += new System.EventHandler(this.NameTextBox_TextChanged);
             // 
             // nameLabel
@@ -70,7 +70,7 @@ namespace ZorkBuilder.Forms
             this.nameLabel.Location = new System.Drawing.Point(12, 9);
             this.nameLabel.Name = "nameLabel";
             this.nameLabel.Size = new System.Drawing.Size(35, 13);
-            this.nameLabel.TabIndex = 3;
+            this.nameLabel.TabIndex = 0;
             this.nameLabel.Text = "&Name";
             // 
             // AddItemForm
