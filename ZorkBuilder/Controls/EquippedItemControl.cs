@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Forms;
-using InventoryManager.Data;
 using ZorkGame;
 
 namespace ZorkBuilder.Controls
@@ -17,7 +16,7 @@ namespace ZorkBuilder.Controls
                     mRoom = value;
                     if (mRoom != null)
                     {
-                        var inventory = new List<Room>(mRoom.ChosenNeighbors);
+                        var inventory = new List<Room>(mRoom.RoomsList);
                         inventory.Insert(0, NoNeighbor);
 
                         //prevents everything from being made null despite preexisting equipped locations
@@ -25,7 +24,7 @@ namespace ZorkBuilder.Controls
 
                         //No fancy stuff needed since the user won't be altering the inventory with this
                         directionComboBox.DataSource = inventory;
-                        ChosenRoom = mRoom.ChosenNeighbors.TryGetValue(ChosenDirection, out Item equippedItem) ? equippedItem: NoNeighbor;
+                        ChosenRoom = mRoom.ChosenNeighbors.TryGetValue(ChosenDirection, out Room chosenNeighbor) ? chosenNeighbor: NoNeighbor;
 
                         directionComboBox.SelectedIndexChanged += EquippedItemComboBox_SelectedIndexChanged;
                     }
@@ -69,11 +68,11 @@ namespace ZorkBuilder.Controls
                 Room room = ChosenRoom;
                 if (room == NoNeighbor)
                 {
-                    mRoom.EquippedItems.Remove(ChosenDirection);
+                    mRoom.ChosenNeighbors.Remove(ChosenDirection);
                 }
                 else
                 {
-                    mRoom.EquippedItems[ChosenDirection] = room;
+                    mRoom.ChosenNeighbors[ChosenDirection] = room;
                 }
 
             }

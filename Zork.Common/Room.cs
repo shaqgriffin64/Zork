@@ -10,11 +10,11 @@ namespace ZorkGame
 {
     public class Room : IEquatable<Room>, INotifyPropertyChanged
     {
-        public Room(string name, string description, List<string> roomsNames = null, Dictionary<Directions, string> chosenNeighborNames = null)
+        public Room(string name = null, string description = null, List<string> roomsNames = null, Dictionary<Directions, string> chosenNeighborNames = null)
         {
             Name = name;
             Description = description;
-            RoomsNames = RoomsNames ?? new List<string>();
+            RoomsNames = roomsNames ?? new List<string>();
             ChosenNeighborNames = chosenNeighborNames;
             ChosenNeighbors = new Dictionary<Directions, Room>();
             RoomsList = new List<Room>();
