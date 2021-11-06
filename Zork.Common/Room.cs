@@ -29,7 +29,7 @@ namespace ZorkGame
         public string Description { get; set; }
 
         [JsonIgnore]
-        public List<Room> RoomsList { get; set; }
+        public List<Room> RoomsList { get; private set; }
 
 
         [JsonProperty(PropertyName = "Room")]
@@ -79,7 +79,7 @@ namespace ZorkGame
                          where room != null
                          select room).ToList();
 
-            RoomsList.Clear();
+            RoomsNames.Clear();
         }
         public void BuildEquippedItemsFromNames(List<Room> rooms)
         {

@@ -21,6 +21,8 @@ namespace ZorkGame
 
             foreach (Room room in Rooms)
             {
+                room.BuildInventoryFromNames(Rooms.ToList());
+                room.BuildEquippedItemsFromNames(Rooms.ToList());
                 room.UpdateNeighbors(this);
             }
         }

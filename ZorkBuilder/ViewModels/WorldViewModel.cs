@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.ComponentModel;
-using InventoryManager.Data;
 using Newtonsoft.Json;
 using System.IO;
 using ZorkGame;

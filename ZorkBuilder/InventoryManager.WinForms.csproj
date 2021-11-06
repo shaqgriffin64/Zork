@@ -61,29 +61,17 @@
     <Compile Include="Controls\EquippedItemControl.Designer.cs">
       <DependentUpon>EquippedItemControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\AddPlayerForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\AddPlayerForm.Designer.cs">
-      <DependentUpon>AddPlayerForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\AddItemForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\AddItemForm.Designer.cs">
-      <DependentUpon>AddItemForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\AddRoomForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\AddRoomForm.Designer.cs">
       <DependentUpon>AddRoomForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\MainForm.cs">
+    <Compile Include="Forms\MainForm1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <Compile Include="Forms\MainForm1.Designer.cs">
+      <DependentUpon>MainForm1.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -91,17 +79,11 @@
     <EmbeddedResource Include="Controls\EquippedItemControl.resx">
       <DependentUpon>EquippedItemControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\AddPlayerForm.resx">
-      <DependentUpon>AddPlayerForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\AddItemForm.resx">
-      <DependentUpon>AddItemForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\AddRoomForm.resx">
       <DependentUpon>AddRoomForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\MainForm1.resx">
+      <DependentUpon>MainForm1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -132,10 +114,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\InventoryManager.Data\InventoryManager.Data.csproj">
-      <Project>{505f7445-3c09-4bc9-a7d7-03a89c5d7c9f}</Project>
-      <Name>InventoryManager.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Zork.Common\Zork.Common.csproj">
       <Project>{95DE37CE-8BE6-4A4D-84D4-7B8649DC9B78}</Project>
       <Name>Zork.Common</Name>
