@@ -11,7 +11,7 @@ namespace ZorkGame
         [JsonIgnore]
         public Room Location { get; private set; }
 
-        //[JsonIgnore]
+        [JsonIgnore]
         public string LocationName
         {
             get
@@ -32,7 +32,7 @@ namespace ZorkGame
 
         public bool Move(Directions direction)
         {
-            bool isValidMove = Location.Neighbors.TryGetValue(direction, out Room destination);
+            bool isValidMove = Location.ChosenNeighbors.TryGetValue(direction, out Room destination);
             if (isValidMove)
             {
                 Location = destination;

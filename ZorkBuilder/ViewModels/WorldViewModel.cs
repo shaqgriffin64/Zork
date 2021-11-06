@@ -26,7 +26,7 @@ namespace ZorkBuilder.ViewModels
 
                     if (mWorld != null)
                     {
-                        Rooms = new BindingList<Room>(mWorld.Room);
+                        Rooms = new BindingList<Room>(Rooms);
                     }
                     else
                     {
@@ -67,7 +67,7 @@ namespace ZorkBuilder.ViewModels
                 Formatting = Formatting.Indented
             };
 
-            mWorld = new Game(mWorld, );
+            mWorld = new Game(mWorld.World, mWorld.Player);
 
             using (StreamWriter streamWriter = new StreamWriter(Filename))
             using (JsonWriter jsonWriter = new JsonTextWriter(streamWriter))

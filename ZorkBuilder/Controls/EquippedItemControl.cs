@@ -1,60 +1,61 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Forms;
 using InventoryManager.Data;
+using ZorkGame;
 
 namespace ZorkBuilder.Controls
 {
     public partial class EquippedItemControl : UserControl
     {
-        public Player Player
+        public Room Room
         {
-            get => mPlayer;
+            get => mRoom;
             set
             {
-                if (mPlayer != value)
+                if (mRoom != value)
                 {
-                    mPlayer = value;
-                    if (mPlayer != null)
+                    mRoom = value;
+                    if (mRoom != null)
                     {
-                        var inventory = new List<Item>(mPlayer.Inventory);
-                        inventory.Insert(0, NoItem);
+                        var inventory = new List<Room>(mRoom.ChosenNeighbors);
+                        inventory.Insert(0, NoNeighbor);
 
                         //prevents everything from being made null despite preexisting equipped locations
-                        equippedItemComboBox.SelectedIndexChanged -= EquippedItemComboBox_SelectedIndexChanged;
+                        directionComboBox.SelectedIndexChanged -= EquippedItemComboBox_SelectedIndexChanged;
 
                         //No fancy stuff needed since the user won't be altering the inventory with this
-                        equippedItemComboBox.DataSource = inventory;
-                        EquippedItem = mPlayer.EquippedItems.TryGetValue(EquipLocation, out Item equippedItem) ? equippedItem: NoItem;
+                        directionComboBox.DataSource = inventory;
+                        ChosenRoom = mRoom.ChosenNeighbors.TryGetValue(ChosenDirection, out Item equippedItem) ? equippedItem: NoNeighbor;
 
-                        equippedItemComboBox.SelectedIndexChanged += EquippedItemComboBox_SelectedIndexChanged;
+                        directionComboBox.SelectedIndexChanged += EquippedItemComboBox_SelectedIndexChanged;
                     }
                     else
                     {
-                        equippedItemComboBox.DataSource = null;
+                        directionComboBox.DataSource = null;
                     }
                 }
             }
         }
-        public EquipLocations EquipLocation
+        public Directions ChosenDirection
         {
-            get => mEquipLocation;
+            get => mChosenDirections;
             set
             {
-                mEquipLocation = value;
-                equipLocationTextBox.Text = mEquipLocation.ToString();
+                mChosenDirections = value;
+                directionTextBox.Text = mChosenDirections.ToString();
             }
         }
 
-        public Item EquippedItem 
+        public Room ChosenRoom 
         { 
             //Cast Value
-            get => (Item)equippedItemComboBox.SelectedItem; 
-            set => equippedItemComboBox.SelectedItem = value; 
+            get => (Room)directionComboBox.SelectedItem; 
+            set => directionComboBox.SelectedItem = value; 
         }
 
-        public void SetEquippedItem(Item value)
+        public void SetEquippedItem(Room value)
         {
-            equippedItemComboBox.SelectedItem = value;
+            directionComboBox.SelectedItem = value;
         }
 
         public EquippedItemControl()
@@ -63,25 +64,25 @@ namespace ZorkBuilder.Controls
         }
         private void EquippedItemComboBox_SelectedIndexChanged(object sender, System.EventArgs e)
         {
-            if (mPlayer != null)
+            if (mRoom != null)
             {
-                Item equippedItem = EquippedItem;
-                if (equippedItem == NoItem)
+                Room room = ChosenRoom;
+                if (room == NoNeighbor)
                 {
-                    mPlayer.EquippedItems.Remove(EquipLocation);
+                    mRoom.EquippedItems.Remove(ChosenDirection);
                 }
                 else
                 {
-                    mPlayer.EquippedItems[EquipLocation] = equippedItem;
+                    mRoom.EquippedItems[ChosenDirection] = room;
                 }
 
             }
         }
 
-        private static readonly Item NoItem = new Item() { Name = "None" };
+        private static readonly Room NoNeighbor = new Room() { Name = "None" };
 
-        private Player mPlayer;
-        private EquipLocations mEquipLocation;
+        private Room mRoom;
+        private Directions mChosenDirections;
 
     }
 }

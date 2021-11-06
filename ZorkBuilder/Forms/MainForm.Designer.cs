@@ -340,8 +340,8 @@ namespace ZorkBuilder.Forms
             // 
             // feetEquippedItemControl
             // 
-            this.feetEquippedItemControl.EquipLocation = InventoryManager.Data.EquipLocations.Feet;
-            this.feetEquippedItemControl.EquippedItem = null;
+            this.feetEquippedItemControl.ChosenDirection = InventoryManager.Data.EquipLocations.Feet;
+            this.feetEquippedItemControl.ChosenRoom = null;
             this.feetEquippedItemControl.Location = new System.Drawing.Point(127, 149);
             this.feetEquippedItemControl.Name = "feetEquippedItemControl";
             this.feetEquippedItemControl.Player = null;
@@ -350,8 +350,8 @@ namespace ZorkBuilder.Forms
             // 
             // rightHandEquippedItemControl
             // 
-            this.rightHandEquippedItemControl.EquipLocation = InventoryManager.Data.EquipLocations.RightHand;
-            this.rightHandEquippedItemControl.EquippedItem = null;
+            this.rightHandEquippedItemControl.ChosenDirection = InventoryManager.Data.EquipLocations.RightHand;
+            this.rightHandEquippedItemControl.ChosenRoom = null;
             this.rightHandEquippedItemControl.Location = new System.Drawing.Point(251, 74);
             this.rightHandEquippedItemControl.Name = "rightHandEquippedItemControl";
             this.rightHandEquippedItemControl.Player = null;
@@ -360,8 +360,8 @@ namespace ZorkBuilder.Forms
             // 
             // leftHandEquippedItemControl
             // 
-            this.leftHandEquippedItemControl.EquipLocation = InventoryManager.Data.EquipLocations.LeftHand;
-            this.leftHandEquippedItemControl.EquippedItem = null;
+            this.leftHandEquippedItemControl.ChosenDirection = InventoryManager.Data.EquipLocations.LeftHand;
+            this.leftHandEquippedItemControl.ChosenRoom = null;
             this.leftHandEquippedItemControl.Location = new System.Drawing.Point(2, 74);
             this.leftHandEquippedItemControl.Name = "leftHandEquippedItemControl";
             this.leftHandEquippedItemControl.Player = null;
@@ -370,8 +370,8 @@ namespace ZorkBuilder.Forms
             // 
             // headEquippedItemControl
             // 
-            this.headEquippedItemControl.EquipLocation = InventoryManager.Data.EquipLocations.Head;
-            this.headEquippedItemControl.EquippedItem = null;
+            this.headEquippedItemControl.ChosenDirection = InventoryManager.Data.EquipLocations.Head;
+            this.headEquippedItemControl.ChosenRoom = null;
             this.headEquippedItemControl.Location = new System.Drawing.Point(127, 10);
             this.headEquippedItemControl.Name = "headEquippedItemControl";
             this.headEquippedItemControl.Player = null;
