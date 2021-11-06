@@ -3,7 +3,6 @@ using System.Linq;
 using System.ComponentModel;
 using Newtonsoft.Json;
 using System.IO;
-using ZorkGame;
 
 namespace ZorkBuilder.ViewModels
 {
@@ -13,9 +12,13 @@ namespace ZorkBuilder.ViewModels
 
         public string Filename { get; set; }
 
-        public BindingList<Room> Rooms { get; set; }
+        public BindingList<Player> Players { get; set; }
 
-        public Game Game 
+
+
+        public BindingList<Item> Items { get; set; }
+
+        public World World 
         {
             set
             {
@@ -25,19 +28,25 @@ namespace ZorkBuilder.ViewModels
 
                     if (mWorld != null)
                     {
+<<<<<<< HEAD
                         Rooms = new BindingList<Room>(Rooms);
+=======
+                        Players = new BindingList<Player>(mWorld.Players);
+                        Items = new BindingList<Item>(mWorld.Items);
+>>>>>>> parent of 40a6bf7 (Joe gave good news)
                     }
                     else
                     {
-                        Rooms = new BindingList<Room>(Array.Empty<Room>());
+                        Players = new BindingList<Player>(Array.Empty<Player>());
+                        Items = new BindingList<Item>(Array.Empty<Item>());
                     }
                 }
             }
         }
 
-        public WorldViewModel(Game world = null)
+        public WorldViewModel(World world = null)
         {
-            Game = world;
+            World = world;
         }
 
         #region File Saving
@@ -66,7 +75,11 @@ namespace ZorkBuilder.ViewModels
                 Formatting = Formatting.Indented
             };
 
+<<<<<<< HEAD
             mWorld = new Game(mWorld.World, mWorld.Player);
+=======
+            mWorld = new World();
+>>>>>>> parent of 40a6bf7 (Joe gave good news)
 
             using (StreamWriter streamWriter = new StreamWriter(Filename))
             using (JsonWriter jsonWriter = new JsonTextWriter(streamWriter))
@@ -76,6 +89,6 @@ namespace ZorkBuilder.ViewModels
         }
         #endregion File Saving
 
-        private Game mWorld;
+        private World mWorld;
     }
 }
