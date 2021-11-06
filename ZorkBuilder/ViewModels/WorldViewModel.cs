@@ -29,7 +29,12 @@ namespace ZorkBuilder.ViewModels
                     if (mWorld != null)
                     {
 <<<<<<< HEAD
+<<<<<<< HEAD
                         Rooms = new BindingList<Room>(Rooms);
+=======
+                        Players = new BindingList<Player>(mWorld.Players);
+                        Items = new BindingList<Item>(mWorld.Items);
+>>>>>>> parent of 40a6bf7 (Joe gave good news)
 =======
                         Players = new BindingList<Player>(mWorld.Players);
                         Items = new BindingList<Item>(mWorld.Items);
@@ -76,7 +81,11 @@ namespace ZorkBuilder.ViewModels
             };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
             mWorld = new Game(mWorld.World, mWorld.Player);
+=======
+            mWorld = new World();
+>>>>>>> parent of 40a6bf7 (Joe gave good news)
 =======
             mWorld = new World();
 >>>>>>> parent of 40a6bf7 (Joe gave good news)

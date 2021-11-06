@@ -41,7 +41,11 @@ namespace ZorkGame
 
         [JsonIgnore]
 <<<<<<< HEAD
+<<<<<<< HEAD
         public Dictionary<Directions, Room> ChosenNeighbors { get; set; }
+=======
+        public IReadOnlyDictionary<Directions, Room> Neighbors { get; private set; }
+>>>>>>> parent of 40a6bf7 (Joe gave good news)
 =======
         public IReadOnlyDictionary<Directions, Room> Neighbors { get; private set; }
 >>>>>>> parent of 40a6bf7 (Joe gave good news)
