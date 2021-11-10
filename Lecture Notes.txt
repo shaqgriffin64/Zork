@@ -19,3 +19,11 @@
 	- Numeric Up/Down
 
 FOR NEXT CLASS: "Text Changed Event"
+
+
+
+11/10/2021
+
+Use newtonsoft.json 12.0.3 instead of 13.0.1 for your Zork & Zork.Common projects
+
+Install the same version into your unity project

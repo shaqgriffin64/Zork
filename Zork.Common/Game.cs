@@ -22,15 +22,26 @@ namespace ZorkGame
             Player = player;
         }
 
+
         public IOutputService Output { get; set; }
 
-        public void Run()
+        public IInputService Input { get; set; }
+
+
+        public void Run(IInputService input, IOutputService output)
         {
+            Assert.IsNotNull(output);
+            Output = output;
+
+            Assert.IsNotNull(input);
+            Input = input;
+
             IsRunning = true;
             Room previousRoom = null;
             while (IsRunning)
             {
 
+                //Convert all to game.Output
                 Output.WriteLine(Player.Location);
                 if (previousRoom != Player.Location)
                 {
