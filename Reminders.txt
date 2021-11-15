@@ -1,0 +1,5 @@
+- Switch over to the zork project provided on webcourses
+
+- Get started on binding values to the text stuff in Unity
+
+- Be sure to use the correct version of unity in class
