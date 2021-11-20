@@ -40,3 +40,4 @@ F:\Github Repositories\Zork Repo\ZorkBuilder\obj\Debug\ZorkBuilder.Controls.Equi
 F:\Github Repositories\Zork Repo\ZorkBuilder\bin\Debug\Zork.Common.dll
 F:\Github Repositories\Zork Repo\ZorkBuilder\bin\Debug\Zork.Common.pdb
 F:\Github Repositories\Zork Repo\ZorkBuilder\obj\Debug\ZorkBuilder.Forms.AddRoomForm.resources
+F:\Github Repositories\Zork Repo\ZorkBuilder\obj\Debug\ZorkBuilder.exe.config

@@ -10,7 +10,7 @@ namespace ZorkGame
     public class Game
     {
         [JsonIgnore]
-        public bool IsRunning { get; set; }
+        public bool IsRunning { get; private set; }
 
         #region Services
         [JsonIgnore]
@@ -21,7 +21,7 @@ namespace ZorkGame
 
         #endregion Services
 
-        #region Json Related Variables
+        #region Json Related Properties
 
         public World World { get; set; }
 
@@ -34,7 +34,7 @@ namespace ZorkGame
         [JsonIgnore]
         public Player Player { get; set; }
 
-        #endregion Json Related Variables
+        #endregion Json Related Properties
 
         #region Commands Related Code
 
@@ -57,39 +57,39 @@ namespace ZorkGame
                 { "WEST", new Command("WEST", new string[] { "WEST", "W" }, game => Move(game, Directions.WEST)) },
             };
         }
-
         #endregion Commands Related Code
 
-        #region Run
+        #region InputReceivedHandler
+        //public void Run(IInputService input, IOutputService output)
 
-        public void Run(IInputService input, IOutputService output)
+        private void InputReceivedHandler(object sender, string inputString/*, IInputService input, IOutputService output*/)
         {
-            Assert.IsNotNull(output);
-            Output = output;
+            //Assert.IsNotNull(output);
+            //Output = output;
 
-            Assert.IsNotNull(input);
-            Input = input;
+            //Assert.IsNotNull(input);
+            //Input = input;
 
             IsRunning = true;
-            Room previousRoom = null;
 
             //Find way to print welcome message here
             while (IsRunning)
             {
+                //Room previousRoom = null;
+                //if (previousRoom != Player.Location)
+                //{
+                //    Look(this);
+                //    //previousRoom = Player.Location;
+                //}
 
-                #region New Content
-                if (previousRoom != Player.Location)
-                {
-                    Look(this);
-                    previousRoom = Player.Location;
-                }
+                //Output.Write("\n> ");
+                //string commandString = Console.ReadLine().Trim().ToUpper();
 
-                Output.Write("\n> ");
-                string commandString = Console.ReadLine().Trim().ToUpper();
+
                 Command foundCommand = null;
                 foreach (Command command in Commands.Values)
                 {
-                    if (command.Verbs.Contains(commandString))
+                    if (command.Verbs.Contains(inputString.Trim()))
                     {
                         foundCommand = command;
                         break;
@@ -99,18 +99,25 @@ namespace ZorkGame
                 if (foundCommand != null)
                 {
                     foundCommand.Action(this);
+
+                    Room previousRoom = Player.Location;
+                    if (previousRoom != Player.Location)
+                    {
+                        //Look is performed automatically when a valid command is registered
+                        Look(this);
+                    }
                 }
                 else
                 {
-                    Output.WriteLine("Unknown command.");
+                    Output.WriteLine("That's not a verb I recognize.");
                 }
-                #endregion New Content
+
             }
 
             Output.WriteLine(string.IsNullOrWhiteSpace(ExitMessage) ? "Thank you for playing!" : ExitMessage);
         }
 
-        #endregion Run
+        #endregion InputReceivedHandler
 
         #region Load
 
@@ -128,14 +135,11 @@ namespace ZorkGame
 
             input.InputReceived += InputReceivedHandler;
 
-
             return game;
         }
 
-        private static void InputReceivedHandler(object sender, string inputString)
-        {
-            throw new NotImplementedException();
-        }
+
+
 
         #endregion Load
 
@@ -148,7 +152,7 @@ namespace ZorkGame
             }
         }
 
-        private static void Look(Game game) => Console.WriteLine(game.Player.Location.Description);
+        private static void Look(Game game) => game.Output.WriteLine($"{game.Player.Location}\n {game.Player.Location.Description}");
 
         private static void Quit(Game game) => game.IsRunning = false;
 

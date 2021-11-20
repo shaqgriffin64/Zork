@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
         //Breakpoint this in the future to ensure that Load is deserializing the fed in json file
         TextAsset gameJsonAsset = Resources.Load<TextAsset>(GameFileName);
 
-
+        
 
         Game.Load(gameJsonAsset.text, InputService, OutputService);
 
