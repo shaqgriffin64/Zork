@@ -3,3 +3,11 @@
 - Get started on binding values to the text stuff in Unity
 
 - Be sure to use the correct version of unity in class
+
+- Update the commands section of your script (the portion that handles the directional commands and such)
+
+- Delete "Commands.cs" before submitting Zork In Unity
+
+- Redo Zork Dependanciees & Rename Zork project to Zork.console
+
+- Look into the "Command Scripting" section of webcourses

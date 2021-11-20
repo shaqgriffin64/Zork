@@ -132,10 +132,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\InventoryManager.Data\InventoryManager.Data.csproj">
-      <Project>{505f7445-3c09-4bc9-a7d7-03a89c5d7c9f}</Project>
-      <Name>InventoryManager.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Zork.Common\Zork.Common.csproj">
       <Project>{95DE37CE-8BE6-4A4D-84D4-7B8649DC9B78}</Project>
       <Name>Zork.Common</Name>

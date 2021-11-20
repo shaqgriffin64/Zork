@@ -12,19 +12,6 @@ namespace ZorkGame
         [JsonIgnore]
         public Room Location { get; private set; }
 
-        //[JsonIgnore]
-        //public string LocationName
-        //{
-        //    get
-        //    {
-        //        return Location?.Name;
-        //    }
-        //    set
-        //    {
-        //        Location = World?.RoomsByName.GetValueOrDefault(value);
-        //    }
-        //}
-
         public Player (World world, string startingLocation)
         {
             Assert.IsTrue(world != null);
@@ -32,7 +19,6 @@ namespace ZorkGame
 
             World = world;
             Location = world.RoomsByName[startingLocation];
-            //LocationName = startingLocation;
         }
 
         public bool Move(Directions direction)

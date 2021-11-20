@@ -49,5 +49,16 @@ namespace ZorkGame
                                                                  where room != null
                                                                  select (Direction: entry.Key, Room: room))
                                                                  .ToDictionary(pair => pair.Direction, pair => pair.Room);
+        public void RemoveNeighbor(Directions direction)
+        {
+            Neighbors.Remove(direction);
+            NeighborNames.Remove(direction);
+        }
+
+        public void AssignNeighbor(Directions direction, Room neighbor)
+        {
+            Neighbors[direction] = neighbor;
+            NeighborNames[direction] = neighbor.Name;
+        }
     }
 }
