@@ -8,15 +8,20 @@ public class GameManager : MonoBehaviour
     // - 44:55 (last point in vid)
 
 {
+    public Player Location { get; set; }
+    public Player Moves { get; set; }
+
+
+
+
+
     #region Awake
     void Awake()
     {
         //Breakpoint this in the future to ensure that Load is deserializing the fed in json file
         TextAsset gameJsonAsset = Resources.Load<TextAsset>(GameFileName);
 
-        
-
-        Game.Load(gameJsonAsset.text, InputService, OutputService);
+        Game.Start(gameJsonAsset.text, InputService, OutputService);
 
 
 
@@ -39,6 +44,16 @@ public class GameManager : MonoBehaviour
         {
             InputService.ProcessInput();
         }
+
+        //Prints the player's current location
+        LocationText.text = Location.ToString();
+
+        MovesText.text = Moves.ToString();
+
+        ScoreText.text = /*Score.ToString*/ "";
+
+
+
     }//End Update
 
     #endregion Update
@@ -52,6 +67,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private UnityOutputService OutputService;
 
     [SerializeField] private UnityInputService InputService;
+
+    [SerializeField] private TextMeshProUGUI LocationText;
+
+    [SerializeField] private TextMeshProUGUI ScoreText;
+
+    [SerializeField] private TextMeshProUGUI MovesText;
 
 
     #endregion Variables

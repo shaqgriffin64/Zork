@@ -1,7 +1,6 @@
 ﻿using System;
 using Zork;
 using Zork.Common;
-using ZorkGame;
 using Newtonsoft.Json;
 
 namespace ZorkGame
@@ -13,6 +12,7 @@ namespace ZorkGame
             const string defaultGameFilename = "Zork.json";
             string gameFilename = args.Length > 0 ? args[(int)CommandLineArguements.GameFilename] : defaultGameFilename;
 
+            //Generating game variable, tying it to loaded file
             Game game = JsonConvert.DeserializeObject<Game>(gameFilename);
 
             ConsoleInputService input = new ConsoleInputService();
@@ -27,9 +27,8 @@ namespace ZorkGame
                 input.GetInput();
             }
 
-            //Game game = Game.Load(gameFilename/*, output*/);
             //Supposed to be game.Load not Game.Load
-            Game.Load(gameFilename, input, output);
+            Game.Start(gameFilename, input, output);
             
             //Console.WriteLine("Welcome to Zork!");
             //game.Run(input, output);

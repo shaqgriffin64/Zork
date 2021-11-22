@@ -34,6 +34,15 @@ namespace ZorkGame
         [JsonIgnore]
         public Player Player { get; set; }
 
+        [JsonIgnore]
+        public Game scoreTotal { get; set; }
+
+        [JsonIgnore]
+        private int rewardRef = 0;
+
+        [JsonIgnore]
+        public Player Moves { get; set; }
+
         #endregion Json Related Properties
 
         #region Commands Related Code
@@ -49,8 +58,10 @@ namespace ZorkGame
             //Add any new commands to this dictionary
             Commands = new Dictionary<string, Command>()
             {
-                { "QUIT", new Command("QUIT", new string[] { "QUIT", "Q", "BYE" }, Quit) },
+                { "QUIT", new Command("QUIT", new string[] { "QUIT", "Q", "BYE", "TOODLES" }, Quit) },
                 { "LOOK", new Command("LOOK", new string[] { "LOOK", "L" }, Look) },
+                { "SCORE", new Command("SCORE", new string[] { "SCORE" }, Score) },
+                { "REWARD", new Command("REWARD", new string[] { "REWARD", "R" }, Reward) },
                 { "NORTH", new Command("NORTH", new string[] { "NORTH", "N" }, game => Move(game, Directions.NORTH)) },
                 { "SOUTH", new Command("SOUTH", new string[] { "SOUTH", "S" }, game => Move(game, Directions.SOUTH)) },
                 { "EAST", new Command("EAST", new string[] { "EAST", "E"}, game => Move(game, Directions.EAST)) },
@@ -62,29 +73,20 @@ namespace ZorkGame
         #region InputReceivedHandler
         //public void Run(IInputService input, IOutputService output)
 
-        private void InputReceivedHandler(object sender, string inputString/*, IInputService input, IOutputService output*/)
+        private void InputReceivedHandler(object sender, string inputString, IInputService input, IOutputService output)
         {
-            //Assert.IsNotNull(output);
-            //Output = output;
+            Assert.IsNotNull(output);
+            Output = output;
 
-            //Assert.IsNotNull(input);
-            //Input = input;
+            Assert.IsNotNull(input);
+            Input = input;
+
 
             IsRunning = true;
 
             //Find way to print welcome message here
             while (IsRunning)
             {
-                //Room previousRoom = null;
-                //if (previousRoom != Player.Location)
-                //{
-                //    Look(this);
-                //    //previousRoom = Player.Location;
-                //}
-
-                //Output.Write("\n> ");
-                //string commandString = Console.ReadLine().Trim().ToUpper();
-
 
                 Command foundCommand = null;
                 foreach (Command command in Commands.Values)
@@ -103,7 +105,6 @@ namespace ZorkGame
                     Room previousRoom = Player.Location;
                     if (previousRoom != Player.Location)
                     {
-                        //Look is performed automatically when a valid command is registered
                         Look(this);
                     }
                 }
@@ -121,8 +122,11 @@ namespace ZorkGame
 
         #region Load
 
-        public static Game Load(string jsonString, IInputService input, IOutputService output)
+        public static Game Start(string jsonString, IInputService input, IOutputService output)
         {
+            //Figure out whatever the fuck is going on with this bullshit, consider begging Kevin for help on it
+            Input.InputReceived += InputReceivedHandler;
+
             //Checking if a file exists in the given location
             if (!File.Exists(jsonString))
             {
@@ -133,13 +137,12 @@ namespace ZorkGame
             game.Player = game.World.SpawnPlayer();
             game.Output = output;
 
-            input.InputReceived += InputReceivedHandler;
+            Look(game);
+
+
 
             return game;
         }
-
-
-
 
         #endregion Load
 
@@ -149,6 +152,21 @@ namespace ZorkGame
             if (game.Player.Move(direction) == false)
             {
                 Console.WriteLine("The way is shut!");
+            }
+        }
+
+        private static void Reward(Game game) => game.scoreTotal += 1;
+
+        private static void Score(Game game)
+        {
+            if (game.Player.Moves == 1)
+            {
+                game.Output.WriteLine($"Your score is:{game.scoreTotal} and you have made {game.Player.Moves} move(s)");
+            }
+
+            else
+            {
+                game.Output.WriteLine($"Your score is:{game.scoreTotal} and you have made {game.Player.Moves} move(s)");
             }
         }
 
