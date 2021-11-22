@@ -26,8 +26,5 @@ public class UnityInputService : MonoBehaviour, IInputService
         }
     }
 
-
-
-
     [SerializeField] private TMP_InputField InputField;
 }

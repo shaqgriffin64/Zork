@@ -34,14 +34,12 @@ namespace ZorkGame
         [JsonIgnore]
         public Player Player { get; set; }
 
-        [JsonIgnore]
-        public Game scoreTotal { get; set; }
-
-        [JsonIgnore]
-        private int rewardRef = 0;
 
         [JsonIgnore]
         public Player Moves { get; set; }
+
+        [JsonIgnore]
+        public Player Score { get; set; }
 
         #endregion Json Related Properties
 
@@ -60,7 +58,7 @@ namespace ZorkGame
             {
                 { "QUIT", new Command("QUIT", new string[] { "QUIT", "Q", "BYE", "TOODLES" }, Quit) },
                 { "LOOK", new Command("LOOK", new string[] { "LOOK", "L" }, Look) },
-                { "SCORE", new Command("SCORE", new string[] { "SCORE" }, Score) },
+                { "SCORE", new Command("SCORE", new string[] { "SCORE" }, ScoreCheck) },
                 { "REWARD", new Command("REWARD", new string[] { "REWARD", "R" }, Reward) },
                 { "NORTH", new Command("NORTH", new string[] { "NORTH", "N" }, game => Move(game, Directions.NORTH)) },
                 { "SOUTH", new Command("SOUTH", new string[] { "SOUTH", "S" }, game => Move(game, Directions.SOUTH)) },
@@ -71,19 +69,44 @@ namespace ZorkGame
         #endregion Commands Related Code
 
         #region InputReceivedHandler
-        //public void Run(IInputService input, IOutputService output)
 
-        private void InputReceivedHandler(object sender, string inputString, IInputService input, IOutputService output)
+        public void Start(string jsonString, IInputService input, IOutputService output)
         {
             Assert.IsNotNull(output);
             Output = output;
 
             Assert.IsNotNull(input);
             Input = input;
-
+            input.InputReceived += InputReceivedHandler;
 
             IsRunning = true;
 
+            StartFromFile(jsonString, input, output);
+        }
+
+
+        public static Game StartFromFile(string jsonString, IInputService input, IOutputService output)
+        {
+            //Checking if a file exists in the given location
+            if (!File.Exists(jsonString))
+            {
+                throw new FileNotFoundException("Expected file.", jsonString);
+            }
+
+            Game game = JsonConvert.DeserializeObject<Game>(jsonString);
+            game.Player = game.World.SpawnPlayer();
+            game.Output = output;
+
+            Look(game);
+
+            
+
+            return game;
+        }
+
+
+        private void InputReceivedHandler(object sender, string commandString)
+        {
             //Find way to print welcome message here
             while (IsRunning)
             {
@@ -91,7 +114,7 @@ namespace ZorkGame
                 Command foundCommand = null;
                 foreach (Command command in Commands.Values)
                 {
-                    if (command.Verbs.Contains(inputString.Trim()))
+                    if (command.Verbs.Contains(commandString.Trim()))
                     {
                         foundCommand = command;
                         break;
@@ -102,11 +125,13 @@ namespace ZorkGame
                 {
                     foundCommand.Action(this);
 
-                    Room previousRoom = Player.Location;
-                    if (previousRoom != Player.Location)
-                    {
-                        Look(this);
-                    }
+                    Player.Moves++;
+
+                    //Room previousRoom = Player.Location;
+                    //if (previousRoom != Player.Location)
+                    //{
+                    //    Look(this);
+                    //}
                 }
                 else
                 {
@@ -122,27 +147,6 @@ namespace ZorkGame
 
         #region Load
 
-        public static Game Start(string jsonString, IInputService input, IOutputService output)
-        {
-            //Figure out whatever the fuck is going on with this bullshit, consider begging Kevin for help on it
-            Input.InputReceived += InputReceivedHandler;
-
-            //Checking if a file exists in the given location
-            if (!File.Exists(jsonString))
-            {
-                throw new FileNotFoundException("Expected file.", jsonString);
-            }
-
-            Game game = JsonConvert.DeserializeObject<Game>(jsonString);
-            game.Player = game.World.SpawnPlayer();
-            game.Output = output;
-
-            Look(game);
-
-
-
-            return game;
-        }
 
         #endregion Load
 
@@ -155,18 +159,18 @@ namespace ZorkGame
             }
         }
 
-        private static void Reward(Game game) => game.scoreTotal += 1;
+        private static void Reward(Game game) => game.Player.Score += 1;
 
-        private static void Score(Game game)
+        private static void ScoreCheck(Game game)
         {
             if (game.Player.Moves == 1)
             {
-                game.Output.WriteLine($"Your score is:{game.scoreTotal} and you have made {game.Player.Moves} move(s)");
+                game.Output.WriteLine($"Your score is:{game.Player.Score} and you have made {game.Player.Moves} move(s)");
             }
 
             else
             {
-                game.Output.WriteLine($"Your score is:{game.scoreTotal} and you have made {game.Player.Moves} move(s)");
+                game.Output.WriteLine($"Your score is:{game.Player.Score} and you have made {game.Player.Moves} move(s)");
             }
         }
 

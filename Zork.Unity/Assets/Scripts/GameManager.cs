@@ -1,28 +1,48 @@
 ﻿using UnityEngine;
 using ZorkGame;
 using TMPro;
+using Zork.Common;
+using Newtonsoft.Json;
 
 public class GameManager : MonoBehaviour
-    //To Do:
-    // - Create Unity Input & Output Services
-    // - 44:55 (last point in vid)
-
 {
+
+    #region Properties
     public Player Location { get; set; }
-    public Player Moves { get; set; }
+    public Game Moves { get; set; }
+    public Game Score { get; set; }
 
 
+    #endregion Properties
 
+    #region Variables
+
+    //Default filename provided in the event an inspector override is not given
+    [SerializeField] private string GameFile = "Zork";
+
+    [SerializeField] private UnityOutputService OutputService;
+
+    [SerializeField] private UnityInputService InputService;
+
+    [SerializeField] private TextMeshProUGUI LocationText;
+
+    [SerializeField] private TextMeshProUGUI ScoreText;
+
+    [SerializeField] private TextMeshProUGUI MovesText;
+
+    private Game _game;
+
+    #endregion Variables
 
 
     #region Awake
     void Awake()
     {
         //Breakpoint this in the future to ensure that Load is deserializing the fed in json file
-        TextAsset gameJsonAsset = Resources.Load<TextAsset>(GameFileName);
+        TextAsset gameJsonAsset = Resources.Load<TextAsset>(GameFile);
+        _game = JsonConvert.DeserializeObject<Game>(gameJsonAsset.text);
 
-        Game.Start(gameJsonAsset.text, InputService, OutputService);
-
+        _game.Start(gameJsonAsset.text, InputService, OutputService);
 
 
     }//End Awake
@@ -50,7 +70,8 @@ public class GameManager : MonoBehaviour
 
         MovesText.text = Moves.ToString();
 
-        ScoreText.text = /*Score.ToString*/ "";
+        ScoreText.text = Score.ToString();
+
 
 
 
@@ -59,21 +80,4 @@ public class GameManager : MonoBehaviour
     #endregion Update
 
 
-    #region Variables
-
-    //Default filename provided in the event an inspector override is not given
-    [SerializeField] private string GameFileName = "Zork";
-
-    [SerializeField] private UnityOutputService OutputService;
-
-    [SerializeField] private UnityInputService InputService;
-
-    [SerializeField] private TextMeshProUGUI LocationText;
-
-    [SerializeField] private TextMeshProUGUI ScoreText;
-
-    [SerializeField] private TextMeshProUGUI MovesText;
-
-
-    #endregion Variables
 }
