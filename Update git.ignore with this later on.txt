@@ -1,5 +1,0 @@
-Zork\Zork.Unity\Library
-Zork\Zork.Unity\Logs
-Zork\Zork.Unity\obj
-Zork\Zork.Unity\ProjectSettings
-Zork\Zork.Unity\Temp
