@@ -5,69 +5,90 @@ namespace ZorkGame
 {
     public class Player
     {
+        #region Event Handlers
         public event EventHandler<Room> LocationChanged;
-        public event EventHandler<int> MovesChanged;
+
         public event EventHandler<int> ScoreChanged;
 
+        public event EventHandler<int> MovesChanged;
+
+        #endregion Event Handlers
+
+        #region Variables
+
+        private Room location;
+        private int score;
+        private int moves;
+
+        #endregion Variables
+
+
+        #region Properties
         public World World { get; }
 
+        //Location Prop
         [JsonIgnore]
-        public Room Location 
+        public Room Location
         {
             get
             {
-                return _location;
+                return location;
             }
             private set
             {
-                if (_location != value)
+                if (location != value)
                 {
-                    _location = value;
-                    LocationChanged?.Invoke(this, _location);
-
+                    location = value;
+                    LocationChanged?.Invoke(this, location);
                 }
             }
         }
 
-        public int Moves 
-        { 
-            get
-            {
-                return _moves;
-            }
-            set
-            {
-                if (_moves != value)
-                {
-                    _moves = value;
-                    MovesChanged?.Invoke(this, _moves);
-                }
-            }
-        }
 
-        public int Score 
+        //Moves Prop
+        public int Moves
         {
             get
             {
-                return _score;
+                return moves;
             }
             set
             {
-                if (_score != value)
+                if (moves != value)
                 {
-                    _score = value;
-                    ScoreChanged?.Invoke(this, _score);
+                    moves = value;
+                    MovesChanged?.Invoke(this, moves);
                 }
             }
         }
 
-        public Player (World world, string startingLocation)
+        //Score Prop
+        public int Score
+        {
+            get
+            {
+                return score;
+            }
+            set
+            {
+                if (score != value)
+                {
+                    score = value;
+                    ScoreChanged?.Invoke(this, score);
+                }
+            }
+        }
+
+        #endregion Properties
+
+        //Player Setup
+        public Player(World world, string startingLocation)
         {
             Assert.IsTrue(world != null);
-            Assert.IsTrue(world.RoomsByName.ContainsKey(startingLocation));
+            Assert.IsTrue(world.roomsByName.ContainsKey(startingLocation));
 
             World = world;
-            Location = world.RoomsByName[startingLocation];
+            Location = world.roomsByName[startingLocation];
         }
 
         public bool Move(Directions direction)
@@ -76,16 +97,9 @@ namespace ZorkGame
             if (isValidMove)
             {
                 Location = destination;
-
-                Moves++;
             }
 
             return isValidMove;
         }
-
-
-        private Room _location;
-        private int _score;
-        private int _moves;
     }
 }

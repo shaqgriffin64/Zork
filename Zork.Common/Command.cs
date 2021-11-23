@@ -7,11 +7,14 @@ namespace Zork.Common
 {
     public class Command
     {
+        #region Properties
         public string Name { get; set; }
 
         public string[] Verbs { get; set; }
 
         public Action<Game> Action { get; set; }
+
+        #endregion Properties
 
         public Command(string name, IEnumerable<string> verbs, Action<Game> action)
         {
@@ -24,6 +27,7 @@ namespace Zork.Common
             Action = action;
         }
 
+        
         public override string ToString() => Name;
     }
 }

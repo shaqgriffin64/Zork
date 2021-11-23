@@ -1,8 +1,5 @@
 {
-  "WelcomeMessage": "Welcome to Zork!",
-  "ExitMessage": "Thank you for playing!",
   "World": {
-    "StartingLocation": "West of House",
     "Rooms": [
       {
         "Name": "West of House",
@@ -41,7 +38,6 @@
       },
       {
         "Name": "Forest 1",
-        "LookName": "Forest",
         "Description": "This is a forest, with trees in all directions around you.",
         "Neighbors": {
           "South": "Forest 3",
@@ -65,15 +61,6 @@
         }
       },
       {
-        "Name": "North of House",
-        "Description": "You are facing the north side of a white house. There is no door here, and all the windows are barred.",
-        "Neighbors": {
-          "North": "North of House",
-          "South": "South of House",
-          "West": "Forest 1"
-        }
-      },
-      {
         "Name": "Clearing",
         "Description": "You are in a clearing, with a forest surrounding you on the west and south.",
         "Neighbors": {
@@ -82,5 +69,8 @@
         }
       }
     ]
-  }
+  },
+  "StartingLocation": "West of House",
+  "WelcomeMessage": "Welcome to Zork!",
+  "ExitMessage": "Thank you for playing!"
 }

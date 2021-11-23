@@ -1,30 +1,27 @@
-﻿using UnityEngine;
-using Zork.Common;
-using TMPro;
+﻿using TMPro;
 using System;
+using UnityEngine;
+using Zork.Common;
 
 public class UnityInputService : MonoBehaviour, IInputService
 {
+    public TMP_InputField InputField;
+
     public event EventHandler<string> InputReceived;
-    public void ProcessInput()
+
+    private void Update()
     {
-
-    }
-
-    void Update()
-    {
-        string inputString = InputField.text;
-
-        if (string.IsNullOrWhiteSpace(inputString) == false)
+        if (Input.GetKey(KeyCode.Return))
         {
-            if (Input.GetKey(KeyCode.Return))
+            if (string.IsNullOrWhiteSpace(InputField.text) == false)
             {
+                string inputString = InputField.text.Trim().ToUpper();
                 InputReceived?.Invoke(this, inputString);
             }
 
             InputField.text = string.Empty;
+            InputField.Select();
+            InputField.ActivateInputField();
         }
     }
-
-    [SerializeField] private TMP_InputField InputField;
 }

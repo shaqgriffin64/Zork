@@ -1,185 +1,163 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Zork.Common;
 
 namespace ZorkGame
 {
-    public class Game
+    public class Game : INotifyPropertyChanged
     {
-        [JsonIgnore]
-        public bool IsRunning { get; private set; }
+        public event PropertyChangedEventHandler PropertyChanged;
 
-        #region Services
-        [JsonIgnore]
-        public IOutputService Output { get; private set; }
-
-        [JsonIgnore]
-        public IInputService Input { get; set; }
-
-        #endregion Services
-
-        #region Json Related Properties
-
-        public World World { get; set; }
+        #region Great Wall Of Properties
+        public World World { get; private set; }
 
         public string StartingLocation { get; set; }
+
+        public Room previousLocation { get; set; }
 
         public string WelcomeMessage { get; set; }
 
         public string ExitMessage { get; set; }
 
         [JsonIgnore]
-        public Player Player { get; set; }
-
-
+        public Player Player { get; private set; }
         [JsonIgnore]
-        public Player Moves { get; set; }
+        public bool IsRunning { get; set; }
 
-        [JsonIgnore]
-        public Player Score { get; set; }
+        public IInputService Input { get; set; }
 
-        #endregion Json Related Properties
-
-        #region Commands Related Code
+        public IOutputService Output { get; set; }
 
         [JsonIgnore]
         public Dictionary<string, Command> Commands { get; private set; }
 
+        #endregion Great Wall Of Properties
+
+        #region Commands Logic
         public Game(World world, Player player)
         {
             World = world;
             Player = player;
 
-            //Add any new commands to this dictionary
             Commands = new Dictionary<string, Command>()
             {
-                { "QUIT", new Command("QUIT", new string[] { "QUIT", "Q", "BYE", "TOODLES" }, Quit) },
+                { "QUIT", new Command("QUIT", new string[] { "QUIT", "Q", "BYE", "TOODLES", "SHALLOM" }, Quit) },
                 { "LOOK", new Command("LOOK", new string[] { "LOOK", "L" }, Look) },
-                { "SCORE", new Command("SCORE", new string[] { "SCORE" }, ScoreCheck) },
-                { "REWARD", new Command("REWARD", new string[] { "REWARD", "R" }, Reward) },
+                { "REWARD", new Command("REWARD", new string[] { "REWARD", "R"}, Reward) },
+                { "SCORE", new Command("SCORE", new string[] { "SCORE"}, ShowScore) },
                 { "NORTH", new Command("NORTH", new string[] { "NORTH", "N" }, game => Move(game, Directions.NORTH)) },
                 { "SOUTH", new Command("SOUTH", new string[] { "SOUTH", "S" }, game => Move(game, Directions.SOUTH)) },
                 { "EAST", new Command("EAST", new string[] { "EAST", "E"}, game => Move(game, Directions.EAST)) },
                 { "WEST", new Command("WEST", new string[] { "WEST", "W" }, game => Move(game, Directions.WEST)) },
             };
         }
-        #endregion Commands Related Code
 
-        #region InputReceivedHandler
+        #endregion Commands Logic
 
-        public void Start(string jsonString, IInputService input, IOutputService output)
+
+        #region Start
+        public void Start(IInputService input, IOutputService output)
         {
             Assert.IsNotNull(output);
             Output = output;
 
             Assert.IsNotNull(input);
             Input = input;
-            input.InputReceived += InputReceivedHandler;
+            Input.InputReceived += InputRecievedHandler;
 
             IsRunning = true;
-
-            StartFromFile(jsonString, input, output);
         }
 
+        #endregion Start
 
-        public static Game StartFromFile(string jsonString, IInputService input, IOutputService output)
+        #region Input Handler
+        private void InputRecievedHandler(object sender, string commandString)
         {
-            //Checking if a file exists in the given location
-            if (!File.Exists(jsonString))
+
+            Command foundCommand = null;
+            foreach (Command command in Commands.Values)
             {
-                throw new FileNotFoundException("Expected file.", jsonString);
+                if (command.Verbs.Contains(commandString))
+                {
+                    foundCommand = command;
+                    break;
+                }
             }
 
-            Game game = JsonConvert.DeserializeObject<Game>(jsonString);
-            game.Player = game.World.SpawnPlayer();
-            game.Output = output;
-
-            Look(game);
-
-            
-
-            return game;
-        }
-
-
-        private void InputReceivedHandler(object sender, string commandString)
-        {
-            //Find way to print welcome message here
-            while (IsRunning)
+            if (foundCommand != null)
             {
-
-                Command foundCommand = null;
-                foreach (Command command in Commands.Values)
-                {
-                    if (command.Verbs.Contains(commandString.Trim()))
-                    {
-                        foundCommand = command;
-                        break;
-                    }
-                }
-
-                if (foundCommand != null)
-                {
-                    foundCommand.Action(this);
-
-                    Player.Moves++;
-
-                    //Room previousRoom = Player.Location;
-                    //if (previousRoom != Player.Location)
-                    //{
-                    //    Look(this);
-                    //}
-                }
-                else
-                {
-                    Output.WriteLine("That's not a verb I recognize.");
-                }
-
+                //This = InputReceivedHandler
+                foundCommand.Action(this);
+                Player.Moves++;
             }
-
-            Output.WriteLine(string.IsNullOrWhiteSpace(ExitMessage) ? "Thank you for playing!" : ExitMessage);
+            else
+            {
+                //Overall default for when nothing else works
+                Output.WriteLine("Unknown command.");
+            }
         }
 
-        #endregion InputReceivedHandler
+        #endregion Input Handler
 
-        #region Load
-
-
-        #endregion Load
-
-        #region Command Methods
+        #region Move Method
+        //Call this function for when you want to move in any direction (super cool and works nicely)
         private static void Move(Game game, Directions direction)
         {
             if (game.Player.Move(direction) == false)
             {
-                Console.WriteLine("The way is shut!");
+                game.Output.WriteLine("The way is shut!");
             }
-        }
-
-        private static void Reward(Game game) => game.Player.Score += 1;
-
-        private static void ScoreCheck(Game game)
-        {
-            if (game.Player.Moves == 1)
-            {
-                game.Output.WriteLine($"Your score is:{game.Player.Score} and you have made {game.Player.Moves} move(s)");
-            }
-
             else
             {
-                game.Output.WriteLine($"Your score is:{game.Player.Score} and you have made {game.Player.Moves} move(s)");
+                game.Output.WriteLine($"You moved {direction}.");
+            }
+
+            if (game.previousLocation != game.Player.Location)
+            {
+                game.previousLocation = game.Player.Location;
+                Look(game);
+            }
+            string value = " ";
+            game.Output.WriteLine(value);
+        }
+
+        #endregion Move Method
+
+        #region Misc. Methods
+        //Keep this as a lambda / expression bodied member for ease of use pls
+        public static void Look(Game game) => game.Output.WriteLine(game.Player.Location.Description);
+
+
+
+        //Just does whatever the hell to the score value
+        private static void Reward(Game game) => game.Player.Score += 1;
+
+
+        //Literally just turns the game off
+        private static void Quit(Game game) => game.IsRunning = false;
+
+        //Checks the current score of the player and whatnot
+        private static void ShowScore(Game game)
+        {
+            if (game.Player.Moves > 0)
+            {
+                game.Output.WriteLine($"Your score is:{game.Player.Score} and you have made {game.Player.Moves} move(s).");
+            }
+            else
+            {
+                game.Output.WriteLine($"You don't even have a score yet.");
             }
         }
 
-        private static void Look(Game game) => game.Output.WriteLine($"{game.Player.Location}\n {game.Player.Location.Description}");
+        //Might be redundant, look into when theres time
+        [OnDeserialized]
+        private void OnDeserialized(StreamingContext context) => Player = new Player(World, StartingLocation);
 
-        private static void Quit(Game game) => game.IsRunning = false;
-
-        private void DisplayWelcomeMessage() => Output.WriteLine(WelcomeMessage);
-
-        #endregion  Command Methods
+        #endregion Misc. Methods
     }
 }

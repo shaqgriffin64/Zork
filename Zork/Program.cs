@@ -7,6 +7,7 @@ namespace ZorkGame
 {
     public class Program
     {
+
         static void Main(string[] args)
         {
             const string defaultGameFilename = "Zork.json";
@@ -28,7 +29,7 @@ namespace ZorkGame
             }
 
             //Supposed to be game.Load not Game.Load
-            Game.Start(gameFilename, input, output);
+            game.Start(input, output);
             
             //Console.WriteLine("Welcome to Zork!");
             //game.Run(input, output);
