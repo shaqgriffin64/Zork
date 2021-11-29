@@ -13,6 +13,9 @@ namespace ZorkGame
         #region Properties
         public List<Room> rooms { get; set; }
 
+        //Prop list for items
+        //public List<> Items { get; set; }
+
         #endregion Properties
 
         //Interface Dictionary || Ignored

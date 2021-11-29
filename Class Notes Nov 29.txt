@@ -1,0 +1,20 @@
+- Tie items to World.cs (Make it a hash set property in there)
+
+- Tie a bool to the item itself to decide if it can be picked up
+	- "You can pick up the mat but you can't pick up the mailbox."
+
+- Each room will then have it's own items list
+	- Room Name
+	- Room Description
+	- Room Items
+		- Item Description
+
+	-Enforce that items can only be in ONE PLACE AT A TIME
+
+
+- Player Inventory
+	- Not exactly a property for the player
+
+- Commands to add:
+	- Take / T: Pick up item listen in room
+	- Inventory / I: Show the player's Inventory

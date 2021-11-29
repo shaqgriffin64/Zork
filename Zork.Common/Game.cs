@@ -50,6 +50,10 @@ namespace ZorkGame
                 { "LOOK", new Command("LOOK", new string[] { "LOOK", "L" }, Look) },
                 { "REWARD", new Command("REWARD", new string[] { "REWARD", "R"}, Reward) },
                 { "SCORE", new Command("SCORE", new string[] { "SCORE"}, ShowScore) },
+                /*
+                 * {"TAKE", new Command("TAKE", new string[] {"TAKE, T"}, Take)},
+                 * {"INVENTORY", new Command("INVENTORY", new string[] {"INVENTORY, I"}, ShowInventory)},
+                 */
                 { "NORTH", new Command("NORTH", new string[] { "NORTH", "N" }, game => Move(game, Directions.NORTH)) },
                 { "SOUTH", new Command("SOUTH", new string[] { "SOUTH", "S" }, game => Move(game, Directions.SOUTH)) },
                 { "EAST", new Command("EAST", new string[] { "EAST", "E"}, game => Move(game, Directions.EAST)) },
@@ -58,7 +62,6 @@ namespace ZorkGame
         }
 
         #endregion Commands Logic
-
 
         #region Start
         public void Start(IInputService input, IOutputService output)

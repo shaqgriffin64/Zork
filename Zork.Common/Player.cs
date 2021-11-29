@@ -20,8 +20,9 @@ namespace ZorkGame
         private int score;
         private int moves;
 
-        #endregion Variables
+        //Insert player inventory list
 
+        #endregion Variables
 
         #region Properties
         public World World { get; }
