@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
-using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
@@ -26,6 +24,7 @@ namespace ZorkGame
 
         [JsonIgnore]
         public Player Player { get; private set; }
+
         [JsonIgnore]
         public bool IsRunning { get; set; }
 
@@ -46,14 +45,17 @@ namespace ZorkGame
 
             Commands = new Dictionary<string, Command>()
             {
+                //Commands to add
+                /*
+                 * {"TAKE", new Command("TAKE", new string[] {"TAKE, T"}, Take)},
+                 * {"DROP", new Command("DROP", new string[] {"DROP"})},
+                 */
+
                 { "QUIT", new Command("QUIT", new string[] { "QUIT", "Q", "BYE", "TOODLES", "SHALLOM" }, Quit) },
                 { "LOOK", new Command("LOOK", new string[] { "LOOK", "L" }, Look) },
                 { "REWARD", new Command("REWARD", new string[] { "REWARD", "R"}, Reward) },
                 { "SCORE", new Command("SCORE", new string[] { "SCORE"}, ShowScore) },
-                /*
-                 * {"TAKE", new Command("TAKE", new string[] {"TAKE, T"}, Take)},
-                 * {"INVENTORY", new Command("INVENTORY", new string[] {"INVENTORY, I"}, ShowInventory)},
-                 */
+                {"INVENTORY", new Command("INVENTORY", new string[] {"INVENTORY, I"}, game => ShowInventory(player, game))},
                 { "NORTH", new Command("NORTH", new string[] { "NORTH", "N" }, game => Move(game, Directions.NORTH)) },
                 { "SOUTH", new Command("SOUTH", new string[] { "SOUTH", "S" }, game => Move(game, Directions.SOUTH)) },
                 { "EAST", new Command("EAST", new string[] { "EAST", "E"}, game => Move(game, Directions.EAST)) },
@@ -135,11 +137,8 @@ namespace ZorkGame
         //Keep this as a lambda / expression bodied member for ease of use pls
         public static void Look(Game game) => game.Output.WriteLine(game.Player.Location.Description);
 
-
-
         //Just does whatever the hell to the score value
         private static void Reward(Game game) => game.Player.Score += 1;
-
 
         //Literally just turns the game off
         private static void Quit(Game game) => game.IsRunning = false;
@@ -159,17 +158,41 @@ namespace ZorkGame
 
         //Displays the player's Inventory
         //Player centered Inventory & World centered Master Item List
-        private static void ShowInventory(Player player, Game game)
+        private static void ShowInventory(Game game)
+        {
+            if (game.Player.Inventory.Count != 0)
+            {
+                game.Output.WriteLine("You are carrying:");
+
+                foreach (Item item in player.Inventory)
+                {
+                    game.Output.WriteLine(item);
+                }
+            }
+            else
+            {
+                game.Output.WriteLine("You are empty handed.");
+            }
+        }
+
+        private static void Take()
         {
             /*
-            foreach (Item _item in Inventory)
-            {
-                game.Output.WriteLine(item);
-            }
+             * - Specify the item that you want to take
+             *  - Parse the line that you read from the player
+             *      -Specify action and object that you want to act on
              */
         }
 
-        //Might be redundant, look into when theres time
+        private static void Drop()
+        {
+            /*
+             * - Specify the item that you want to take
+             *  - Parse the line that you read from the player
+             *      -Specify action and object that you want to act on
+             */
+        }
+
         [OnDeserialized]
         private void OnDeserialized(StreamingContext context) => Player = new Player(World, StartingLocation);
 

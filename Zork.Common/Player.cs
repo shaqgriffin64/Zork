@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace ZorkGame
@@ -19,6 +20,8 @@ namespace ZorkGame
         private Room location;
         private int score;
         private int moves;
+        //Invnetory variable
+        //private List<[insert either reference to Items.cs OR ]> Inventory;
 
         //Insert player inventory list
 
@@ -27,7 +30,6 @@ namespace ZorkGame
         #region Properties
         public World World { get; }
 
-        //Location Prop
         [JsonIgnore]
         public Room Location
         {
@@ -45,8 +47,6 @@ namespace ZorkGame
             }
         }
 
-
-        //Moves Prop
         public int Moves
         {
             get
@@ -63,7 +63,6 @@ namespace ZorkGame
             }
         }
 
-        //Score Prop
         public int Score
         {
             get
@@ -80,6 +79,8 @@ namespace ZorkGame
             }
         }
 
+        public List<Item> Inventory { get; set; }
+
         #endregion Properties
 
         //Player Setup
@@ -92,6 +93,7 @@ namespace ZorkGame
             Location = world.roomsByName[startingLocation];
         }
 
+        //Logic for movement
         public bool Move(Directions direction)
         {
             bool isValidMove = Location.Neighbors.TryGetValue(direction, out Room destination);

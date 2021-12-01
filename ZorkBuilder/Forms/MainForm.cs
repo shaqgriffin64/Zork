@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using Newtonsoft.Json;
-using InventoryManager.Data;
 using ZorkBuilder.ViewModels;
 using ZorkBuilder.Controls;
 using ZorkGame;
@@ -57,13 +56,13 @@ namespace ZorkBuilder.Forms
             ViewModel = new WorldViewModel();
             IsWorldLoaded = false;
 
-            mEquippedItemControlMap = new Dictionary<EquipLocations, EquippedItemControl>
-            {
-                { EquipLocations.LeftHand, leftHandEquippedItemControl },
-                { EquipLocations.RightHand, rightHandEquippedItemControl },
-                { EquipLocations.Head, headEquippedItemControl },
-                { EquipLocations.Feet, feetEquippedItemControl }
-            };
+            //mEquippedItemControlMap = new Dictionary<EquipLocations, EquippedItemControl>
+            //{
+            //    { EquipLocations.LeftHand, leftHandEquippedItemControl },
+            //    { EquipLocations.RightHand, rightHandEquippedItemControl },
+            //    { EquipLocations.Head, headEquippedItemControl },
+            //    { EquipLocations.Feet, feetEquippedItemControl }
+            //};
         }
 
 
@@ -251,7 +250,7 @@ namespace ZorkBuilder.Forms
 
         private WorldViewModel m_ViewModel;
         private bool mIsWorldLoaded;
-        private readonly Dictionary<EquipLocations, EquippedItemControl> mEquippedItemControlMap;
+        //private readonly Dictionary<EquipLocations, EquippedItemControl> mEquippedItemControlMap;
 
 
     }

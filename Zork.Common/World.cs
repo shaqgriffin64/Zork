@@ -14,7 +14,7 @@ namespace ZorkGame
         public List<Room> rooms { get; set; }
 
         //Prop list for items
-        //public List<> Items { get; set; }
+        public List<Item> Items { get; set; }
 
         #endregion Properties
 
