@@ -7,7 +7,6 @@ namespace ZorkGame
 {
     public class Program
     {
-
         static void Main(string[] args)
         {
             const string defaultGameFilename = "Zork.json";
@@ -29,11 +28,14 @@ namespace ZorkGame
             }
 
             //Supposed to be game.Load not Game.Load
-            game.Start(input, output);
-            
+            game.Start(input, output, game);
+
             //Console.WriteLine("Welcome to Zork!");
             //game.Run(input, output);
-            output.WriteLine("Thank you for playing!");
+
+
+            //output.WriteLine("Thank you for playing!");
+            output.WriteLine(game.ExitMessage);
         }
 
         private enum CommandLineArguements
@@ -41,5 +43,4 @@ namespace ZorkGame
             GameFilename = 0
         }
     }
-
 }

@@ -16,6 +16,7 @@ namespace ZorkGame
 
         public string StartingLocation { get; set; }
 
+        [JsonIgnore]
         public Room previousLocation { get; set; }
 
         public string WelcomeMessage { get; set; }
@@ -55,7 +56,7 @@ namespace ZorkGame
                 { "LOOK", new Command("LOOK", new string[] { "LOOK", "L" }, Look) },
                 { "REWARD", new Command("REWARD", new string[] { "REWARD", "R"}, Reward) },
                 { "SCORE", new Command("SCORE", new string[] { "SCORE"}, ShowScore) },
-                {"INVENTORY", new Command("INVENTORY", new string[] {"INVENTORY, I"}, game => ShowInventory(player, game))},
+                { "INVENTORY", new Command("INVENTORY", new string[] {"INVENTORY, I"}, game => ShowInventory(game))},
                 { "NORTH", new Command("NORTH", new string[] { "NORTH", "N" }, game => Move(game, Directions.NORTH)) },
                 { "SOUTH", new Command("SOUTH", new string[] { "SOUTH", "S" }, game => Move(game, Directions.SOUTH)) },
                 { "EAST", new Command("EAST", new string[] { "EAST", "E"}, game => Move(game, Directions.EAST)) },
@@ -66,7 +67,7 @@ namespace ZorkGame
         #endregion Commands Logic
 
         #region Start
-        public void Start(IInputService input, IOutputService output)
+        public void Start(IInputService input, IOutputService output, Game game)
         {
             Assert.IsNotNull(output);
             Output = output;
@@ -76,6 +77,8 @@ namespace ZorkGame
             Input.InputReceived += InputRecievedHandler;
 
             IsRunning = true;
+
+            game.Output.WriteLine(game.WelcomeMessage);
         }
 
         #endregion Start
@@ -130,7 +133,6 @@ namespace ZorkGame
             string value = " ";
             game.Output.WriteLine(value);
         }
-
         #endregion Move Method
 
         #region Misc. Methods
@@ -164,7 +166,7 @@ namespace ZorkGame
             {
                 game.Output.WriteLine("You are carrying:");
 
-                foreach (Item item in player.Inventory)
+                foreach (Item item in game.Player.Inventory)
                 {
                     game.Output.WriteLine(item);
                 }
