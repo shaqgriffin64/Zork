@@ -19,6 +19,10 @@ namespace ZorkGame
         [JsonProperty(Order = 2)]
         public string Description { get; set; }
 
+
+        //[JsonProperty (Order = 3)]
+        //public  List<Item(s)> RoomItems { get; set; }
+
         #endregion Properties
 
         #region Dictionary

@@ -157,6 +157,18 @@ namespace ZorkGame
             }
         }
 
+        //Displays the player's Inventory
+        //Player centered Inventory & World centered Master Item List
+        private static void ShowInventory(Player player, Game game)
+        {
+            /*
+            foreach (Item _item in Inventory)
+            {
+                game.Output.WriteLine(item);
+            }
+             */
+        }
+
         //Might be redundant, look into when theres time
         [OnDeserialized]
         private void OnDeserialized(StreamingContext context) => Player = new Player(World, StartingLocation);
