@@ -201,20 +201,14 @@ namespace ZorkGame
         {
             game.Output.WriteLine(game.Player.Location.Description);
 
-            if (game.Player.Location.Items.Count > 0)
+            if (game.Player.Location.Items != null)
             {
-                game.Output.WriteLine("You see the following items:");
-
                 foreach (Item item in game.Player.Location.Items)
                 {
-                    game.Output.WriteLine($"- {item.Description}");
+                    game.Output.WriteLine(item.Description);
                 }
             }
-            else if (game.Player.Location.Items.Count == 0)
-            {
 
-            }
-            
             game.Output.Write("");
         }
 
@@ -235,25 +229,20 @@ namespace ZorkGame
         //Displays the player's Inventory
         //Player centered Inventory & World centered Master Item List
 
-        #region Inventory Manager Methods
-
         private static void ShowInventory(Game game)
         {
             if (game.Player.Inventory.Count != 0)
             {
                 game.Output.WriteLine("You are carrying:");
 
-                game.Output.Write("");
-
                 foreach (Item item in game.Player.Inventory)
                 {
-                    game.Output.WriteLine($"- {item}");
+                    game.Output.WriteLine(item);
                 }
             }
             else
             {
                 game.Output.WriteLine("You are empty handed.");
-                game.Output.Write("");
             }
         }//End Show Inventory
 
@@ -269,14 +258,14 @@ namespace ZorkGame
                     game.Player.Inventory.Add(item);
                     game.Player.Location.Items.Remove(item);
 
-                    game.Output.WriteLine($"Taken");
+                    game.Output.WriteLine($"Took {enteredItem}");
                     game.Output.Write(" ");
 
                     return;
                 }
             }
 
-            game.Output.WriteLine($"You can't see such a thing");
+            game.Output.WriteLine($"That isn't isn't here");
             game.Output.Write(" ");
             
             return;
@@ -293,18 +282,16 @@ namespace ZorkGame
                     game.Player.Location.Items.Add(item);
                     game.Player.Inventory.Remove(item);
 
-                    game.Output.WriteLine($"Dropped");
+                    game.Output.WriteLine($"Dropped {enteredItem}");
                     game.Output.Write(" ");
                     return;
                 }
             }
-            game.Output.WriteLine($"You do not have such a thing");
+            game.Output.WriteLine($"You don't have that");
             game.Output.Write(" ");
 
             return;
         }//End Drop
-
-        #endregion Inventory Manager Methods
 
         [OnDeserialized]
         private void OnDeserialized(StreamingContext context) => Player = new Player(World, StartingLocation);

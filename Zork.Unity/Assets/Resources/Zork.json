@@ -8,13 +8,7 @@
           "North": "North of House",
           "South": "South of House",
           "West": "Forest 1"
-        },
-        "Items": [
-          {
-            "Name": "GABAGOOL",
-            "Description": "Big ol' piece of gabagool"
-          }
-        ]
+        }
       },
       {
         "Name": "North of House",
@@ -23,10 +17,7 @@
           "North": "Forest 2",
           "East": "Behind House",
           "West": "West of House"
-        },
-        "Items": [
-
-        ]
+        }
       },
       {
         "Name": "South of House",
@@ -34,10 +25,7 @@
         "Neighbors": {
           "East": "Behind House",
           "West": "West of House"
-        },
-        "Items": [
-
-        ]
+        }
       },
       {
         "Name": "Behind House",
@@ -46,10 +34,7 @@
           "North": "North of House",
           "East": "Clearing",
           "South": "South of House"
-        },
-        "Items": [
-
-        ]
+        }
       },
       {
         "Name": "Forest 1",
@@ -57,10 +42,7 @@
         "Neighbors": {
           "South": "Forest 3",
           "East": "West of House"
-        },
-        "Items": [
-
-        ]
+        }
       },
       {
         "Name": "Forest 2",
@@ -68,10 +50,7 @@
         "Neighbors": {
           "South": "Clearing",
           "East": "Clearing"
-        },
-        "Items": [
-
-        ]
+        }
       },
       {
         "Name": "Forest 3",
@@ -79,10 +58,7 @@
         "Neighbors": {
           "North": "South of House",
           "East": "Clearing"
-        },
-        "Items": [
-
-        ]
+        }
       },
       {
         "Name": "Clearing",
@@ -90,10 +66,7 @@
         "Neighbors": {
           "West": "Forest 2",
           "South": "Forest 3"
-        },
-        "Items": [
-
-        ]
+        }
       }
     ]
   },

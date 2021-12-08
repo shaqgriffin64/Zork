@@ -58,7 +58,6 @@ public class GameManager : MonoBehaviour
         #endregion
 
         #region Initial Outputs and such
-
         //Prints the welcome message
         game.Output.WriteLine(game.WelcomeMessage);
 
@@ -68,8 +67,9 @@ public class GameManager : MonoBehaviour
         //Initial / Customary look just like in the good ol' days
         Game.Look(game);
 
-        //game.Output.WriteLine(game.Player.Location);
+        game.Output.WriteLine(game.Player.Location);
 
+        Game.Look(game);
         //Double check the use of this
         game.Output.WriteLine(" ");
 
