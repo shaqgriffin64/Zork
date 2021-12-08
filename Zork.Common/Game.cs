@@ -190,7 +190,12 @@ namespace ZorkGame
         #region Misc. Methods
 
         //Just does whatever the hell to the score value
-        private static void Reward(Game game) => game.Player.Score += 1;
+        private static void Reward(Game game)
+        {
+            game.Player.Score += 1;
+
+            game.Output.WriteLine("You have been rewarded 1 point!");
+        }
 
         //Literally just turns the game off
         private static void Quit(Game game) => game.IsRunning = false;
@@ -203,9 +208,12 @@ namespace ZorkGame
 
             if (game.Player.Location.Items != null)
             {
+                game.Output.WriteLine("Within the room you see the following:");
+                game.Output.Write(" ");
+
                 foreach (Item item in game.Player.Location.Items)
                 {
-                    game.Output.WriteLine(item.Description);
+                    game.Output.WriteLine($"- {item.Description}");
                 }
             }
 
@@ -237,7 +245,7 @@ namespace ZorkGame
 
                 foreach (Item item in game.Player.Inventory)
                 {
-                    game.Output.WriteLine(item);
+                    game.Output.WriteLine($"- {item}");
                 }
             }
             else
@@ -258,14 +266,14 @@ namespace ZorkGame
                     game.Player.Inventory.Add(item);
                     game.Player.Location.Items.Remove(item);
 
-                    game.Output.WriteLine($"Took {enteredItem}");
+                    game.Output.WriteLine($"Taken.");
                     game.Output.Write(" ");
 
                     return;
                 }
             }
 
-            game.Output.WriteLine($"That isn't isn't here");
+            game.Output.WriteLine($"That isn't isn't here.");
             game.Output.Write(" ");
             
             return;
@@ -282,12 +290,12 @@ namespace ZorkGame
                     game.Player.Location.Items.Add(item);
                     game.Player.Inventory.Remove(item);
 
-                    game.Output.WriteLine($"Dropped {enteredItem}");
+                    game.Output.WriteLine($"Dropped.");
                     game.Output.Write(" ");
                     return;
                 }
             }
-            game.Output.WriteLine($"You don't have that");
+            game.Output.WriteLine($"You do not have such an item.");
             game.Output.Write(" ");
 
             return;
