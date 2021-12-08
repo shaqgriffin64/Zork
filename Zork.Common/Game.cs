@@ -170,10 +170,12 @@ namespace ZorkGame
         {
             if (game.Player.Move(direction) == false)
             {
+                game.Output.WriteLine(" ");
                 game.Output.WriteLine("The way is shut!");
             }
             else
             {
+                game.Output.WriteLine(" ");
                 game.Output.WriteLine($"You moved {direction}.");
             }
 
