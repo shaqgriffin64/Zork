@@ -1,5 +1,4 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,6 +8,14 @@ using System;
 
 public class UnityOutputService : MonoBehaviour, IOutputService
 {
+    #region Properties
+
+    private readonly List<GameObject> mEntries;
+
+    #endregion Properties
+
+    #region Variables
+
     [SerializeField] private int MaxEntries = 60;
 
     [SerializeField] private Transform OutputTextContainer;
@@ -17,7 +24,9 @@ public class UnityOutputService : MonoBehaviour, IOutputService
 
     [SerializeField] private Image NewLinePrefab;
 
+    #endregion Variables
 
+    #region Methods
     public UnityOutputService() => mEntries = new List<GameObject>();
 
     public void Clear() => mEntries.ForEach(entry => Destroy(entry));
@@ -77,6 +86,5 @@ public class UnityOutputService : MonoBehaviour, IOutputService
         ParseAndWriteLine(value.ToString());
     }
 
-    private readonly List<GameObject> mEntries;
-
+    #endregion Methods
 }

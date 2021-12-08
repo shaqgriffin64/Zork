@@ -1,5 +1,3 @@
-- Tie items to World.cs (Make it a hash set property in there)
-
 - Tie a bool to the item itself to decide if it can be picked up
 	- "You can pick up the mat but you can't pick up the mailbox."
 

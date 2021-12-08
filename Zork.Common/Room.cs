@@ -19,9 +19,9 @@ namespace ZorkGame
         [JsonProperty(Order = 2)]
         public string Description { get; set; }
 
-
-        //[JsonProperty (Order = 3)]
-        //public  List<Item(s)> RoomItems { get; set; }
+        //Really cool bit from thursday, don't forget to use
+        [JsonProperty(PropertyName = "Items", Order = 4)]
+        public List<Item> Items { get; set; }
 
         #endregion Properties
 

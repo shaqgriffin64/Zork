@@ -16,22 +16,29 @@ namespace ZorkGame
 
         public string StartingLocation { get; set; }
 
-        [JsonIgnore]
-        public Room previousLocation { get; set; }
-
         public string WelcomeMessage { get; set; }
 
         public string ExitMessage { get; set; }
+
+
+        [JsonIgnore]
+        public IInputService Input { get; set; }
+
+        [JsonIgnore]
+        public IOutputService Output { get; set; }
+
+        [JsonIgnore]
+        public Room previousLocation { get; set; }
 
         [JsonIgnore]
         public Player Player { get; private set; }
 
         [JsonIgnore]
         public bool IsRunning { get; set; }
-
-        public IInputService Input { get; set; }
-
-        public IOutputService Output { get; set; }
+        
+        //Don't lost track of this
+        [JsonIgnore]
+        public string interactableItem { get; set; }
 
         [JsonIgnore]
         public Dictionary<string, Command> Commands { get; private set; }
@@ -46,17 +53,13 @@ namespace ZorkGame
 
             Commands = new Dictionary<string, Command>()
             {
-                //Commands to add
-                /*
-                 * {"TAKE", new Command("TAKE", new string[] {"TAKE, T"}, Take)},
-                 * {"DROP", new Command("DROP", new string[] {"DROP"})},
-                 */
-
+                {"TAKE", new Command("TAKE", new string[] {"TAKE", "T"}, game => Take(game, interactableItem))},
+                {"DROP", new Command("DROP", new string[] {"DROP"}, game => Drop(game, interactableItem))},
                 { "QUIT", new Command("QUIT", new string[] { "QUIT", "Q", "BYE", "TOODLES", "SHALLOM" }, Quit) },
                 { "LOOK", new Command("LOOK", new string[] { "LOOK", "L" }, Look) },
                 { "REWARD", new Command("REWARD", new string[] { "REWARD", "R"}, Reward) },
                 { "SCORE", new Command("SCORE", new string[] { "SCORE"}, ShowScore) },
-                { "INVENTORY", new Command("INVENTORY", new string[] {"INVENTORY, I"}, game => ShowInventory(game))},
+                { "INVENTORY", new Command("INVENTORY", new string[] {"INVENTORY", "I"}, game => ShowInventory(game))},
                 { "NORTH", new Command("NORTH", new string[] { "NORTH", "N" }, game => Move(game, Directions.NORTH)) },
                 { "SOUTH", new Command("SOUTH", new string[] { "SOUTH", "S" }, game => Move(game, Directions.SOUTH)) },
                 { "EAST", new Command("EAST", new string[] { "EAST", "E"}, game => Move(game, Directions.EAST)) },
@@ -69,16 +72,20 @@ namespace ZorkGame
         #region Start
         public void Start(IInputService input, IOutputService output, Game game)
         {
+            //Output instance
             Assert.IsNotNull(output);
             Output = output;
 
+            //Input instance
             Assert.IsNotNull(input);
             Input = input;
+
+            //Input handler
             Input.InputReceived += InputRecievedHandler;
 
             IsRunning = true;
 
-            game.Output.WriteLine(game.WelcomeMessage);
+            //game.Output.WriteLine(game.WelcomeMessage);
         }
 
         #endregion Start
@@ -86,12 +93,57 @@ namespace ZorkGame
         #region Input Handler
         private void InputRecievedHandler(object sender, string commandString)
         {
-
             Command foundCommand = null;
+
+            //Generating an array from the entered command + possible item for command
+            string [] generatedStringArray = commandString.Split(' ');
+
+            //Finding a matching command
             foreach (Command command in Commands.Values)
             {
-                if (command.Verbs.Contains(commandString))
+
+                if (command.Verbs.Contains(generatedStringArray[0]))
                 {
+
+                    //Hard coding to check if the inserted command is take
+                    if (command.Verbs.Contains("TAKE"))
+                    {
+                        if (generatedStringArray.Length > 1)
+                        {
+                            //Give the iteractable item it's actual value (aka the approved item)
+                            interactableItem = generatedStringArray[1];
+                        }
+                        else
+                        {
+                            //Print the query
+                            Output.WriteLine("What do you want to take?");
+
+                            //Print the space
+                            Output.Write(" ");
+                            return;
+                        }
+                    }
+
+                    //Hard coding to check if the inserted command is drop
+                    else if (command.Verbs.Contains("DROP"))
+                    {
+                        if (generatedStringArray.Length > 1)
+                        {
+                            //Give the iteractable item it's actual value (aka the approved item)
+                            interactableItem = generatedStringArray[1];
+                        }
+                        else
+                        {
+                            //Print the query
+                            Output.WriteLine("What do you want to drop?");
+                            
+                            //Print the space
+                            Output.Write(" ");
+                            return;
+                        }
+                    }
+
+                    //Think of this as officiating the entered command after a matching command has been found
                     foundCommand = command;
                     break;
                 }
@@ -99,15 +151,15 @@ namespace ZorkGame
 
             if (foundCommand != null)
             {
-                //This = InputReceivedHandler
                 foundCommand.Action(this);
                 Player.Moves++;
             }
             else
             {
-                //Overall default for when nothing else works
                 Output.WriteLine("Unknown command.");
+                Output.Write(" ");
             }
+
         }
 
         #endregion Input Handler
@@ -136,14 +188,30 @@ namespace ZorkGame
         #endregion Move Method
 
         #region Misc. Methods
-        //Keep this as a lambda / expression bodied member for ease of use pls
-        public static void Look(Game game) => game.Output.WriteLine(game.Player.Location.Description);
 
         //Just does whatever the hell to the score value
         private static void Reward(Game game) => game.Player.Score += 1;
 
         //Literally just turns the game off
         private static void Quit(Game game) => game.IsRunning = false;
+
+
+        //Keep this as a lambda / expression bodied member for ease of use pls
+        public static void Look(Game game)
+        {
+            game.Output.WriteLine(game.Player.Location.Description);
+
+            if (game.Player.Location.Items != null)
+            {
+                foreach (Item item in game.Player.Location.Items)
+                {
+                    game.Output.WriteLine(item.Description);
+                }
+            }
+
+            game.Output.Write("");
+        }
+
 
         //Checks the current score of the player and whatnot
         private static void ShowScore(Game game)
@@ -156,10 +224,11 @@ namespace ZorkGame
             {
                 game.Output.WriteLine($"You don't even have a score yet.");
             }
-        }
+        }//End ShowScore
 
         //Displays the player's Inventory
         //Player centered Inventory & World centered Master Item List
+
         private static void ShowInventory(Game game)
         {
             if (game.Player.Inventory.Count != 0)
@@ -175,25 +244,54 @@ namespace ZorkGame
             {
                 game.Output.WriteLine("You are empty handed.");
             }
-        }
+        }//End Show Inventory
 
-        private static void Take()
-        {
-            /*
-             * - Specify the item that you want to take
-             *  - Parse the line that you read from the player
-             *      -Specify action and object that you want to act on
-             */
-        }
 
-        private static void Drop()
+        //Takes the Item
+        private static void Take(Game game, string enteredItem)
         {
-            /*
-             * - Specify the item that you want to take
-             *  - Parse the line that you read from the player
-             *      -Specify action and object that you want to act on
-             */
-        }
+            //Checks the location's inventory for a matching item
+            foreach (Item item in game.Player.Location.Items)
+            {
+                if (item.Name == enteredItem)
+                {
+                    game.Player.Inventory.Add(item);
+                    game.Player.Location.Items.Remove(item);
+
+                    game.Output.WriteLine($"Took {enteredItem}");
+                    game.Output.Write(" ");
+
+                    return;
+                }
+            }
+
+            game.Output.WriteLine($"That isn't isn't here");
+            game.Output.Write(" ");
+            
+            return;
+        }//End Take
+
+        //Drops the item
+        private static void Drop(Game game, string enteredItem)
+        {
+            //Checks the player's inventory for a matching item
+            foreach (Item item in game.Player.Inventory)
+            {
+                if (item.Name == enteredItem)
+                {
+                    game.Player.Location.Items.Add(item);
+                    game.Player.Inventory.Remove(item);
+
+                    game.Output.WriteLine($"Dropped {enteredItem}");
+                    game.Output.Write(" ");
+                    return;
+                }
+            }
+            game.Output.WriteLine($"You don't have that");
+            game.Output.Write(" ");
+
+            return;
+        }//End Drop
 
         [OnDeserialized]
         private void OnDeserialized(StreamingContext context) => Player = new Player(World, StartingLocation);

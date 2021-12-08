@@ -5,9 +5,19 @@ using Zork.Common;
 
 public class UnityInputService : MonoBehaviour, IInputService
 {
+    #region Variables
+
     public TMP_InputField InputField;
 
+    #endregion Variables
+
+    #region Properties
+
     public event EventHandler<string> InputReceived;
+
+    #endregion Properties
+
+    #region Update
 
     private void Update()
     {
@@ -23,5 +33,7 @@ public class UnityInputService : MonoBehaviour, IInputService
             InputField.Select();
             InputField.ActivateInputField();
         }
+
+        #endregion Update
     }
 }

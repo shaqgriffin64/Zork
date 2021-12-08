@@ -10,14 +10,19 @@ public class GameManager : MonoBehaviour
     #region Variables
     //Classic green squigglies
 
+    [Tooltip("The text that displays the current location of the player")]
     [SerializeField] private TextMeshProUGUI LocationText;
 
+    [Tooltip("The text that dispalys the current move count of the player")]
     [SerializeField] private TextMeshProUGUI MovesText;
 
+    [Tooltip("The text that displays the current score of the player")]
     [SerializeField] private TextMeshProUGUI ScoreText;
 
+    [Tooltip("References the intended INPUT service for the game")]
     [SerializeField] private UnityInputService InputService;
 
+    [Tooltip("References the intended OUTPUT service for the game")]
     [SerializeField] private UnityOutputService OutputService;
 
     //Game Declaration / Instance
@@ -39,7 +44,7 @@ public class GameManager : MonoBehaviour
         game.Player.LocationChanged += (sender, Location) => LocationText.text = Location.ToString();
 
         //Starts game
-        game.Start(InputService, OutputService);
+        game.Start(InputService, OutputService, game);
 
         #region Location Bits
         //Gets the player's starting location
@@ -56,10 +61,19 @@ public class GameManager : MonoBehaviour
         //Prints the welcome message
         game.Output.WriteLine(game.WelcomeMessage);
 
+        game.Output.WriteLine(game.Player.Location);
+
+
         //Initial / Customary look just like in the good ol' days
         Game.Look(game);
 
-        #region InputField
+        game.Output.WriteLine(game.Player.Location);
+
+        Game.Look(game);
+        //Double check the use of this
+        game.Output.WriteLine(" ");
+
+        #region InputField Selection / Activation
 
         InputService.InputField.Select();
 

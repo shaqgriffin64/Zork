@@ -9,13 +9,13 @@ namespace Zork
 
         public void GetInput()
         {
-            string inputString = Console.ReadLine();
+            string inputString = Console.ReadLine().Trim().ToUpper();
 
-            if (string.IsNullOrWhiteSpace(inputString) == false)
-            {
+            //if (string.IsNullOrWhiteSpace(inputString) == false)
+            //{
                 //null coalescing operator
                 InputReceived?.Invoke(this, inputString);
-            }
+            //}
         }
     }
 }

@@ -10,11 +10,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zork.Console", "Zork\Zork.C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Zork.Common", "Zork.Common\Zork.Common.csproj", "{95DE37CE-8BE6-4A4D-84D4-7B8649DC9B78}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryManager.WinForms", "ZorkBuilder\InventoryManager.WinForms.csproj", "{3A333EAA-9A9F-4237-8AAD-121A38DE728E}"
-	ProjectSection(ProjectDependencies) = postProject
-		{95DE37CE-8BE6-4A4D-84D4-7B8649DC9B78} = {95DE37CE-8BE6-4A4D-84D4-7B8649DC9B78}
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,10 +24,6 @@ Global
 		{95DE37CE-8BE6-4A4D-84D4-7B8649DC9B78}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{95DE37CE-8BE6-4A4D-84D4-7B8649DC9B78}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{95DE37CE-8BE6-4A4D-84D4-7B8649DC9B78}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3A333EAA-9A9F-4237-8AAD-121A38DE728E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3A333EAA-9A9F-4237-8AAD-121A38DE728E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3A333EAA-9A9F-4237-8AAD-121A38DE728E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3A333EAA-9A9F-4237-8AAD-121A38DE728E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

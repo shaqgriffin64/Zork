@@ -20,15 +20,14 @@ namespace ZorkGame
         private Room location;
         private int score;
         private int moves;
-        //Invnetory variable
-        //private List<[insert either reference to Items.cs OR ]> Inventory;
-
-        //Insert player inventory list
 
         #endregion Variables
 
         #region Properties
         public World World { get; }
+        
+        //The saucy bit
+        public List<Item> Inventory { get; set; } = new List<Item>();
 
         [JsonIgnore]
         public Room Location
@@ -79,7 +78,7 @@ namespace ZorkGame
             }
         }
 
-        public List<Item> Inventory { get; set; }
+        //public List<Item> Inventory { get; set; }
 
         #endregion Properties
 
