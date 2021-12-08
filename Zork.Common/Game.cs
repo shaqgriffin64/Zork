@@ -54,7 +54,7 @@ namespace ZorkGame
             Commands = new Dictionary<string, Command>()
             {
                 {"TAKE", new Command("TAKE", new string[] {"TAKE", "T"}, game => Take(game, interactableItem))},
-                {"DROP", new Command("DROP", new string[] {"DROP", "D"}, game => Drop(game, interactableItem))},
+                {"DROP", new Command("DROP", new string[] {"DROP"}, game => Drop(game, interactableItem))},
                 { "QUIT", new Command("QUIT", new string[] { "QUIT", "Q", "BYE", "TOODLES", "SHALLOM" }, Quit) },
                 { "LOOK", new Command("LOOK", new string[] { "LOOK", "L" }, Look) },
                 { "REWARD", new Command("REWARD", new string[] { "REWARD", "R"}, Reward) },
@@ -190,13 +190,7 @@ namespace ZorkGame
         #region Misc. Methods
 
         //Just does whatever the hell to the score value
-        private static void Reward(Game game)
-        {
-            game.Player.Score += 1;
-
-            game.Output.WriteLine($"You got 1 point!");
-            game.Output.WriteLine(" ");
-        }
+        private static void Reward(Game game) => game.Player.Score += 1;
 
         //Literally just turns the game off
         private static void Quit(Game game) => game.IsRunning = false;
@@ -207,18 +201,12 @@ namespace ZorkGame
         {
             game.Output.WriteLine(game.Player.Location.Description);
 
-            if (game.Player.Location.Items.Count > 0)
+            if (game.Player.Location.Items != null)
             {
-                game.Output.WriteLine("You see the following:");
-
                 foreach (Item item in game.Player.Location.Items)
                 {
-                    game.Output.WriteLine($" - {item.Description}");
+                    game.Output.WriteLine(item.Description);
                 }
-            }
-            else if (game.Player.Location.Items.Count == 0)
-            {
-                game.Output.WriteLine("The room is barren of items");
             }
 
             game.Output.Write("");
@@ -238,11 +226,9 @@ namespace ZorkGame
             }
         }//End ShowScore
 
-
-        #region Inventory Manager Methods
-
         //Displays the player's Inventory
-        //Player centered Inventory & Room based item lists
+        //Player centered Inventory & World centered Master Item List
+
         private static void ShowInventory(Game game)
         {
             if (game.Player.Inventory.Count != 0)
@@ -253,14 +239,10 @@ namespace ZorkGame
                 {
                     game.Output.WriteLine(item);
                 }
-                game.Output.Write("\n");
-
             }
             else
             {
                 game.Output.WriteLine("You are empty handed.");
-                game.Output.Write("\n");
-
             }
         }//End Show Inventory
 
@@ -276,8 +258,7 @@ namespace ZorkGame
                     game.Player.Inventory.Add(item);
                     game.Player.Location.Items.Remove(item);
 
-                    //game.Output.WriteLine($"Took {enteredItem}");
-                    game.Output.WriteLine("Taken.");
+                    game.Output.WriteLine($"Took {enteredItem}");
                     game.Output.Write(" ");
 
                     return;
@@ -301,8 +282,7 @@ namespace ZorkGame
                     game.Player.Location.Items.Add(item);
                     game.Player.Inventory.Remove(item);
 
-                    //game.Output.WriteLine($"Dropped {enteredItem}");
-                    game.Output.WriteLine("Dropped");
+                    game.Output.WriteLine($"Dropped {enteredItem}");
                     game.Output.Write(" ");
                     return;
                 }
@@ -312,8 +292,6 @@ namespace ZorkGame
 
             return;
         }//End Drop
-
-        #endregion Inventory Manager Methods
 
         [OnDeserialized]
         private void OnDeserialized(StreamingContext context) => Player = new Player(World, StartingLocation);
